@@ -11,5 +11,6 @@ public class Main {
     @RequestMapping("/test")
     public String test(){
         return "Hello world";
+        return "I show you da way";
     }
 }
