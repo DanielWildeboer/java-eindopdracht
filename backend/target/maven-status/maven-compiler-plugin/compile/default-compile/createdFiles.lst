@@ -1,0 +1,8 @@
+api\Application.class
+nl\stenden\eindopdracht\OurSpringBootApplication.class
+api\Controller.class
+nl\stenden\eindopdracht\model\User.class
+nl\stenden\eindopdracht\controller\MainController.class
+nl\stenden\eindopdracht\model\Teacher.class
+nl\stenden\eindopdracht\model\Student.class
+api\Main.class
