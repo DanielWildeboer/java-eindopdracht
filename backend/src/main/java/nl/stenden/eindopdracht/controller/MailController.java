@@ -1,14 +1,21 @@
 package nl.stenden.eindopdracht.controller;
 
+import java.security.Security;
 import java.util.Properties;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.Message.RecipientType;
+import org.bouncycastle.*;
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 public class MailController {
 
     public static void main(String[] args) {
+
+        Security.addProvider(new BouncyCastleProvider());
+
+
         final String username = "javatestlesley@gmail.com";
         final String password = "lesley123";
 
