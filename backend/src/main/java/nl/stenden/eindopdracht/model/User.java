@@ -14,9 +14,17 @@ public class User {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name")
-    @NotEmpty(message = "Please provide your name")
-    private String name;
+    @Column(name = "userName")
+    @NotEmpty(message = "Please provide your user name")
+    private String userName;
+
+    @Column(name = "firstName")
+    @NotEmpty(message = "Please provide your first name")
+    private String firstName;
+
+    @Column(name = "lastName")
+    @NotEmpty(message = "Please provide your last name")
+    private String lastName;
 
     @Column(name = "email", nullable = false, unique = true)
     @Email(message = "Please provide a valid e-mail")
@@ -36,9 +44,11 @@ public class User {
 
     }
 
-    public User(Long id, String name, String email, String token, String password) {
+    public User(Long id, String userName, String firstName, String lastName, String email, String token, String password) {
         this.id = id;
-        this.name = name;
+        this.userName = userName;
+        this.userName = firstName;
+        this.userName = lastName;
         this.email = email;
         this.token = token;
         this.password = password;
@@ -52,12 +62,28 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
