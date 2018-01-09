@@ -1,8 +1,5 @@
 package nl.stenden.eindopdracht.model;
 
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
-
 import javax.persistence.*;
 
 @Entity

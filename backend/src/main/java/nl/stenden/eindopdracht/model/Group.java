@@ -1,8 +1,5 @@
 package nl.stenden.eindopdracht.model;
 
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -21,7 +18,7 @@ public class Group {
     @Column(name = "subject", nullable = false, unique = true)
     private String subject;
 
-    private List<Student> studentList;
+    //private List<Student> studentList;
 
     public Group() {
 
@@ -57,9 +54,9 @@ public class Group {
         this.subject = subject;
     }
 
-    public List<Student> getStudentList() { return studentList; }
+    //public List<Student> getStudentList() { return studentList; }
 
-    public void addStudent(Student student) { studentList.add(student); }
+    //public void addStudent(Student student) { studentList.add(student); }
 
 
 }
