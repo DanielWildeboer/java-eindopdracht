@@ -94,8 +94,6 @@
     <orderEntry type="library" name="Maven: org.slf4j:jcl-over-slf4j:1.7.25" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-aspects:4.3.13.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: com.h2database:h2:1.4.196" level="project" />
-    <orderEntry type="library" name="Maven: javax.mail:mail:1.4" level="project" />
-    <orderEntry type="library" name="Maven: javax.activation:activation:1.1" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-context-support:3.2.8.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-crypto:3.1.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-web:4.2.3.RELEASE" level="project" />
@@ -103,5 +101,6 @@
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-core:4.2.3.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: javax.mail:mail:1.4" level="project" />
     <orderEntry type="library" name="Maven: javax.activation:activation:1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.bouncycastle:bcprov-jdk15on:1.59" level="project" />
   </component>
 </module>
