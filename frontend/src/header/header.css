@@ -68,4 +68,18 @@ nav ul a {
     font-size: 30px;
 }
 
+#students, #groups {
+    margin-top: -20px;
+}
 
+.amount {
+    margin-top: 17px;
+}
+
+.padding-left-50 {
+    padding-left: 50px !important;
+}
+
+.padding-right-50 {
+    padding-right: 50px !important;
+}
