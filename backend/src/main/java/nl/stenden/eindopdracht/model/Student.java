@@ -6,7 +6,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "user")
+@Table(name = "student")
 public class Student {
 
     @Id
