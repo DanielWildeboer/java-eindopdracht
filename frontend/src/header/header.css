@@ -1,0 +1,71 @@
+.nav-content {
+    height: 70px;
+    background-color: #0083ff;
+}
+
+.current-tab {
+    margin-left: 10px;
+    height: 50px;
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: #00346a;
+    float: left;
+    border-radius: 5px;
+}
+
+.date {
+    margin-left: 10px;
+}
+
+nav {
+    background-color: white;
+}
+
+.nav-wrapper {
+    background-color: #ffffff;
+}
+
+nav ul li {
+    border-bottom: none;
+}
+
+nav ul li.active {
+    background-color: #f2f8ff;
+    border-bottom: 3px solid #2695fe;
+}
+
+nav ul a:hover {
+    background-color: #f2f8ff;
+    border-bottom: 3px solid #2695fe;
+}
+
+nav ul a {
+    color: #4ea9ff;
+    font-weight: bold;
+}
+
+.nav-bottom {
+    background-image: url("pattern_720.png");
+    background-color: #f2f8ff;
+    width: 100%;
+    height: 100%;
+    float: left;
+    line-height: normal;
+    color: #a2a3a4;
+    font-weight: 500;
+}
+
+.nav-bottom h1 {
+    color: #02366b;
+    font-weight: bold;
+}
+
+.nav-bottom .col {
+
+}
+
+#welcome {
+    font-size: 30px;
+}
+
+
