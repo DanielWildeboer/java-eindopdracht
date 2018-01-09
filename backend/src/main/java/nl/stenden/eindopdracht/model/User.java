@@ -27,9 +27,10 @@ public class User {
     public String token;
 
     @Column(name = "password")
-    @Transient
     private String password;
 
+    @Column(name = "passwordConfirm")
+    private String passwordConfirm;
 
     public User() {
 
@@ -75,4 +76,12 @@ public class User {
 
     public void setPassword(String password) { this.password = password; }
 
+    @Transient
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
+
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
+    }
 }

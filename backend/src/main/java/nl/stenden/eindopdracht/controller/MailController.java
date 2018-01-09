@@ -29,8 +29,7 @@ public class MailController {
         try {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("iemand@gmail.com"));
-
-
+            //hieronder kan  je de ontvanger opgeven, ik denk dat we een array van adressen kunnen gebruiken?
             message.setRecipients(RecipientType.TO, InternetAddress.parse("lesley.van.oostenrijk@student.stenden.com"));
             message.setSubject("Een test mail");
             message.setText("Beste Student," +
