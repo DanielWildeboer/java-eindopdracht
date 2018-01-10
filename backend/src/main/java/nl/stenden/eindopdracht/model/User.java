@@ -47,8 +47,8 @@ public class User {
     public User(Long id, String userName, String firstName, String lastName, String email, String token, String password) {
         this.id = id;
         this.userName = userName;
-        this.userName = firstName;
-        this.userName = lastName;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
         this.token = token;
         this.password = password;
