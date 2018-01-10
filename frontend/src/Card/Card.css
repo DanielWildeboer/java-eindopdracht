@@ -2,17 +2,26 @@ body {
 background: grey;
 }
 
+.contentContainer {
+	overflow-y: auto;
+	max-height: 570px;
+}
+
 .cardExtra {
-	height: 750px;
+	height: 706px;
 	width: 400px;
 }
 
 .cardTitleExtra {
 	margin-left: 40px;
+	color: #02366b;
+	padding-bottom: 20px;
 }
 
 .chipExtra {
 	margin-bottom: 5px;
+	margin-right: 10px;
+	float: left;
 }
 
 .contentBlock {
@@ -56,20 +65,24 @@ background: grey;
 
 .addGroups {
 	position: relative;
-	bottom: -269px;
 	height: 60px;
 	background-color: #F0F7FE;
 	border-bottom-left-radius: 2px;
 	border-bottom-right-radius: 2px;
 }
 
-.addGroups {
+.addGroups p {
 	font-family: Roboto;
-	color: #b0bec5;
+	font-size: 16px;
+	color: #02366b;
 	margin: 0 auto;
 	text-align: center;
+	padding-top: 20px;
 }
 
+.titleString {
+	float: left;
+}
 
 
 
