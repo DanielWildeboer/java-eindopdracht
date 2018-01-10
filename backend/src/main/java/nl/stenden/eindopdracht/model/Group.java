@@ -18,16 +18,22 @@ public class Group {
     @Column(name = "subject", nullable = false, unique = true)
     private String subject;
 
-    //private List<Student> studentList;
+    @Column(name = "grade", nullable = false, unique = true)
+    private float grade;
 
+    private List<Student> studentList;
+
+    
     public Group() {
 
     }
 
-    public Group(long id, String name, String subject) {
+    public Group(long id, String name, String subject, float grade) {
         this.id = id;
         this.name = name;
         this.subject = subject;
+        this.grade = grade;
+
     }
 
     public Long getId(){
@@ -54,9 +60,13 @@ public class Group {
         this.subject = subject;
     }
 
-    //public List<Student> getStudentList() { return studentList; }
+    public List<Student> getStudentList() { return studentList; }
 
-    //public void addStudent(Student student) { studentList.add(student); }
+    public void addStudent(Student student) { studentList.add(student); }
+
+    public float getGrade() { return grade; }
+
+    public void setGrade(float grade) { this.grade = grade; }
 
 
 }
