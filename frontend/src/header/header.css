@@ -11,6 +11,7 @@
     background-color: #00346a;
     float: left;
     border-radius: 5px;
+    margin-top: 10px;
 }
 
 .user {
@@ -20,10 +21,25 @@
     background-color: #00346a;
     border-radius: 5px;
     margin-right: 10px;
+    float: right;
+    position:relative;
+    margin-top: 10px;
+}
+
+.logout {
+    margin-top: 35px;
+    margin-right: -57px;
+}
+
+.user-name {
+    margin-top: 15px;
+    margin-right: 10px;
 }
 
 .date {
     margin-left: 10px;
+    line-height: 70px;
+    float: left;
 }
 
 nav {
