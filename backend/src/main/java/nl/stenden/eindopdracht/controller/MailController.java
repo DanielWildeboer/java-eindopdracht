@@ -15,6 +15,42 @@ import java.security.cert.CertificateException;
 import java.util.Enumeration;
 import java.util.Properties;
 
+import java.io.*;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+import java.security.PrivateKey;
+import java.security.Security;
+import java.security.UnrecoverableEntryException;
+import java.security.cert.CertStore;
+import java.security.cert.CertStoreException;
+import java.security.cert.Certificate;
+import java.security.cert.CertificateException;
+import java.security.cert.CollectionCertStoreParameters;
+import java.security.cert.X509Certificate;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.List;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.activation.CommandMap;
+import javax.activation.MailcapCommandMap;
+import javax.mail.*;
+import javax.mail.internet.*;
+import org.bouncycastle.asn1.ASN1EncodableVector;
+import org.bouncycastle.asn1.cms.AttributeTable;
+import org.bouncycastle.asn1.cms.IssuerAndSerialNumber;
+import org.bouncycastle.asn1.smime.SMIMECapabilitiesAttribute;
+import org.bouncycastle.asn1.smime.SMIMECapability;
+import org.bouncycastle.asn1.smime.SMIMECapabilityVector;
+import org.bouncycastle.asn1.smime.SMIMEEncryptionKeyPreferenceAttribute;
+import org.bouncycastle.asn1.x500.X500Name;
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import org.bouncycastle.mail.smime.SMIMEException;
+import org.bouncycastle.mail.smime.SMIMESignedGenerator;
 
 public class MailController {
 
@@ -23,6 +59,8 @@ public class MailController {
         final String username = "javatestlesley@gmail.com";
         final String password = "lesley123";
 
+        boolean isAlias = false;
+
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
@@ -30,7 +68,7 @@ public class MailController {
         props.put("mail.smtp.port", "587");
 
         Session session = Session.getInstance(props,
-            new javax.mail.Authenticator() {
+            new Authenticator() {
                 protected PasswordAuthentication getPasswordAuthentication() {
                     return new PasswordAuthentication(username, password);
                 }
@@ -66,7 +104,8 @@ public class MailController {
             KeyStore keyStore = KeyStore.getInstance("JKS");
 
             //Provide location of Java Keystore and password for access
-            keyStore.load(new FileInputStream("..//..//resources//cert.jks"), "lesley123".toCharArray());
+            keyStore.load(new FileInputStream("..//..//resources//cert.jks"),
+                    "lesley123".toCharArray());
 
 
             //Find the first legit alias in the keystore and use it
@@ -82,7 +121,33 @@ public class MailController {
             }
             if (isAlias) {
                 KeyStore.PrivateKeyEntry pkEntry = (KeyStore.PrivateKeyEntry) keyStore.getEntry(alias, new KeyStore.PasswordProtection("lesley123".toCharArray()));
+                PrivateKey myPrivateKey = pkEntry.getPrivateKey();
 
+                // Load certificate chain
+                Certificate[] chain = keyStore.getCertificateChain(alias);
+
+                // Create the SMIMESignedGenerator
+                SMIMECapabilityVector capabilities = new SMIMECapabilityVector();
+                capabilities.addCapability(SMIMECapability.dES_EDE3_CBC);
+                capabilities.addCapability(SMIMECapability.rC2_CBC, 128);
+                capabilities.addCapability(SMIMECapability.dES_CBC);
+                capabilities.addCapability(SMIMECapability.aES256_CBC);
+
+                ASN1EncodableVector attributes = new ASN1EncodableVector();
+                attributes.add(new SMIMEEncryptionKeyPreferenceAttribute(
+                        new IssuerAndSerialNumber(
+                                new X500Name(((X509Certificate) chain[0])
+                                        .getIssuerDN().getName()),
+                                ((X509Certificate) chain[0]).getSerialNumber())));
+                attributes.add(new SMIMECapabilitiesAttribute(capabilities));
+
+                SMIMESignedGenerator signer = new SMIMESignedGenerator();
+//                signer.addSigners(
+//                        myPrivateKey,
+//                        (X509Certificate) chain[0],
+//                        "DSA".equals(myPrivateKey.getAlgorithm()) ? SMIMESignedGenerator.DIGEST_SHA1
+//                                : SMIMESignedGenerator.DIGEST_MD5,
+//                        new AttributeTable(attributes), null);
             }
 
 
