@@ -9,51 +9,23 @@ import javax.persistence.*;
 @Table(name = "gradeAssessment")
 public class GradeAssessment {
 
+    private long Id;
+    private String groupId;
+    private String studentId;
+    private String userId;
+    private String senderStudent;
+    private String receiverStudent;
+    private float grade;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private long id;
+    public long getId(){ return Id; }
 
-    @Column(name = "groupId", nullable = false, unique = true)
-    private String groupId;
-
-    @Column(name = "studentId", nullable = false, unique = true)
-    private String studentId;
+    public void setId(long Id){ this.Id = Id; }
 
     public String getGroupId() {
         return groupId;
     }
-
-
-
-    @Column(name = "userId", nullable = false, unique = true)
-    private String userId;
-
-    @Column(name = "senderStudent", nullable = false, unique = true)
-    private String senderStudent;
-
-    @Column(name = "receiverStudent", nullable = false, unique = true)
-    private String receiverStudent;
-
-    @Column(name = "grade", nullable = false, unique = true)
-    private float grade;
-
-
-
-    public GradeAssessment(){
-
-    }
-
-    public GradeAssessment(long id, String groupId, String studentId, String userId, String senderStudent, String receiverStudent, float grade) {
-        this.id = id;
-        this.groupId = groupId;
-        this.studentId = studentId;
-        this.userId = userId;
-        this.senderStudent = senderStudent;
-        this.receiverStudent = receiverStudent;
-        this.grade = grade;
-    }
-
 
     public void setGroupId(String groupId) { this.groupId = groupId; }
 

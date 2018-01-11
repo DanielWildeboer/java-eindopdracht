@@ -26,3 +26,5 @@ backend/target
 
 
 frontend/.idea/workspace.xml
+frontend/src/\.DS_Store
+
