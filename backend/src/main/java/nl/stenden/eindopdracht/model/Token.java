@@ -28,7 +28,4 @@ public class Token {
 
     public void setStudentId(String studentId) { this.studentId = studentId; }
 
-
-
-
 }
