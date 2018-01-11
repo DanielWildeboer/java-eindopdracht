@@ -9,41 +9,14 @@ import javax.persistence.*;
 @Table(name = "student")
 public class Student {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
     private int id;
-
-    @Column(name = "email", nullable = false, unique = true)
-    @Email(message = "Please provide a valid e-mail")
-    @NotEmpty(message = "Please provide an e-mail")
     private String email;
-
-    @Column(name = "first_name")
-    @NotEmpty(message = "Please provide your first name")
     private String firstName;
-
-    @Column(name = "last_name")
-    @NotEmpty(message = "Please provide your last name")
     private String lastName;
-
-    @Column(name = "token")
     private String token;
 
-
-    public Student() {
-
-    }
-
-    public Student(int id, String email, String firstName, String lastName, String token) {
-            this.id = id;
-            this.email = email;
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.token = token;
-    }
-
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getId() { return id; }
 
     public void setId(int id) { this.id = id; }
