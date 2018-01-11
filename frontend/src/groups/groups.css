@@ -1,0 +1,33 @@
+.header {
+	height: 70px;
+	background-color: grey;
+}
+
+.tableTitles {
+	height: 30px;
+	background-color: green;
+}
+
+.tableContent {
+	background-color: blue;
+}
+
+.groupsCount {
+	background-color: #0083ff;
+	border-radius: 6px;
+	width: 120px;
+	padding: 4px;
+	margin-left: 10px;
+
+}
+
+.groupsCount p {
+	color: white;
+	margin: 0;
+}
+
+.groupsSearch {
+	float: left;
+	margin: 0;
+
+}
