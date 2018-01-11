@@ -13,6 +13,7 @@ public class Student {
     private String email;
     private String firstName;
     private String lastName;
+    private Integer studentNumber;
     private String token;
 
     @Id
@@ -37,4 +38,7 @@ public class Student {
 
     public void token(String token) { this.token = token; }
 
+    public Integer getStudentNumber() { return studentNumber; }
+
+    public void setStudentNumber(Integer studentNumber) { this.studentNumber = studentNumber; }
 }
