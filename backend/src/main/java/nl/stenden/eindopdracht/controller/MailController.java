@@ -46,8 +46,8 @@ public class MailController {
 
         final String username = "javatestlesley@gmail.com";
         final String password = "lesley123";
-
         boolean isAlias = false;
+        String alias = "";
 
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
@@ -61,9 +61,6 @@ public class MailController {
                     return new PasswordAuthentication(username, password);
                 }
             });
-
-
-
 
         try {
             Message message = new MimeMessage(session);
@@ -96,10 +93,9 @@ public class MailController {
             keyStore.load(new FileInputStream("C:\\Users\\ljvan\\Documents\\java-eindopdracht\\backend\\src\\main\\resources\\cert.jks"),
                     "lesley123".toCharArray());
 
-
             //Find the first legit alias in the keystore and use it
             Enumeration<String> es = keyStore.aliases();
-            String alias = "";
+
             while (es.hasMoreElements()) {
                 alias = es.nextElement();
 
@@ -162,9 +158,7 @@ public class MailController {
                 // Send the message
                 Transport.send(signedMessage);
                 System.out.println("message sent");
-
             }
-
         }
         catch (MessagingException e) {
             throw new RuntimeException(e);
