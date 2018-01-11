@@ -24,3 +24,5 @@ hs_err_pid*
 backend/.idea
 backend/target
 
+
+frontend/src/\.DS_Store
