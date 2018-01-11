@@ -1,6 +1,7 @@
 body {
-    background: url("pattern.png") repeat rgba(0, 131, 255, 0.4);
+    background: url("bg.jpg") no-repeat rgba(0, 131, 255, 0.4);
     background-position: center;
+    background-size: cover;
     font-family: Roboto !important;
 
 }
@@ -20,6 +21,7 @@ body {
     height: auto;
 }
 .grade-card .header-text {
+    font-weight: 400;
     margin-top: 0;
     margin-bottom: 2rem;
     color: #777777;
