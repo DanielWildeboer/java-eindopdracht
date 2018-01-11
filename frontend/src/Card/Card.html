@@ -4,7 +4,7 @@
 	    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="Card.css">
+	<link rel="stylesheet" type="text/css" href="card.css">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<script src="script.js"></script>
 	<title>Card</title>
@@ -12,59 +12,14 @@
 <body ng-app="mainApp" ng-controller="cardController">
 	<div class="containerCards col s12">
 
-		<div class="card cardExtra col s6 l3">
+		<div ng-repeat="card in cards" class="card cardExtra col s6 l3">
 	        <div class="card-content">
-	            <span class="card-title cardTitleExtra"><div class="chip chipExtra">10</div><div class="titleString">GROEPEN TOTAAL</div></span>
+	            <span class="card-title cardTitleExtra"><div class="chip chipExtra">{{card.content.length}}</div><div class="titleString">{{card.title}}</div></span>
 	        </div>
-	            	<div ng-repeat="c in content" class="contentContainer">
-	            		<div class="contentBlock">
-	            			<div class="nameSquare {{color()}}"><h5>{{acronym(c) | limitTo: 2}}</h5></div>
-	              			<div class="textBlock"><p>{{c}}</p></div>	
-	              			<i class="material-icons">more_horiz</i>
-	              		</div>
-	        		</div>
-	        	<a href="#"><div class="addGroups">
-	        		<p>WIJZIG RESULTATEN</p>
-	        	</div></a>
-	    </div>
-	    <div class="card cardExtra col s6 l3">
-	        <div class="card-content">
-	            <span class="card-title cardTitleExtra"><div class="chip chipExtra">10</div><div class="titleString">GROEPEN TOTAAL</div></span>
-	        </div>
-	            	<div ng-repeat="c in content" class="contentContainer">
-	            		<div class="contentBlock">
-	            			<div class="nameSquare {{color()}}"><h5>{{acronym(c) | limitTo: 2}}</h5></div>
-	              			<div class="textBlock"><p>{{c}}</p></div>	
-	              			<i class="material-icons">more_horiz</i>
-	              		</div>
-	        		</div>
-	        	<a href="#"><div class="addGroups">
-	        		<p>WIJZIG RESULTATEN</p>
-	        	</div></a>
-	    </div>
-	    <div class="card cardExtra col s6 l3">
-	        <div class="card-content">
-	            <span class="card-title cardTitleExtra"><div class="chip chipExtra">10</div><div class="titleString">GROEPEN TOTAAL</div></span>
-	        </div>
-	            	<div ng-repeat="c in content" class="contentContainer">
-	            		<div class="contentBlock">
-	            			<div class="nameSquare {{color()}}"><h5>{{acronym(c) | limitTo: 2}}</h5></div>
-	              			<div class="textBlock"><p>{{c}}</p></div>	
-	              			<i class="material-icons">more_horiz</i>
-	              		</div>
-	        		</div>
-	        	<a href="#"><div class="addGroups">
-	        		<p>WIJZIG RESULTATEN</p>
-	        	</div></a>
-	    </div>
-	    <div class="card cardExtra col s6 l3">
-	        <div class="card-content">
-	            <span class="card-title cardTitleExtra"><div class="chip chipExtra">10</div><div class="titleString">GROEPEN TOTAAL</div></span>
-	        </div>
-	            	<div ng-repeat="c in content" class="contentContainer">
-	            		<div class="contentBlock">
-	            			<div class="nameSquare {{color()}}"><h5>{{acronym(c) | limitTo: 2}}</h5></div>
-	              			<div class="textBlock"><p>{{c}}</p></div>	
+	            	<div class="contentContainer">
+	            		<div ng-repeat="text in card.content" class="contentBlock">
+	            			<div class="nameSquare {{color()}}"><h5>{{acronym(text) | limitTo: 2}}</h5></div>
+	              			<div class="textBlock"><p>{{text}}</p></div>	
 	              			<i class="material-icons">more_horiz</i>
 	              		</div>
 	        		</div>
