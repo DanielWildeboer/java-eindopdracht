@@ -80,6 +80,7 @@ public class MailController {
         try {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("iemand@gmail.com"));
+
             //hieronder kan  je de ontvanger opgeven, ik denk dat we een array van adressen kunnen gebruiken?
             message.setRecipients(RecipientType.TO, InternetAddress.parse("lesley.van.oostenrijk@student.stenden.com"));
             message.setSubject("Een test mail");
@@ -104,7 +105,7 @@ public class MailController {
             KeyStore keyStore = KeyStore.getInstance("JKS");
 
             //Provide location of Java Keystore and password for access
-            keyStore.load(new FileInputStream("..//..//resources//cert.jks"),
+            keyStore.load(new FileInputStream("C:\\Users\\ljvan\\Documents\\java-eindopdracht\\backend\\src\\main\\resources\\cert.jks"),
                     "lesley123".toCharArray());
 
 
@@ -112,7 +113,7 @@ public class MailController {
             Enumeration<String> es = keyStore.aliases();
             String alias = "";
             while (es.hasMoreElements()) {
-                alias = (String) es.nextElement();
+                alias = es.nextElement();
 
                 //Does alias refer to a private key? Assign true/false to isAlias & evaluate
                 if (isAlias = keyStore.isKeyEntry(alias)) {
@@ -142,32 +143,72 @@ public class MailController {
                 attributes.add(new SMIMECapabilitiesAttribute(capabilities));
 
                 SMIMESignedGenerator signer = new SMIMESignedGenerator();
-//                signer.addSigners(
-//                        myPrivateKey,
-//                        (X509Certificate) chain[0],
-//                        "DSA".equals(myPrivateKey.getAlgorithm()) ? SMIMESignedGenerator.DIGEST_SHA1
-//                                : SMIMESignedGenerator.DIGEST_MD5,
-//                        new AttributeTable(attributes), null);
+
+                signer.addSigner(myPrivateKey,
+                        (X509Certificate) chain[0],
+                        "DSA".equals(myPrivateKey.getAlgorithm()) ? SMIMESignedGenerator.DIGEST_SHA1 : SMIMESignedGenerator.DIGEST_MD5,
+                        new AttributeTable(attributes),null);
+
+                //Add list of certs to the generator
+                List certList = new ArrayList();
+                certList.add(chain[0]);
+                CertStore certs = CertStore.getInstance("Collection",
+                        new CollectionCertStoreParameters(certList), "BC");
+                signer.addCertificatesAndCRLs(certs);
+
+                // Sign the message
+                MimeMultipart mm = signer.generate((MimeMessage) message, "BC");
+                MimeMessage signedMessage = new MimeMessage(session);
+
+//                // Set all original MIME headers in the signed message
+//                Enumeration headers = message.getAllHeaders();
+//                while (headers.hasMoreElements()) {
+//                    signedMessage.addHeaderLine((String) headers.nextElement());
+//                }
+
+                // Set the content of the signed message
+                signedMessage.setRecipients(RecipientType.TO, InternetAddress.parse("lesley.van.oostenrijk@student.stenden.com"));
+                signedMessage.setContent(mm);
+                signedMessage.saveChanges();
+
+                // Send the message
+                Transport.send(signedMessage);
+                System.out.println("message sent");
+
             }
 
-
-            //SEND MESSAGE
-            Transport.send(message);
-            System.out.println("message sent");
-
-        } catch (MessagingException e) {
+        }
+        catch (MessagingException e) {
             throw new RuntimeException(e);
-        } catch (KeyStoreException e) {
+        }
+        catch (KeyStoreException e) {
             e.printStackTrace();
-        } catch (CertificateException e) {
+        }
+        catch (CertificateException e) {
             e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
+        }
+        catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
-        } catch (FileNotFoundException e) {
+        }
+        catch (FileNotFoundException e) {
             e.printStackTrace();
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             e.printStackTrace();
-        } catch (UnrecoverableEntryException e) {
+        }
+        catch (UnrecoverableEntryException e) {
+            e.printStackTrace();
+        }
+        catch (CertStoreException e) {
+            e.printStackTrace();
+        }
+        catch (NoSuchProviderException e) {
+            e.printStackTrace();
+        }
+        catch (SMIMEException e) {
+            e.printStackTrace();
+        }
+        catch (InvalidAlgorithmParameterException e) {
             e.printStackTrace();
         }
     }
