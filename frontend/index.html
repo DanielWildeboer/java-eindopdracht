@@ -1,12 +1,57 @@
 <!doctype html>
-<html ng-app>
+<html>
   <head>
     <title>GradeTool</title>
-      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script data-require="angularjs@1.5.8" data-semver="1.5.8" src="https://opensource.keycdn.com/angularjs/1.5.8/angular.min.js"></script>
+    <script data-require="angular-route@1.5.8" data-semver="1.5.8" src="https://code.angularjs.org/1.5.8/angular-route.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script src="src/Header/routing.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="src/Header/header.css">
+    <link rel="stylesheet" href="src/Card/card.css">
+    <script src="src/Card/script.js"></script>
   </head>
-  <body>
+  <body ng-app="mainApp">
+  <nav class="nav-extended">
+    <div class="nav-content">
+      <div class="current-tab"><p>OVERZICHT</p></div>
+      <div class="date">Maandag, 12 januari</div>
+      <div class="user right">
+        <p>RS</p>
+      </div>
+      <div class="user-name right">Rob smit</div>
+      <div class="logout right"><a>UITLOGGEN</a></div>
+    </div>
+    <div class="nav-wrapper">
+      <ul class="left">
+        <li class="active"><a href="#/">Overzicht</a></li>
+        <li><a href="#students">Leerlingen</a></li>
+        <li><a href="#groups">Groepen</a></li>
+      </ul>
+    </div>
+    <div class="nav-bottom row">
+      <div class="col s4 padding-left-50">
+        <div class="left-align">
+          <h1 id="welcome">Welkom Rob Smit,</h1>
+          <p>Maak nieuwe groepen aan<br/> door op het tabje
+            "groepen" te drukken</p>
+        </div>
+      </div>
+      <div class="col s4">
+        <div class="center-align">
+          <h1 class="amount">234</h1>
+          <p id="students">LEERLINGEN HEBBEN<br/> ZICH AANGEMELD</p>
+        </div>
+      </div>
+      <div class="col s4 padding-right-50">
+        <div class="right-align">
+          <h1 class="amount">49</h1>
+          <p id="groups">GROEPEN ZIJN<br/> MOMENTEEL AANGEMELD</p>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div ng-view class="view"></div>
   </body>
 </html>

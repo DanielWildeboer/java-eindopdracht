@@ -1,5 +1,3 @@
-var app = angular.module('mainApp', []);
-
 app.controller('cardController', function($scope) {
 
 	$scope.cards = [

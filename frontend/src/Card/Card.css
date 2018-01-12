@@ -1,16 +1,12 @@
-body {
-background: grey;
-}
-
 .contentContainer {
-	overflow-y: auto;
+	overflow: auto;
 	max-height: 570px;
+	width: 100%;
 }
 
 .cardExtra {
 	height: 706px;
 	float: left;
-	margin-right: 10px;
 }
 
 .cardTitleExtra {

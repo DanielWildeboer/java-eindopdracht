@@ -3,6 +3,15 @@
     background-color: #0083ff;
 }
 
+.view {
+    background-color: #f3f4f7;
+    overflow:auto;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 1rem;
+}
+
 .current-tab {
     margin-left: 10px;
     height: 50px;
@@ -78,6 +87,7 @@ nav ul a {
     line-height: normal;
     color: #a2a3a4;
     font-weight: 500;
+    margin-bottom: 0;
 }
 
 .nav-bottom h1 {
