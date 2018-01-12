@@ -1,12 +1,16 @@
 .contentContainer {
-	overflow: auto;
+	overflow: hidden;
 	min-height: 44vh;
 	max-height: 44vh;
 	width: 100%;
 }
 
+.contentContainer:hover {
+	overflow-y: scroll;
+}
+
 .content {
-	margin-right: 10px;
+	margin-right: 20px;
 	background-color: white;
 }
 
