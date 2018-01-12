@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "group")
+@Table(name = "projectGroup")
 public class Group {
 
     private long id;

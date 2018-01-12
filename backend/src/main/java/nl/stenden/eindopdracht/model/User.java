@@ -4,6 +4,7 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Entity
@@ -18,6 +19,7 @@ public class User {
     private String token;
     private String password;
     private String passwordConfirm;
+    private Set<Group> groupList;
 
 
     @Id
@@ -77,5 +79,15 @@ public class User {
 
     public void setPasswordConfirm(String passwordConfirm) {
         this.passwordConfirm = passwordConfirm;
+    }
+
+    @ManyToMany
+    @JoinTable(name = "user_projectGroup", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "projectGroup_id"))
+    public Set<Group> getGroups() {
+        return groupList;
+    }
+
+    public void setGroups(Set<Group> groupList) {
+        this.groupList = groupList;
     }
 }

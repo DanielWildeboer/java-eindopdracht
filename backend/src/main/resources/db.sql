@@ -13,7 +13,7 @@ CREATE TABLE `user` (
   `last_name` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `password_confirm` varchar(255) DEFAULT NULL,
-  `group` varchar(255) DEFAULT NULL,
+  `projectGroup` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
@@ -36,8 +36,8 @@ CREATE TABLE `student` (
 -- Table structure for table `group`
 --
 
-DROP TABLE IF EXISTS `group`;
-CREATE TABLE `group` (
+DROP TABLE IF EXISTS `projectGroup`;
+CREATE TABLE `projectGroup` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   `subject` varchar(255) DEFAULT NULL,
@@ -48,13 +48,13 @@ CREATE TABLE `group` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
--- Table structure for table `group`
+-- Table structure for table `projectGroup`
 --
 
 DROP TABLE IF EXISTS `grade_assessment`;
 CREATE TABLE `grade_assessment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `group_id` varchar(255) DEFAULT NULL,
+  `projectGroup_id` varchar(255) DEFAULT NULL,
   `student_id` varchar(255) DEFAULT NULL,
   `user_id` varchar(255) DEFAULT NULL,
   `receiver_student` varchar(255) DEFAULT NULL,
@@ -69,7 +69,7 @@ CREATE TABLE `grade_assessment` (
 DROP TABLE IF EXISTS `token`;
 CREATE TABLE `token` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `group_id` varchar(255) DEFAULT NULL,
+  `projectGroup_id` varchar(255) DEFAULT NULL,
   `student_id` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;

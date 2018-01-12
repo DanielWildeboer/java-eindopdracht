@@ -25,7 +25,7 @@ public class UserController {
     @Autowired
     private UserValidator userValidator;
 
-    @RequestMapping(value = "/registration", method = RequestMethod.POST)
+    @RequestMapping(value = "api/registration", method = RequestMethod.POST)
     public ResponseEntity registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult){
         HttpHeaders headers = new HttpHeaders();
 
