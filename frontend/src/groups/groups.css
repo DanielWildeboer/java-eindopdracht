@@ -1,6 +1,6 @@
 .header {
 	height: 70px;
-	background-color: grey;
+	background-color: yellow;
 }
 
 .tableTitles {
@@ -28,12 +28,33 @@
 
 .groupsSearch {
 	float: right;
+	margin: 0 !important;
+	background-color: grey;
+	width: 50%;
+	border-radius: 2px;
+
+}
+
+.groupsSearch input[type=text] {
+	margin: 0px 0px 0px 0px;
+	border: 0;
+	text-align: right;
+
+}
+
+.groupsSearch input[type=text]:focus {
+	margin: 0;
+	border-bottom: none  !important;
+	box-shadow: none !important;
+
+
+}
+
+.groupsSearch .row {
 	margin: 0;
 
 }
 
-.groupsSearch p {
-	float: right;
-	margin: 0;
-
+.searchIcon {
+	padding-top: 10px !important;
 }
