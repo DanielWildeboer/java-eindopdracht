@@ -27,7 +27,13 @@
 }
 
 .groupsSearch {
-	float: left;
+	float: right;
+	margin: 0;
+
+}
+
+.groupsSearch p {
+	float: right;
 	margin: 0;
 
 }
