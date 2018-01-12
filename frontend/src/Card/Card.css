@@ -4,9 +4,15 @@
 	width: 100%;
 }
 
+.content {
+	margin-right:10px;
+	background-color: white;
+}
+
 .cardExtra {
 	height: 706px;
 	float: left;
+	width: 100%;
 }
 
 .cardTitleExtra {

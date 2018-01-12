@@ -1,24 +1,24 @@
 <div class="row">
     <div class="col s12" ng-controller="cardController">
-
-        <div ng-repeat="card in cards" class="card cardExtra col s6 l3">
-            <div class="card-content">
+        <div ng-repeat="card in cards" class="col s6 l3">
+            <div class="content card cardExtra ">
+                <div class="card-content">
             <span class="card-title cardTitleExtra"><div class="chip chipExtra">{{card.content.length}}</div><div
                     class="titleString">{{card.title}}</div></span>
-            </div>
-            <div class="contentContainer">
-                <div ng-repeat="text in card.content" class="contentBlock">
-                    <div class="nameSquare {{color()}}"><h5>{{acronym(text) | limitTo: 2}}</h5></div>
-                    <div class="textBlock"><p>{{text}}</p></div>
-                    <i class="material-icons">more_horiz</i>
                 </div>
-            </div>
-            <a href="#">
-                <div class="addGroups">
-                    <p>WIJZIG RESULTATEN</p>
+                <div class="contentContainer">
+                    <div ng-repeat="text in card.content" class="contentBlock">
+                        <div class="nameSquare {{color()}}"><h5>{{acronym(text) | limitTo: 2}}</h5></div>
+                        <div class="textBlock"><p>{{text}}</p></div>
+                        <i class="material-icons">more_horiz</i>
+                    </div>
                 </div>
-            </a>
+                <a href="#">
+                    <div class="addGroups">
+                        <p>WIJZIG RESULTATEN</p>
+                    </div>
+                </a>
+            </div>
         </div>
-
     </div>
 </div>
