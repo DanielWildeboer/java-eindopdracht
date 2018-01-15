@@ -6,9 +6,9 @@ app.config(function($routeProvider) {
             templateUrl: 'src/header/test1.html'
         })
         .when('/students', {
-            templateUrl: 'src/card/card.html'
+            templateUrl: 'src/groups/group-detail/group-detail.html'
         })
         .when('/groups', {
-            templateUrl: 'src/header/test1.html'
+            templateUrl: 'src/groups/group-detail/group-detail.html'
         })
 });
