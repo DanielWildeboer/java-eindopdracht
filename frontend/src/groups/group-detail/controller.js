@@ -1,6 +1,6 @@
 app.controller("ListController", ['$scope', function ($scope) {
 
-      $scope.personalDetails = [];
+    $scope.personalDetails = [];
 
     $scope.addNew = function (personalDetails) {
         if(personalDetails) {
@@ -11,6 +11,8 @@ app.controller("ListController", ['$scope', function ($scope) {
         }
 
         $scope.PD = {};
+
+        console.log(personalDetails);
     };
 
     $scope.remove = function (personalDetail) {
