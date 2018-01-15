@@ -51,11 +51,11 @@
         </form>
     </div>
     <div class="detail-card col s4 offset-s1">
-
-        <div ng-repeat="personalDetail in personalDetails" class="col s12 personDetail">
-          <p class="customName f-l">{{personalDetail.fname | limitTo : 2}}</p>
-            <p class="personName f-l">{{personalDetail.fname}}</p>
-            <i class="material-icons">clear</i>
+        <h5 class="header-text col s12">Groepsleden:</h5>
+        <div ng-repeat="personalDetail in personalDetails" class="col s12 personDetail n-g">
+          <p class="customName f-l" ng-if="personalDetail.fname">{{personalDetail.fname | limitTo : 2}}</p>
+            <p class="personName f-l" ng-if="personalDetail.fname">{{personalDetail.fname}}</p>
+            <button class="material-icons">clear</button>
         </div>
 
     </div>
