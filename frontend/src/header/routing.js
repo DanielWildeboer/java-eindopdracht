@@ -9,6 +9,6 @@ app.config(function($routeProvider) {
             templateUrl: 'src/groups/group-detail/group-detail.html'
         })
         .when('/groups', {
-            templateUrl: 'src/groups/group-detail/group-detail.html'
+            templateUrl: 'src/groups/groups.html'
         })
 });
