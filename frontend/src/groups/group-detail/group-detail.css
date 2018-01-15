@@ -64,20 +64,26 @@
     border-bottom: 1px solid #F8F8F8;
 }
 .personDetail .material-icons {
-    padding-top: 2rem;
+    background: none;
+    border: none;
+    padding-top: 1.5rem;
     float: right;
 }
 .personName {
-    padding: 1rem;
+    padding: 0.5rem;
 }
 .customName {
     border-radius: 6px;
     margin: 1rem 1rem 1rem 0rem;
     text-transform: uppercase;
-    padding: 1rem;
+    padding: 0.5rem 0.75rem;
     background: #02366b;
     color: white;
 }
 .f-l {
     float: left;
+}
+.n-g {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
 }
