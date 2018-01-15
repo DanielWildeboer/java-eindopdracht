@@ -1,8 +1,5 @@
 package nl.stenden.eindopdracht.model;
 
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
-
 import javax.persistence.*;
 import java.util.Set;
 
@@ -17,7 +14,7 @@ public class User {
     private String email;
     private String token;
     private String password;
-    private Set<Group> groupList;
+    private Set<ProjectGroup> groupList;
 
 
     @Id
@@ -64,11 +61,11 @@ public class User {
 
     @ManyToMany
     @JoinTable(name = "user_projectGroup", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "projectGroup_id"))
-    public Set<Group> getGroups() {
+    public Set<ProjectGroup> getGroups() {
         return groupList;
     }
 
-    public void setGroups(Set<Group> groupList) {
+    public void setGroups(Set<ProjectGroup> groupList) {
         this.groupList = groupList;
     }
 }
