@@ -12,8 +12,7 @@ CREATE TABLE `user` (
   `first_name` varchar(255) DEFAULT NULL,
   `last_name` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
-  `password_confirm` varchar(255) DEFAULT NULL,
-  `projectGroup` varchar(255) DEFAULT NULL,
+  `project_group` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
@@ -54,7 +53,7 @@ CREATE TABLE `projectGroup` (
 DROP TABLE IF EXISTS `grade_assessment`;
 CREATE TABLE `grade_assessment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `projectGroup_id` varchar(255) DEFAULT NULL,
+  `project_group_id` varchar(255) DEFAULT NULL,
   `student_id` varchar(255) DEFAULT NULL,
   `user_id` varchar(255) DEFAULT NULL,
   `receiver_student` varchar(255) DEFAULT NULL,
@@ -69,7 +68,7 @@ CREATE TABLE `grade_assessment` (
 DROP TABLE IF EXISTS `token`;
 CREATE TABLE `token` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `projectGroup_id` varchar(255) DEFAULT NULL,
+  `project_group_id` varchar(255) DEFAULT NULL,
   `student_id` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;

@@ -6,7 +6,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "projectGroup")
-public class Group {
+public class ProjectGroup {
 
     private int id;
     private String name;

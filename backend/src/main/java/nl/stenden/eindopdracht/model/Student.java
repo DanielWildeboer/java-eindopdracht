@@ -11,9 +11,9 @@ public class Student {
 
     private int id;
     private String email;
-    private String firstName;
-    private String lastName;
-    private Integer studentNumber;
+    private String first_name;
+    private String last_name;
+    private int student_number;
     private String token;
 
     @Id
@@ -22,13 +22,13 @@ public class Student {
 
     public void setId(int id) { this.id = id; }
 
-    public String getFirstName() { return firstName; }
+    public String getFirstName() { return first_name; }
 
-    public void setFirstName(String firstName) { this.firstName = firstName; }
+    public void setFirstName(String firstName) { this.first_name = first_name; }
 
-    public String getLastName() { return lastName; }
+    public String getLastName() { return last_name; }
 
-    public void setLastName(String lastName) { this.lastName = lastName; }
+    public void setLastName(String last_name) { this.last_name = last_name; }
 
     public String getEmail() { return email; }
 
@@ -38,7 +38,7 @@ public class Student {
 
     public void token(String token) { this.token = token; }
 
-    public Integer getStudentNumber() { return studentNumber; }
+    public int getStudentNumber() { return student_number; }
 
-    public void setStudentNumber(Integer studentNumber) { this.studentNumber = studentNumber; }
+    public void setStudentNumber(int studentNumber) { this.student_number = student_number; }
 }

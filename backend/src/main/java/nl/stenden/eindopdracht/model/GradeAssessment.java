@@ -9,41 +9,41 @@ import javax.persistence.*;
 @Table(name = "gradeAssessment")
 public class GradeAssessment {
 
-    private long Id;
-    private String groupId;
-    private String studentId;
-    private String userId;
-    private String senderStudent;
-    private String receiverStudent;
+    private int id;
+    private String group_id;
+    private String student_id;
+    private String user_id;
+    private String sender_Student;
+    private String receiver_Student;
     private float grade;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public long getId(){ return Id; }
+    public int getId(){ return id; }
 
-    public void setId(long Id){ this.Id = Id; }
+    public void setId(long Id){ this.id = id; }
 
     public String getGroupId() {
-        return groupId;
+        return group_id;
     }
 
-    public void setGroupId(String groupId) { this.groupId = groupId; }
+    public void setGroupId(String group_id) { this.group_id = group_id; }
 
-    public String getStudentId() { return studentId; }
+    public String getStudentId() { return student_id; }
 
-    public void setStudentId(String studentId) { this.studentId = studentId; }
+    public void setStudentId(String student_id) { this.student_id = student_id; }
 
-    public String getUserId() { return userId; }
+    public String getUserId() { return user_id; }
 
-    public void setUserId(String userId) { this.userId = userId; }
+    public void setUserId(String user_id) { this.user_id = user_id; }
 
-    public String getSenderStudent() { return senderStudent; }
+    public String getSenderStudent() { return sender_Student; }
 
-    public void setSenderStudent(String senderStudent) { this.senderStudent = senderStudent; }
+    public void setSenderStudent(String sender_Student) { this.sender_Student = sender_Student; }
 
-    public String getReceiverStudent() { return receiverStudent; }
+    public String getReceiverStudent() { return receiver_Student; }
 
-    public void setReceiverStudent(String receiverStudent) { this.receiverStudent = receiverStudent; }
+    public void setReceiverStudent(String receiverStudent) { this.receiver_Student = receiver_Student; }
 
     public float getGrade() { return grade; }
 

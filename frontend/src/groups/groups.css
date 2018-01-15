@@ -1,24 +1,39 @@
+.tableContainer {
+	border-radius: 2px;
+}
+
 .header {
 	height: 70px;
-	background-color: yellow;
+	background-color: white;
 }
 
 .tableTitles {
-	height: 30px;
-	background-color: green;
+	height: 40px;
+	background-color: white;
+	color: #8f8f8f;
+	border-bottom: 1px solid #8f8f8f;
+}
+
+.tableTitles h5 {
+	font-size: 15px;
 }
 
 .tableContent {
-	background-color: blue;
+	background-color: white;
+}
+
+.tableContentBlock {
+	border-bottom: 1px solid #8f8f8f;
+	height: 55px;
+
 }
 
 .groupsCount {
 	background-color: #0083ff;
 	border-radius: 6px;
 	width: 120px;
-	padding: 4px;
+	padding: 5px 5px 5px 10px;
 	margin-left: 10px;
-
 }
 
 .groupsCount p {
@@ -29,25 +44,21 @@
 .groupsSearch {
 	float: right;
 	margin: 0 !important;
-	background-color: grey;
-	width: 50%;
+	background-color: #fafafa;
 	border-radius: 2px;
-
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	width: 300px;
 }
 
 .groupsSearch input[type=text] {
 	margin: 0px 0px 0px 0px;
 	border: 0;
-	text-align: right;
-
 }
 
 .groupsSearch input[type=text]:focus {
-	margin: 0;
+	margin: 0px 0px 0px 0px;
 	border-bottom: none  !important;
 	box-shadow: none !important;
-
-
 }
 
 .groupsSearch .row {
@@ -57,4 +68,9 @@
 
 .searchIcon {
 	padding-top: 10px !important;
+}
+
+.alignRight {
+	margin-top: 15px;
+	text-align: right;
 }

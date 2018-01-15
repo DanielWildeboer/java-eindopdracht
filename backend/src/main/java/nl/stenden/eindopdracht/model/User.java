@@ -1,8 +1,5 @@
 package nl.stenden.eindopdracht.model;
 
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
-
 import javax.persistence.*;
 import java.util.Set;
 
@@ -11,49 +8,39 @@ import java.util.Set;
 @Table(name = "user")
 public class User {
 
-    private Long id;
-    private String userName;
-    private String firstName;
-    private String lastName;
+    private int id;
+    private String first_name;
+    private String last__name;
     private String email;
     private String token;
     private String password;
-    private String passwordConfirm;
-    private Set<Group> groupList;
+    private Set<ProjectGroup> groupList;
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getId(){
+    public int getId(){
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
     public String getFirstName() {
-        return firstName;
+        return first_name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstName(String first_name) {
+        this.first_name = first_name;
     }
 
     public String getLastName() {
-        return lastName;
+        return last__name;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastName(String last__name) {
+        this.last__name = last__name;
     }
 
     public String getEmail() {
@@ -72,22 +59,13 @@ public class User {
 
     public void setPassword(String password) { this.password = password; }
 
-    @Transient
-    public String getPasswordConfirm() {
-        return passwordConfirm;
-    }
-
-    public void setPasswordConfirm(String passwordConfirm) {
-        this.passwordConfirm = passwordConfirm;
-    }
-
     @ManyToMany
     @JoinTable(name = "user_projectGroup", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "projectGroup_id"))
-    public Set<Group> getGroups() {
+    public Set<ProjectGroup> getGroups() {
         return groupList;
     }
 
-    public void setGroups(Set<Group> groupList) {
+    public void setGroups(Set<ProjectGroup> groupList) {
         this.groupList = groupList;
     }
 }

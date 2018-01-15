@@ -6,26 +6,26 @@ import javax.persistence.*;
 @Table(name = "token")
 public class Token {
 
-    private long Id;
-    private String groupId;
-    private String studentId;
+    private int id;
+    private String group_id;
+    private String student_id;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getTokenId(){
-        return Id;
+    public int getTokenId(){
+        return id;
     }
 
-    public void setTokenId(Long Id) {
-        this.Id = Id;
+    public void setTokenId(int id) {
+        this.id = id;
     }
 
-    public String getGroupId() { return groupId; }
+    public String getGroupId() { return group_id; }
 
-    public void setGroupId(String groupId) { this.groupId = groupId; }
+    public void setGroupId(String group_id) { this.group_id = group_id; }
 
-    public String getStudentId() { return studentId; }
+    public String getStudentId() { return student_id; }
 
-    public void setStudentId(String studentId) { this.studentId = studentId; }
+    public void setStudentId(String student_id) { this.student_id = student_id; }
 
 }
