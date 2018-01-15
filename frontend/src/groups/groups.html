@@ -6,7 +6,7 @@
             <div class="groupsSearch">
             	<div class="row">
               		<i class="material-icons grey-text col s3 searchIcon">search</i>
-              		<input class="col s9" type="text" name="searchBar" placeholder="Zoek naar groepen">
+              		<input class="col s9" type="text" name="searchBar" ng-model="searchQuery" placeholder="Zoek naar groepen">
               	</div>
             </div>
        </div>
@@ -21,7 +21,7 @@
 		    	</div>
 		    </div>
 		    <div class="tableContent row">
-		      	<div ng-repeat="group in groups" class="tableContentBlock">
+		      	<div ng-repeat="group in groups | filter:searchQuery" class="tableContentBlock">
 		      		<p class="col s3">{{group.name}}</p>
 		      		<p class="col s3">{{group.subject}}</p>
 		      		<p class="col s3">{{group.status}}</p>
