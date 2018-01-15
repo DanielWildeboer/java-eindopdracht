@@ -27,6 +27,7 @@ public class UserController {
 
     @RequestMapping(value = "api/registration", method = RequestMethod.POST)
     public ResponseEntity registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult){
+
         HttpHeaders headers = new HttpHeaders();
 
             userValidator.validate(userForm, bindingResult);
@@ -40,10 +41,6 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "api/login", method = RequestMethod.POST)
-    public ResponseEntity login(){
-        
-        return null;
-    }
+
 
 }
