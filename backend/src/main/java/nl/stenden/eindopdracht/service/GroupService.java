@@ -5,6 +5,6 @@ import nl.stenden.eindopdracht.model.ProjectGroup;
 import java.util.Set;
 
 public interface GroupService {
-    Set<ProjectGroup> findGroupsByUserName(String userName);
+    Set<ProjectGroup> findGroupsByEmail(String email);
     ProjectGroup findGroupByGroupName(String groupName);
 }
