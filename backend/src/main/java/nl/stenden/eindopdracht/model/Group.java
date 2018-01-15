@@ -8,7 +8,7 @@ import java.util.Set;
 @Table(name = "projectGroup")
 public class Group {
 
-    private long id;
+    private int id;
     private String name;
     private String subject;
     private float grade;
@@ -16,11 +16,11 @@ public class Group {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getId(){
+    public int getId(){
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
