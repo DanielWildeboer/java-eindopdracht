@@ -1,4 +1,4 @@
-var app = angular.module('Login', ['ngMaterial']);
+var app = angular.module('Login', ['ngMaterial', 'ngStorage']);
 
 app.controller('LoginController', ['$scope', 'LoginService', '$localStorage', '$http', function ($scope, LoginService, $localStorage, $http) {
     $scope.login = function () {
@@ -16,25 +16,17 @@ app.controller('LoginController', ['$scope', 'LoginService', '$localStorage', '$
 
 app.service('LoginService', function ($http, $q) {
 
-    return ({
-        login: login
-    });
-
-    function login(email, password) {
-        var request = $http({
-            method: "post",
-            url: "http://localhost:8080/api/login",
+    return function (email, password, success, error) {
+        $http({
+            method: 'POST',
+            url: 'http://127.0.0.1/api/login',
             headers: {
                 Authorization: "Basic " + btoa(email + ":" + password)
-            },
-            // data: {
-            //     email: email,
-            //     password: password
-            // }
-        });
-
-        return (request.then(handleSuccess, handleError));
-    }
+            }
+        }).then(function (resp) {
+            success(resp.data, resp.headers())
+        }, error);
+    };
 
     function handleError(response) {
         if (
@@ -50,4 +42,5 @@ app.service('LoginService', function ($http, $q) {
         return ( response.data );
     }
 
-});
+})
+;
