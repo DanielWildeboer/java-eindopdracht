@@ -2,7 +2,18 @@
 <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
     <facet type="Spring" name="Spring">
-      <configuration />
+      <configuration>
+        <fileset id="spring_boot_nl.stenden.eindopdracht.Application" name="Application" removed="true">
+          <file>file://$MODULE_DIR$/src/main/java/nl/stenden/eindopdracht/Application.java</file>
+          <file>file://$MODULE_DIR$/src/main/resources/application.properties</file>
+        </fileset>
+        <fileset id="spring-boot-dispatcherServletAutoConfiguration-mvc" name="Application MVC" removed="true">
+          <file>file://$MODULE_DIR$/src/main/java/nl/stenden/eindopdracht/Application.java</file>
+        </fileset>
+        <fileset id="fileset" name="Spring Application Context" removed="false">
+          <file>file://$MODULE_DIR$/src/main/java/nl/stenden/eindopdracht/WebSecurityConfiguration.java</file>
+        </fileset>
+      </configuration>
     </facet>
     <facet type="web" name="Web">
       <configuration>

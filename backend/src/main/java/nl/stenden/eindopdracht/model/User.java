@@ -39,8 +39,8 @@ public class User {
         return last_name;
     }
 
-    public void setLastName(String last__name) {
-        this.last_name = last__name;
+    public void setLastName(String last_name) {
+        this.last_name = last_name;
     }
 
     public String getEmail() {
