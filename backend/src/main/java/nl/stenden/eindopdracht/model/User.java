@@ -10,7 +10,7 @@ public class User {
 
     private int id;
     private String first_name;
-    private String last__name;
+    private String last_name;
     private String email;
     private String token;
     private String password;
@@ -36,11 +36,11 @@ public class User {
     }
 
     public String getLastName() {
-        return last__name;
+        return last_name;
     }
 
     public void setLastName(String last__name) {
-        this.last__name = last__name;
+        this.last_name = last__name;
     }
 
     public String getEmail() {
