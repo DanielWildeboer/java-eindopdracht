@@ -3,7 +3,7 @@ var app = angular.module('mainApp', ['ngRoute']);
 app.config(function($routeProvider) {
     $routeProvider
         .when('/', {
-            templateUrl: 'src/header/test1.html'
+            templateUrl: 'src/groups/group-grading/group-grading.html'
         })
         .when('/students', {
             templateUrl: 'src/groups/group-detail/group-detail.html'
@@ -12,3 +12,4 @@ app.config(function($routeProvider) {
             templateUrl: 'src/groups/group-detail/group-detail.html'
         })
 });
+
