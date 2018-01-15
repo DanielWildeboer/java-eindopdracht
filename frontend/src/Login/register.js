@@ -22,10 +22,7 @@ app.service('RegisterService', function ($http, $q) {
     function register(firstName, lastName, email, password, passwordConfirm) {
         var request = $http({
             method: "post",
-            url: "http://127.0.0.1/api/registration",
-            params: {
-                action: "add"
-            },
+            url: "http://127.0.0.1:8080/api/registration",
             data: {
                 firstName: firstName,
                 lastName: lastName,

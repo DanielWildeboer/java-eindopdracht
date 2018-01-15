@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-
 @RestController
 public class UserController {
 
@@ -24,6 +23,7 @@ public class UserController {
 
     @Autowired
     private UserValidator userValidator;
+
 
     @RequestMapping(value = "api/registration", method = RequestMethod.POST)
     public ResponseEntity registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult){
@@ -37,6 +37,13 @@ public class UserController {
             userService.save(userForm);
 
         return new ResponseEntity<User>(userForm, HttpStatus.CREATED);
+    }
+
+
+    @RequestMapping(value = "api/login", method = RequestMethod.POST)
+    public ResponseEntity login(){
+        
+        return null;
     }
 
 }
