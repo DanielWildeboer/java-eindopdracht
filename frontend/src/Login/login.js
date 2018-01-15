@@ -27,20 +27,4 @@ app.service('LoginService', function ($http, $q) {
             success(resp.data, resp.headers())
         }, error);
     };
-
-    function handleError(response) {
-        if (
-            !angular.isObject(response.data) ||
-            !response.data.message
-        ) {
-            return ( $q.reject("An unknown error occurred.") );
-        }
-        return ( $q.reject(response.data.message) );
-    }
-
-    function handleSuccess(response) {
-        return ( response.data );
-    }
-
-})
-;
+});
