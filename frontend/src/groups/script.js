@@ -1,6 +1,6 @@
 var app = angular.module('mainApp', []);
 
-app.controller('studentsController', function($scope) {
+app.controller('groupsController', function($scope) {
 
 	$scope.groups = [
 		{name: "Team 1", subject: "Een kanker taart bakken", status: "Compleet" },

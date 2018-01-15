@@ -18,14 +18,28 @@
             <div class="groupsSearch">
             	<div class="row">
               		<i class="material-icons grey-text col s3 searchIcon">search</i>
-              		<input class="col s9" type="text" name="searchBar" placeholder="Zoek naar gebruikers">
+              		<input class="col s9" type="text" name="searchBar" placeholder="Zoek naar groepen">
               	</div>
             </div>
        </div>
-      <div class="tableTitles"></div>
-    </div>
-    <div class="tableContent">
-      
+      </div>
+      	
+		    <div class="tableTitles">
+		    	<div class="row">
+			    	<h5 class="col s3">Groepsnaam</h5>
+			    	<h5 class="col s3">Onderwerp</h5>
+			    	<h5 class="col s3">Status</h5>
+			    	<h5 class="col s3 alignRight">Verwijderen</h5>
+		    	</div>
+		    </div>
+		    <div class="tableContent row">
+		      	<div ng-repeat="group in groups" class="tableContentBlock">
+		      		<p class="col s3">{{group.name}}</p>
+		      		<p class="col s3">{{group.subject}}</p>
+		      		<p class="col s3">{{group.status}}</p>
+		      		<a class="col s3 alignRight" href="#">VERWIJDER</a>
+		      	</div>
+		    </div>
     </div>
   </div>
 </body>
