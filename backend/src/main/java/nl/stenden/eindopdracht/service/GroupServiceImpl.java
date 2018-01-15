@@ -1,10 +1,9 @@
 package nl.stenden.eindopdracht.service;
 
-import nl.stenden.eindopdracht.model.Group;
+import nl.stenden.eindopdracht.model.ProjectGroup;
 import nl.stenden.eindopdracht.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.persistence.EntityManager;
 import java.util.Set;
 
 public class GroupServiceImpl implements GroupService {
@@ -13,13 +12,13 @@ public class GroupServiceImpl implements GroupService {
     UserServiceImpl userServiceImpl;
 
     @Override
-    public Group findGroupByGroupName(String groupName) {
+    public ProjectGroup findGroupByGroupName(String groupName) {
         return null;
     }
 
     @Override
-    public Set<Group> findGroupsByUserName(String userName) {
-        User user = userServiceImpl.findByUsername(userName);
+    public Set<ProjectGroup> findGroupsByEmail(String email) {
+        User user = userServiceImpl.findByEmail(email);
         return user.getGroups();
     }
 }
