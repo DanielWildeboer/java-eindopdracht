@@ -1,23 +1,53 @@
-'use strict';
+var app = angular.module('Login', ['ngMaterial']);
 
-angular.module('Authentication')
+app.controller('LoginController', ['$scope', 'LoginService', '$localStorage', '$http', function ($scope, LoginService, $localStorage, $http) {
+    $scope.login = function () {
 
-    .controller('LoginController',
-        ['$scope', '$rootScope', '$location', 'AuthenticationService',
-            function ($scope, $rootScope, $location, AuthenticationService) {
-                // reset login status
-                AuthenticationService.ClearCredentials();
+        new LoginService({email: $scope.email, password: $scope.password},
+            function (data, headers) {
+                $localStorage.user = data.user;
+                $localStorage.authToken = headers['x-auth-token'];
+                $http.defaults.headers.common['x-auth-token'] = headers['x-auth-token'];
+            }, function (error) {
+                console.log(error);
+            });
+    };
+}]);
 
-                $scope.login = function () {
-                    $scope.dataLoading = true;
-                    AuthenticationService.Login($scope.username, $scope.password, function(response) {
-                        if(response.success) {
-                            AuthenticationService.SetCredentials($scope.username, $scope.password);
-                            $location.path('/');
-                        } else {
-                            $scope.error = response.message;
-                            $scope.dataLoading = false;
-                        }
-                    });
-                };
-            }]);
+app.service('LoginService', function ($http, $q) {
+
+    return ({
+        login: login
+    });
+
+    function login(email, password) {
+        var request = $http({
+            method: "post",
+            url: "http://localhost:8080/api/login",
+            headers: {
+                Authorization: "Basic " + btoa(email + ":" + password)
+            },
+            // data: {
+            //     email: email,
+            //     password: password
+            // }
+        });
+
+        return (request.then(handleSuccess, handleError));
+    }
+
+    function handleError(response) {
+        if (
+            !angular.isObject(response.data) ||
+            !response.data.message
+        ) {
+            return ( $q.reject("An unknown error occurred.") );
+        }
+        return ( $q.reject(response.data.message) );
+    }
+
+    function handleSuccess(response) {
+        return ( response.data );
+    }
+
+});

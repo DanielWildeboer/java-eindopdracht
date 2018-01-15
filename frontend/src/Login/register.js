@@ -3,7 +3,6 @@ var app = angular.module('Register', ['ngMaterial']);
 app.controller('RegisterController', ['$scope', 'RegisterService', function ($scope, RegisterService) {
     $scope.register = function () {
 
-        console.log("kek");
         RegisterService.register($scope.firstName, $scope.lastName, $scope.email, $scope.password, $scope.passwordConfirm)
             .then(
                 function (errorMessage) {
@@ -23,7 +22,7 @@ app.service('RegisterService', function ($http, $q) {
     function register(firstName, lastName, email, password, passwordConfirm) {
         var request = $http({
             method: "post",
-            url: "api/registration",
+            url: "http://localhost:8080/api/registration",
             params: {
                 action: "add"
             },
