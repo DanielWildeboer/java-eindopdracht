@@ -5,7 +5,7 @@ app.controller('groupsController', function($scope, $location) {
     };
 
 	$scope.groups = [
-		{name: "Team 1", subject: "Een kanker taart bakken", status: "Compleet" },
+		{name: "Team 1", subject: "Een taart bakken", status: "Compleet" },
 		{name: "Team 2", subject: "CEH (alweer)", status: "Open" },
 		{name: "Team 3", subject: "Java Minor", status: "Open" },
 		{name: "Team 420", subject: "JWZ", status: "Dank" },
