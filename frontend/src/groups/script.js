@@ -1,5 +1,3 @@
-var app = angular.module('mainApp', []);
-
 app.controller('groupsController', function($scope) {
 
 	$scope.groups = [

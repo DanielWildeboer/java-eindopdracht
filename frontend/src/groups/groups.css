@@ -5,6 +5,14 @@
 .header {
 	height: 70px;
 	background-color: white;
+	margin-bottom: 0px;
+	padding-bottom: 20px;
+}
+
+.headerContainer {
+	background-color: white;
+	padding-top: 20px;
+	padding-bottom: 20px;
 }
 
 .tableTitles {
@@ -12,6 +20,8 @@
 	background-color: white;
 	color: #8f8f8f;
 	border-bottom: 1px solid #8f8f8f;
+	margin-left: 20px;
+	margin-right: 20px;
 }
 
 .tableTitles h5 {
@@ -20,6 +30,8 @@
 
 .tableContent {
 	background-color: white;
+	padding-left: 20px;
+	padding-right: 20px;
 }
 
 .tableContentBlock {
