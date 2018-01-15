@@ -6,15 +6,16 @@ app.controller("ListController", ['$scope', function ($scope) {
         if(personalDetails) {
             $scope.personalDetails.push({
                 'fname': personalDetails.fname,
-                'lname': personalDetails.lname,
+                'lname': personalDetails.lname
             });
         }
 
         $scope.PD = {};
     };
 
-    $scope.remove = function () {
-      // TODO: FIX REMOVE ITEM FROM ARRAY
+    $scope.remove = function (personalDetail) {
+        var index = $scope.personalDetails.indexOf(personalDetail);
+        $scope.personalDetails.splice(index, 1);
     };
 
 }]);
