@@ -3,7 +3,7 @@ var app = angular.module('mainApp', ['ngRoute']);
 app.config(function($routeProvider) {
     $routeProvider
         .when('/', {
-            templateUrl: 'src/Card/card.html'
+            templateUrl: 'src/card/card.html'
         })
         .when('/groups', {
             templateUrl: 'src/groups/groups.html'
