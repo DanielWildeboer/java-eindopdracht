@@ -2,38 +2,46 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+    <script data-require="angularjs@1.5.8" data-semver="1.5.8" src="https://opensource.keycdn.com/angularjs/1.5.8/angular.min.js"></script>
+    <script src="register.js"></script>
 </head>
-<body ng-app="loginApp" ng-cloak>
+<body ng-app="Register" ng-controller="RegisterController" ng-cloak>
 
 <div class="login-section">
     <div class="login-card">
         <form>
             <div class="col-md-12">
                 <md-input-container class="mat-input">
-                    <label>Volledige naam</label>
-                    <input>
+                    <label>Voornaam</label>
+                    <input ng-model="firstName">
+                </md-input-container>
+            </div>
+            <div class="col-md-12">
+                <md-input-container class="mat-input">
+                    <label>Achternaam</label>
+                    <input ng-model="lastName">
                 </md-input-container>
             </div>
             <div class="col-md-12">
                 <md-input-container class="mat-input">
                     <label>E-mailadres</label>
-                    <input>
+                    <input ng-model="email">
                 </md-input-container>
             </div>
             <div class="col-md-12">
                 <md-input-container class="mat-input">
                     <label>Wachtwoord</label>
-                    <input type="password">
+                    <input type="password" ng-model="password">
                 </md-input-container>
             </div>
             <div class="col-md-12">
                 <md-input-container class="mat-input">
                     <label>Herhaal wachtwoord</label>
-                    <input type="password">
+                    <input type="password" ng-model="passwordConfirm">
                 </md-input-container>
             </div>
             <div class="col-md-12">
-                <md-button class="login-button">INLOGGEN</md-button>
+                <md-button class="login-button" ng-click="register()">REGISTREER</md-button>
             </div>
             <div class="col-md-12 reference">
                 <a class="login-text" href="login.html">Bent u al lid log dan in</a>
@@ -53,10 +61,5 @@
 
 <link rel=stylesheet href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="login.css">
-
-
-<script type="text/javascript">
-    angular.module('loginApp', ['ngMaterial']);
-</script>
 
 </html>
