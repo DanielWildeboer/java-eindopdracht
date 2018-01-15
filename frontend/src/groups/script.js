@@ -1,4 +1,8 @@
-app.controller('groupsController', function($scope) {
+app.controller('groupsController', function($scope, $location) {
+
+    $scope.go = function ( path ) {
+        $location.path( path );
+    };
 
 	$scope.groups = [
 		{name: "Team 1", subject: "Een kanker taart bakken", status: "Compleet" },
