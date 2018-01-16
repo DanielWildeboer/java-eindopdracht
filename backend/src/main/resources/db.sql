@@ -7,7 +7,7 @@ USE `java_minor_eindopdracht`;
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL,
   `email` varchar(255) DEFAULT NULL,
   `firstName` varchar(255) DEFAULT NULL,
   `lastName` varchar(255) DEFAULT NULL,
@@ -23,7 +23,7 @@ CREATE TABLE `user` (
 
 DROP TABLE IF EXISTS `student`;
 CREATE TABLE `student` (
-  `id` LONG NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL,
   `email` varchar(255) DEFAULT NULL,
   `full_name` varchar(255) DEFAULT NULL,
   `token` varchar(255) DEFAULT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE `student` (
 
 DROP TABLE IF EXISTS `projectGroup`;
 CREATE TABLE `projectGroup` (
-  `id` LONG NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `subject` varchar(255) DEFAULT NULL,
   `grade` double DEFAULT NULL,
@@ -52,7 +52,7 @@ CREATE TABLE `projectGroup` (
 
 DROP TABLE IF EXISTS `grade_assessment`;
 CREATE TABLE `grade_assessment` (
-  `id` LONG NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL,
   `project_group_id` varchar(255) DEFAULT NULL,
   `student_id` varchar(255) DEFAULT NULL,
   `user_id` varchar(255) DEFAULT NULL,
@@ -68,7 +68,7 @@ CREATE TABLE `grade_assessment` (
 
 DROP TABLE IF EXISTS `token`;
 CREATE TABLE `token` (
-  `id` LONG NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL,
   `project_group_id` varchar(255) DEFAULT NULL,
   `student_id` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)

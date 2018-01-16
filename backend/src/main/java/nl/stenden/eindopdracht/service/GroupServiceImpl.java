@@ -12,33 +12,20 @@ import java.util.Set;
 
 @Service
 public class GroupServiceImpl implements GroupService {
-    @Qualifier("groupRepository")
-    @Autowired
-    private GroupRepository groupRepository;
 
-    @Autowired
-    UserServiceImpl userServiceImpl;
 
     @Override
-    public ProjectGroup findGroupByGroupName(String groupName) {
-        return null;
-    }
-
-    @Override
-    public ProjectGroup findById(int Id) {
-        return null;
-    }
-
-    @Override
-    public Set<ProjectGroup> findGroupsByEmail(String email) {
-        User user = userServiceImpl.findByEmail(email);
-        return user.getGroups();
+    public Set<ProjectGroup> findAllGroups() {
+        return null; //return all the groups in database
     }
 
     @Override
     public ProjectGroup findGroupById(String id) {
-        return groupRepository.findById(id);
+        return null; //return group by id
     }
 
+    @Override
+    public void addGroup(ProjectGroup group) {
 
+    }
 }
