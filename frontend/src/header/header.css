@@ -68,7 +68,7 @@ nav ul li.active {
     border-bottom: 3px solid #2695fe;
 }
 
-nav ul a:hover {
+nav ul li:hover {
     background-color: #f2f8ff;
     border-bottom: 3px solid #2695fe;
 }

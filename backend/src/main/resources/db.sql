@@ -58,6 +58,7 @@ CREATE TABLE `grade_assessment` (
   `user_id` varchar(255) DEFAULT NULL,
   `receiver_student` varchar(255) DEFAULT NULL,
   `grade` double DEFAULT NULL,
+  `status` ENUM('ongoing', 'finished') DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
