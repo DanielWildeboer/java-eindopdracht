@@ -16,7 +16,6 @@ public class GradeAssessment {
     private String sender_Student;
     private String receiver_Student;
     private float grade;
-    private enum status;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
