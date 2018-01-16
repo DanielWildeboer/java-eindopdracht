@@ -20,6 +20,16 @@ public class GroupServiceImpl implements GroupService {
     UserServiceImpl userServiceImpl;
 
     @Override
+    public ProjectGroup findGroupByGroupName(String groupName) {
+        return null;
+    }
+
+    @Override
+    public ProjectGroup findById(int Id) {
+        return null;
+    }
+
+    @Override
     public Set<ProjectGroup> findGroupsByEmail(String email) {
         User user = userServiceImpl.findByEmail(email);
         return user.getGroups();
