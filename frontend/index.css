@@ -1,3 +1,7 @@
 body {
     background-color: #f3f4f7;
 }
+.date {
+    text-transform: capitalize;
+    font-weight: 500;
+}
