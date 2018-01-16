@@ -1,5 +1,10 @@
 var app = angular.module('mainApp', ['ngRoute']);
 
+app.controller('headerController', function($scope) {
+    $scope.date = new Date();
+});
+
+
 app.config(function($routeProvider) {
     $routeProvider
         .when('/', {
@@ -11,5 +16,6 @@ app.config(function($routeProvider) {
         .when('/addGroup', {
             templateUrl: 'src/groups/group-detail/group-detail.html'
         })
+
 });
 

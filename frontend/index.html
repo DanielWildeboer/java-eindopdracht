@@ -1,10 +1,11 @@
 <!doctype html>
-<html>
+<html lang="nl">
   <head>
     <title>GradeTool</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script data-require="angularjs@1.5.8" data-semver="1.5.8" src="https://opensource.keycdn.com/angularjs/1.5.8/angular.min.js"></script>
     <script data-require="angular-route@1.5.8" data-semver="1.5.8" src="https://code.angularjs.org/1.5.8/angular-route.js"></script>
+    <script src="https://code.angularjs.org/1.5.8/i18n/angular-locale_nl-nl.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <script src="src/Header/routing.js"></script>
@@ -23,7 +24,7 @@
   <nav class="nav-extended">
     <div class="nav-content">
       <div class="current-tab"><p>OVERZICHT</p></div>
-      <div class="date">Maandag, 12 januari</div>
+      <div ng-controller="headerController" class="date">{{date | date: "EEEE, d MMMM"}}</div>
       <div class="user right">
         <p>RS</p>
       </div>
