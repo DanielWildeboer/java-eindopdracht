@@ -15,7 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 @EnableAutoConfiguration
-@ComponentScan
+@ComponentScan("nl.stenden")
 public class Application {
 
     public static void main(String[] args) {

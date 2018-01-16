@@ -15,8 +15,6 @@ import org.bouncycastle.mail.smime.SMIMESignedGenerator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
 
 import javax.activation.CommandMap;
@@ -41,9 +39,6 @@ import java.util.Properties;
 
 @Service
 public class EmailServiceImpl implements EmailService {
-
-    @Autowired
-    private JavaMailSender mailSender;
 
     @Override
     public void sendEmail(final Email email) {
