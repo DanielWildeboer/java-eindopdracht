@@ -21,26 +21,26 @@
     <link rel="stylesheet" href="src/groups/group-grading/group-grading.css">
   </head>
   <body ng-app="mainApp">
-  <nav class="nav-extended">
+  <nav class="nav-extended" ng-controller="headerController">
     <div class="nav-content">
       <div class="current-tab"><p>OVERZICHT</p></div>
-      <div ng-controller="headerController" class="date">{{date | date: "EEEE, d MMMM"}}</div>
+      <div class="date">{{date | date: "EEEE, d MMMM"}}</div>
       <div class="user right">
-        <p>RS</p>
+        <p>{{acronym(dashName) | limitTo: 2}}</p>
       </div>
-      <div class="user-name right">Rob smit</div>
+      <div class="user-name right">{{dashName}}</div>
       <div class="logout right"><a>UITLOGGEN</a></div>
     </div>
     <div class="nav-wrapper">
       <ul class="left">
-        <li class="active"><a href="#/">Overzicht</a></li>
-        <li><a href="#groups">Groepen</a></li>
+        <li ng-class="{ active: $route.current.activeTab == 'dashboard' }"><a href="#/">Overzicht</a></li>
+        <li ng-class="{ active: $route.current.activeTab == 'groups' }"><a href="#groups">Groepen</a></li>
       </ul>
     </div>
     <div class="nav-bottom row">
       <div class="col s4 padding-left-50">
         <div class="left-align">
-          <h1 id="welcome">Welkom Rob Smit,</h1>
+          <h1 id="welcome">Welkom {{dashName}},</h1>
           <p>Maak nieuwe groepen aan<br/> door op het tabje
             "groepen" te drukken</p>
         </div>
