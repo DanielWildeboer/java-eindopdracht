@@ -56,7 +56,7 @@ public class UserController {
     //remove user from the db
     @RequestMapping(value = "users/{Id}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void  removeUser(@PathVariable int Id) {
+    public void  removeUser(@PathVariable Long Id) {
         userService.delete(Id);
     }
 
