@@ -25,12 +25,6 @@ import java.util.Arrays;
 @EnableWebSecurity
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private RestAuthenticationEntryPoint restAuthenticationEntryPoint;
-
-    @Autowired
-    private MySavedRequestAwareAuthenticationSuccessHandler
-            authenticationSuccessHandler;
 
     @Bean
     @Override
@@ -59,14 +53,11 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         return javaMailSender;
     }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth)
-            throws Exception {
-
-        auth.inMemoryAuthentication()
-                .withUser("temporary").password("temporary").roles("ADMIN")
-                .and()
-                .withUser("user").password("userPass").roles("USER");
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth
+                .inMemoryAuthentication()
+                .withUser("user1").password("password1").roles("USER");
     }
 
     @Override
@@ -74,26 +65,15 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .exceptionHandling()
-                .authenticationEntryPoint(restAuthenticationEntryPoint)
                 .and()
                 .authorizeRequests()
                 .antMatchers("/api/registration", "/api/login").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin()
-                .successHandler(authenticationSuccessHandler)
-                .failureHandler(new SimpleUrlAuthenticationFailureHandler())
+                .formLogin().loginProcessingUrl("/api/login")
+                .usernameParameter("email").passwordParameter("password")
                 .and()
                 .logout();
-    }
-
-    @Bean
-    public MySavedRequestAwareAuthenticationSuccessHandler mySuccessHandler(){
-        return new MySavedRequestAwareAuthenticationSuccessHandler();
-    }
-
-    @Bean RestAuthenticationEntryPoint restAuthenticationEntryPoint(){
-        return new RestAuthenticationEntryPoint();
     }
 
     @Bean
@@ -105,10 +85,4 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
             }
         };
     }
-
-    @Bean
-    public SimpleUrlAuthenticationFailureHandler myFailureHandler(){
-        return new SimpleUrlAuthenticationFailureHandler();
-    }
-
 }
