@@ -40,7 +40,7 @@ public class UserController {
         return new ResponseEntity<User>(userForm, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "api/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/login", method = RequestMethod.POST)
     public ResponseEntity login(){
         return null;
     }
