@@ -25,6 +25,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -78,9 +79,13 @@ public class EmailServiceImpl implements EmailService {
 
             KeyStore keyStore = KeyStore.getInstance("JKS");
 
+            File file = new File("src/main/resources/cert.jks");
+            String absolutePath = file.getAbsolutePath();
+
             //Provide location of Java Keystore and password for access
-            keyStore.load(new FileInputStream("C:\\Users\\ljvan\\Documents\\java-eindopdracht\\backend\\src\\main\\resources\\cert.jks"),
+            keyStore.load(new FileInputStream(absolutePath),
                     "lesley123".toCharArray());
+
 
             //Find the first legit alias in the keystore and use it
             Enumeration<String> es = keyStore.aliases();
