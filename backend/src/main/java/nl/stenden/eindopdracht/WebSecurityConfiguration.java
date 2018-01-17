@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -37,18 +38,17 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(authProvider());
         auth.userDetailsService(userDetailsService);
     }
 
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth)
-//            throws Exception {
-//
-//        auth.inMemoryAuthentication()
-//                .withUser("temporary").password("temporary").roles("ADMIN")
-//                .and()
-//                .withUser("user").password("userPass").roles("USER");
-//    }
+    @Bean
+    public DaoAuthenticationProvider authProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(userDetailsService);
+        authProvider.setPasswordEncoder(passwordEncoder());
+        return authProvider;
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -58,7 +58,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authenticationEntryPoint(restAuthenticationEntryPoint)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/**").permitAll()
+                .antMatchers("/api/login", "/api/registration").permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/api/login")
@@ -67,7 +68,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .usernameParameter("email")
                 .passwordParameter("password")
                 .and()
-                .logout();
+                .httpBasic()
+                .and()
+                .logout()
+                .logoutUrl("/api/logout");
 
 
     }
