@@ -31,10 +31,11 @@ public class GroupController {
         return groupService.findGroupById(id);
     }
 
-    // POST A NEW GROUP ADD STUDENTS AND SEND MAIL
+    // POST A NEW GROUP AND RETURN THE ID OF THE GROUP WHICH CAN BE USED TO ADD USERS TO THE GROUP
     @RequestMapping(method=RequestMethod.POST, value="/groups")
-    public void addGroup(@RequestBody ProjectGroup group){
+    public int addGroup(@RequestBody ProjectGroup group){
         groupService.addGroup(group);
+        return group.getId();
     }
 
     //UPDATE A GROUP
@@ -48,6 +49,5 @@ public class GroupController {
     public void deleteGroup(@PathVariable int id) {
         groupService.deleteGroup(id);
     }
-
 
 }

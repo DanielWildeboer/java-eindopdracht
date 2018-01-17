@@ -1,6 +1,7 @@
 package nl.stenden.eindopdracht.model;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -13,7 +14,9 @@ public class ProjectGroup {
     private String name;
     private String subject;
     private float grade;
-   // private Set<Student> students;
+
+    @ManyToMany
+    private Set<Student> students;
 
     public ProjectGroup(int id, String name, String subject, float grade)
     {
@@ -55,15 +58,15 @@ public class ProjectGroup {
 
     public void setGrade(float grade) { this.grade = grade; }
 
-    /*@ManyToOne
-    @JoinTable(name = "group_student", joinColumns = @JoinColumn(name = "student_id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
+    @ManyToOne
+    @JoinTable(name = "group_student", joinColumns = @JoinColumn(name = "student_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "group_id", referencedColumnName = "id"))
     public Set<Student> getStudents() {
         return students;
     }
 
-    public void setStudents(Set<Student> roles) {
-        this.students = roles;
-    }*/
-    
+    public void setStudents(Set<Student> student) {
+        this.students = student;
+    }
+
 
 }
