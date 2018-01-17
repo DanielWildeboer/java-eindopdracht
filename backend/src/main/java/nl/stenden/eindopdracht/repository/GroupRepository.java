@@ -6,7 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository("groupRepository")
 public interface GroupRepository extends CrudRepository<ProjectGroup, Integer> {
-
-
-
 }

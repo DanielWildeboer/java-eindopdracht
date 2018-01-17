@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.*;
 
-
 @Service
 public class GroupServiceImpl implements GroupService {
 
@@ -16,7 +15,7 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public Set<ProjectGroup> findAllGroups() {
-        Set<ProjectGroup> groups = new HashSet<>();
+        Set<ProjectGroup> groups = new HashSet<ProjectGroup>();
         {
             groupRepository.findAll().forEach(groups::add);
             return groups;
