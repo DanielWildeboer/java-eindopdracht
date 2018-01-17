@@ -1,5 +1,7 @@
 package nl.stenden.eindopdracht.model;
 
+import nl.stenden.eindopdracht.utility.RandomString;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,6 +12,12 @@ public class Token {
     private String randomString;
     private String group_id;
     private String student_id;
+
+    public Token(String group_id, String student_id) {
+        this.randomString = new RandomString(30).toString();
+        this.group_id = group_id;
+        this.student_id = student_id;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
