@@ -7,6 +7,7 @@ import javax.persistence.*;
 public class Token {
 
     private int id;
+    private String randomString;
     private String group_id;
     private String student_id;
 
@@ -27,5 +28,9 @@ public class Token {
     public String getStudentId() { return student_id; }
 
     public void setStudentId(String student_id) { this.student_id = student_id; }
+
+    public String getRandomString() { return randomString; }
+
+    public void setRandomString(String randomString) { this.randomString = randomString; }
 
 }
