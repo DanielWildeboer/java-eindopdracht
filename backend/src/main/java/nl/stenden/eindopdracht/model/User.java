@@ -14,7 +14,7 @@ public class User {
     private String email;
     private String token;
     private String password;
-    private Set<ProjectGroup> groupList;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -58,13 +58,6 @@ public class User {
 
     public void setPassword(String password) { this.password = password; }
 
-    @ManyToMany
-    @JoinTable(name = "user_projectGroup", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "projectGroup_id"))
-    public Set<ProjectGroup> getGroups() {
-        return groupList;
-    }
 
-    public void setGroups(Set<ProjectGroup> groupList) {
-        this.groupList = groupList;
-    }
+
 }

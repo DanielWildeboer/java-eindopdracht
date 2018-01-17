@@ -13,7 +13,7 @@ public class ProjectGroup {
     private String name;
     private String subject;
     private float grade;
-    private Set<Student> students;
+   // private Set<Student> students;
 
     public ProjectGroup(int id, String name, String subject, float grade)
     {
@@ -55,7 +55,7 @@ public class ProjectGroup {
 
     public void setGrade(float grade) { this.grade = grade; }
 
-    @ManyToMany
+    /*@ManyToOne
     @JoinTable(name = "group_student", joinColumns = @JoinColumn(name = "student_id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
     public Set<Student> getStudents() {
         return students;
@@ -63,5 +63,7 @@ public class ProjectGroup {
 
     public void setStudents(Set<Student> roles) {
         this.students = roles;
-    }
+    }*/
+    
+
 }
