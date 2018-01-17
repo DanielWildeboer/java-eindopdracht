@@ -4,551 +4,86 @@
     });
 </script>
 
-<div class="row info-row">
-    <div class="col s3 header-cell">
-        <p class="label">Team Naam:</p>
-        <p class="team-info">Team Rood</p>
-    </div>
+<div ng-controller="gradingController" ng-bind="calc()">
+    <div class="row info-row">
+        <div class="col s3 header-cell">
+            <p class="label">Team Naam:</p>
+            <p class="team-info">{{group.name}}</p>
+        </div>
 
-    <div class="col s3 header-cell a-c">
-        <p class="label">Vak:</p>
-        <p class="team-info">Java minor</p>
-    </div>
+        <div class="col s3 header-cell a-c">
+            <p class="label">Vak:</p>
+            <p class="team-info">{{group.subject}}</p>
+        </div>
 
-    <div class="col s3 header-cell a-c">
-        <p class="label">Cijfer:</p>
-        <p class="team-info">7.4</p>
-    </div>
+        <div class="col s3 header-cell a-c">
+            <p class="label">Cijfer:</p>
+            <p class="team-info">{{group.groupGrade}}</p>
+        </div>
 
-    <div class="col s3 header-cell a-c">
-        <p class="label">Status:</p>
-        <p class="team-info">Gesloten</p>
-    </div>
+        <div class="col s3 header-cell a-c">
+            <p class="label">Status:</p>
+            <p class="team-info">{{group.status}}</p>
+        </div>
 
+    </div>
+    <div class="row">
+        <div class="col s6">
+            <p class="subheader-text col s12">Cijfer overzicht</p>
+            <div class="col s12" ng-repeat="member in group.members">
+                <ul class="collapsible" data-collapsible="accordion">
+                    <li>
+                        <div class="collapsible-header">
+                            <div class="col s10 n-g">
+                                <div class="col s12 n-g">
+                                    <p class="label col s6 n-g">Team lid:</p>
+                                    <p class="label col s6 n-g">Cijfer:</p>
+                                </div>
+                                <div class="col s12 n-g">
+                                    <p class="team-info col s6 n-g">{{member.name}}</p>
+                                    <p class="team-info col s6 n-g">{{member.grade}}</p>
+                                </div>
+                            </div>
+                            <div class="col s2 grading-icon"><i class="material-icons">person_outline</i></div>
+                        </div>
+                        <div class="collapsible-body">
+                            <div class="col s4 body-cell" ng-repeat="memberFeedback in member.feedback">
+                                <p class="label col s10 n-g">{{memberFeedback.name}}</p>
+                                <p class="team-info col s2 n-g">{{memberFeedback.grade}}</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col s6">
+            <p class="subheader-text col s12">Feedback overzicht</p>
+            <div class="col s12" ng-repeat="member in group.members">
+                <ul class="collapsible" data-collapsible="accordion">
+                    <li>
+                        <div class="collapsible-header">
+                            <div class="col s10 n-g">
+                                <div class="col s12 n-g">
+                                    <p class="label col s6 n-g">Team lid:</p>
+                                    <p class="label col s6 n-g">Cijfer:</p>
+                                </div>
+                                <div class="col s12 n-g">
+                                    <p class="team-info col s6 n-g">{{member.name}}</p>
+                                    <p class="team-info col s6 n-g">{{member.grade}}</p>
+                                </div>
+                            </div>
+                            <div class="col s2 feedback-icon"><i class="material-icons">content_paste</i></div>
+                        </div>
+                        <div class="collapsible-body">
+                            <div class="col s12 feedback-cell" ng-repeat="memberFeedback in member.feedback">
+                                <p class="feedback-label col s12 n-g">{{memberFeedback.name}}</p>
+                                <p class="feedback-info col s12 n-g">{{memberFeedback.comment}}</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
 </div>
-<div class="row">
-    <div class="col s6">
-        <p class="subheader-text col s12">Cijfer overzicht</p>
-        <div class="col s12">
-            <ul class="collapsible" data-collapsible="accordion">
-                <li>
-                    <div class="collapsible-header">
-                        <div class="col s10 n-g">
-                            <div class="col s12 n-g">
-                                <p class="label col s6 n-g">Team lid:</p>
-                                <p class="label col s6 n-g">Cijfer:</p>
-                            </div>
-                            <div class="col s12 n-g">
-                                <p class="team-info col s6 n-g">Bjorne Hoeksema</p>
-                                <p class="team-info col s6 n-g">8.5</p>
-                            </div>
-                        </div>
-                        <div class="col s2 grading-icon"><i class="material-icons">person_outline</i></div>
-                    </div>
-                    <div class="collapsible-body">
-                        <div class="col s4 body-cell">
-                            <p class="label col s10 n-g">Bjorne Hoeksema:</p>
-                            <p class="team-info col s2 n-g">7.8</p>
-
-                        </div>
-
-                        <div class="col s4 body-cell">
-                            <p class="label col s10 n-g">Bjorne Hoeksema:</p>
-                            <p class="team-info col s2 n-g">7.8</p>
-                        </div>
-
-                        <div class="col s4 body-cell">
-                            <p class="label col s10 n-g">Bjorne Hoeksema:</p>
-                            <p class="team-info col s2 n-g">7.8</p>
-                        </div>
-
-                        <div class="col s4 body-cell">
-                            <p class="label col s10 n-g">Bjorne Hoeksema:</p>
-                            <p class="team-info col s2 n-g">7.8</p>
-                        </div>
-
-                        <div class="col s4 body-cell">
-                            <p class="label col s10 n-g">Bjorne Hoeksema:</p>
-                            <p class="team-info col s2 n-g">7.8</p>
-                        </div>
-
-                        <div class="col s4 body-cell">
-                            <p class="label col s10 n-g">Bjorne Hoeksema:</p>
-                            <p class="team-info col s2 n-g">7.8</p>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div class="col s12">
-            <ul class="collapsible" data-collapsible="accordion">
-                <li>
-                    <div class="collapsible-header">
-                        <div class="col s10 n-g">
-                            <div class="col s12 n-g">
-                                <p class="label col s6 n-g">Team lid:</p>
-                                <p class="label col s6 n-g">Cijfer:</p>
-                            </div>
-                            <div class="col s12 n-g">
-                                <p class="team-info col s6 n-g">Bjorne Hoeksema</p>
-                                <p class="team-info col s6 n-g">8.5</p>
-                            </div>
-                        </div>
-                        <div class="col s2 grading-icon"><i class="material-icons">person_outline</i></div>
-                    </div>
-                    <div class="collapsible-body">
-                        <div class="col s4 body-cell">
-                            <p class="label col s10 n-g">Bjorne Hoeksema:</p>
-                            <p class="team-info col s2 n-g">7.8</p>
-
-                        </div>
-
-                        <div class="col s4 body-cell">
-                            <p class="label col s10 n-g">Bjorne Hoeksema:</p>
-                            <p class="team-info col s2 n-g">7.8</p>
-                        </div>
-
-                        <div class="col s4 body-cell">
-                            <p class="label col s10 n-g">Bjorne Hoeksema:</p>
-                            <p class="team-info col s2 n-g">7.8</p>
-                        </div>
-
-                        <div class="col s4 body-cell">
-                            <p class="label col s10 n-g">Bjorne Hoeksema:</p>
-                            <p class="team-info col s2 n-g">7.8</p>
-                        </div>
-
-                        <div class="col s4 body-cell">
-                            <p class="label col s10 n-g">Bjorne Hoeksema:</p>
-                            <p class="team-info col s2 n-g">7.8</p>
-                        </div>
-
-                        <div class="col s4 body-cell">
-                            <p class="label col s10 n-g">Bjorne Hoeksema:</p>
-                            <p class="team-info col s2 n-g">7.8</p>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div class="col s12">
-            <ul class="collapsible" data-collapsible="accordion">
-                <li>
-                    <div class="collapsible-header">
-                        <div class="col s10 n-g">
-                            <div class="col s12 n-g">
-                                <p class="label col s6 n-g">Team lid:</p>
-                                <p class="label col s6 n-g">Cijfer:</p>
-                            </div>
-                            <div class="col s12 n-g">
-                                <p class="team-info col s6 n-g">Bjorne Hoeksema</p>
-                                <p class="team-info col s6 n-g">8.5</p>
-                            </div>
-                        </div>
-                        <div class="col s2 grading-icon"><i class="material-icons">person_outline</i></div>
-                    </div>
-                    <div class="collapsible-body">
-                        <div class="col s4 body-cell">
-                            <p class="label col s10 n-g">Bjorne Hoeksema:</p>
-                            <p class="team-info col s2 n-g">7.8</p>
-
-                        </div>
-
-                        <div class="col s4 body-cell">
-                            <p class="label col s10 n-g">Bjorne Hoeksema:</p>
-                            <p class="team-info col s2 n-g">7.8</p>
-                        </div>
-
-                        <div class="col s4 body-cell">
-                            <p class="label col s10 n-g">Bjorne Hoeksema:</p>
-                            <p class="team-info col s2 n-g">7.8</p>
-                        </div>
-
-                        <div class="col s4 body-cell">
-                            <p class="label col s10 n-g">Bjorne Hoeksema:</p>
-                            <p class="team-info col s2 n-g">7.8</p>
-                        </div>
-
-                        <div class="col s4 body-cell">
-                            <p class="label col s10 n-g">Bjorne Hoeksema:</p>
-                            <p class="team-info col s2 n-g">7.8</p>
-                        </div>
-
-                        <div class="col s4 body-cell">
-                            <p class="label col s10 n-g">Bjorne Hoeksema:</p>
-                            <p class="team-info col s2 n-g">7.8</p>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div class="col s12">
-            <ul class="collapsible" data-collapsible="accordion">
-                <li>
-                    <div class="collapsible-header">
-                        <div class="col s10 n-g">
-                            <div class="col s12 n-g">
-                                <p class="label col s6 n-g">Team lid:</p>
-                                <p class="label col s6 n-g">Cijfer:</p>
-                            </div>
-                            <div class="col s12 n-g">
-                                <p class="team-info col s6 n-g">Bjorne Hoeksema</p>
-                                <p class="team-info col s6 n-g">8.5</p>
-                            </div>
-                        </div>
-                        <div class="col s2 grading-icon"><i class="material-icons">person_outline</i></div>
-                    </div>
-                    <div class="collapsible-body">
-                        <div class="col s4 body-cell">
-                            <p class="label col s10 n-g">Bjorne Hoeksema:</p>
-                            <p class="team-info col s2 n-g">7.8</p>
-
-                        </div>
-
-                        <div class="col s4 body-cell">
-                            <p class="label col s10 n-g">Bjorne Hoeksema:</p>
-                            <p class="team-info col s2 n-g">7.8</p>
-                        </div>
-
-                        <div class="col s4 body-cell">
-                            <p class="label col s10 n-g">Bjorne Hoeksema:</p>
-                            <p class="team-info col s2 n-g">7.8</p>
-                        </div>
-
-                        <div class="col s4 body-cell">
-                            <p class="label col s10 n-g">Bjorne Hoeksema:</p>
-                            <p class="team-info col s2 n-g">7.8</p>
-                        </div>
-
-                        <div class="col s4 body-cell">
-                            <p class="label col s10 n-g">Bjorne Hoeksema:</p>
-                            <p class="team-info col s2 n-g">7.8</p>
-                        </div>
-
-                        <div class="col s4 body-cell">
-                            <p class="label col s10 n-g">Bjorne Hoeksema:</p>
-                            <p class="team-info col s2 n-g">7.8</p>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div class="col s12">
-            <ul class="collapsible" data-collapsible="accordion">
-                <li>
-                    <div class="collapsible-header">
-                        <div class="col s10 n-g">
-                            <div class="col s12 n-g">
-                                <p class="label col s6 n-g">Team lid:</p>
-                                <p class="label col s6 n-g">Cijfer:</p>
-                            </div>
-                            <div class="col s12 n-g">
-                                <p class="team-info col s6 n-g">Bjorne Hoeksema</p>
-                                <p class="team-info col s6 n-g">8.5</p>
-                            </div>
-                        </div>
-                        <div class="col s2 grading-icon"><i class="material-icons">person_outline</i></div>
-                    </div>
-                    <div class="collapsible-body">
-                        <div class="col s4 body-cell">
-                            <p class="label col s10 n-g">Bjorne Hoeksema:</p>
-                            <p class="team-info col s2 n-g">7.8</p>
-
-                        </div>
-
-                        <div class="col s4 body-cell">
-                            <p class="label col s10 n-g">Bjorne Hoeksema:</p>
-                            <p class="team-info col s2 n-g">7.8</p>
-                        </div>
-
-                        <div class="col s4 body-cell">
-                            <p class="label col s10 n-g">Bjorne Hoeksema:</p>
-                            <p class="team-info col s2 n-g">7.8</p>
-                        </div>
-
-                        <div class="col s4 body-cell">
-                            <p class="label col s10 n-g">Bjorne Hoeksema:</p>
-                            <p class="team-info col s2 n-g">7.8</p>
-                        </div>
-
-                        <div class="col s4 body-cell">
-                            <p class="label col s10 n-g">Bjorne Hoeksema:</p>
-                            <p class="team-info col s2 n-g">7.8</p>
-                        </div>
-
-                        <div class="col s4 body-cell">
-                            <p class="label col s10 n-g">Bjorne Hoeksema:</p>
-                            <p class="team-info col s2 n-g">7.8</p>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="col s6">
-        <p class="subheader-text col s12">Feedback overzicht</p>
-        <div class="col s12">
-            <ul class="collapsible" data-collapsible="accordion">
-                <li>
-                    <div class="collapsible-header">
-                        <div class="col s10 n-g">
-                            <div class="col s12 n-g">
-                                <p class="label col s6 n-g">Team lid:</p>
-                                <p class="label col s6 n-g">Cijfer:</p>
-                            </div>
-                            <div class="col s12 n-g">
-                                <p class="team-info col s6 n-g">Feedback overzicht</p>
-                                <p class="team-info col s6 n-g">Klik hier om uit te schuiven</p>
-                            </div>
-                        </div>
-                        <div class="col s2 feedback-icon"><i class="material-icons">content_paste</i></div>
-                    </div>
-                    <div class="collapsible-body">
-
-                        <div class="col s12 feedback-cell">
-                            <p class="feedback-label col s12 n-g">Bjorne Hoeksema:</p>
-                            <p class="feedback-info col s12 n-g">Iedereen verdiend hetzelfde cijfer omdat iedereen even
-                                veel gedaan heeft en dat is mijn mening.</p>
-                        </div>
-
-                        <div class="col s12 feedback-cell">
-                            <p class="feedback-label col s12 n-g">Bjorne Hoeksema:</p>
-                            <p class="feedback-info col s12 n-g">Iedereen verdiend hetzelfde cijfer omdat iedereen even
-                                veel gedaan heeft en dat is mijn mening.</p>
-                        </div>
-
-                        <div class="col s12 feedback-cell">
-                            <p class="feedback-label col s12 n-g">Bjorne Hoeksema:</p>
-                            <p class="feedback-info col s12 n-g">Iedereen verdiend hetzelfde cijfer omdat iedereen even
-                                veel gedaan heeft en dat is mijn mening.</p>
-                        </div>
-
-                        <div class="col s12 feedback-cell">
-                            <p class="feedback-label col s12 n-g">Bjorne Hoeksema:</p>
-                            <p class="feedback-info col s12 n-g">Iedereen verdiend hetzelfde cijfer omdat iedereen even
-                                veel gedaan heeft en dat is mijn mening.</p>
-                        </div>
-
-                        <div class="col s12 feedback-cell">
-                            <p class="feedback-label col s12 n-g">Bjorne Hoeksema:</p>
-                            <p class="feedback-info col s12 n-g">Iedereen verdiend hetzelfde cijfer omdat iedereen even
-                                veel gedaan heeft en dat is mijn mening.</p>
-                        </div>
-
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div class="col s12">
-            <ul class="collapsible" data-collapsible="accordion">
-                <li>
-                    <div class="collapsible-header">
-                        <div class="col s10 n-g">
-                            <div class="col s12 n-g">
-                                <p class="label col s6 n-g">Team lid:</p>
-                                <p class="label col s6 n-g">Cijfer:</p>
-                            </div>
-                            <div class="col s12 n-g">
-                                <p class="team-info col s6 n-g">Feedback overzicht</p>
-                                <p class="team-info col s6 n-g">Klik hier om uit te schuiven</p>
-                            </div>
-                        </div>
-                        <div class="col s2 feedback-icon"><i class="material-icons">content_paste</i></div>
-                    </div>
-                    <div class="collapsible-body">
-
-                        <div class="col s12 feedback-cell">
-                            <p class="feedback-label col s12 n-g">Bjorne Hoeksema:</p>
-                            <p class="feedback-info col s12 n-g">Iedereen verdiend hetzelfde cijfer omdat iedereen even
-                                veel gedaan heeft en dat is mijn mening.</p>
-                        </div>
-
-                        <div class="col s12 feedback-cell">
-                            <p class="feedback-label col s12 n-g">Bjorne Hoeksema:</p>
-                            <p class="feedback-info col s12 n-g">Iedereen verdiend hetzelfde cijfer omdat iedereen even
-                                veel gedaan heeft en dat is mijn mening.</p>
-                        </div>
-
-                        <div class="col s12 feedback-cell">
-                            <p class="feedback-label col s12 n-g">Bjorne Hoeksema:</p>
-                            <p class="feedback-info col s12 n-g">Iedereen verdiend hetzelfde cijfer omdat iedereen even
-                                veel gedaan heeft en dat is mijn mening.</p>
-                        </div>
-
-                        <div class="col s12 feedback-cell">
-                            <p class="feedback-label col s12 n-g">Bjorne Hoeksema:</p>
-                            <p class="feedback-info col s12 n-g">Iedereen verdiend hetzelfde cijfer omdat iedereen even
-                                veel gedaan heeft en dat is mijn mening.</p>
-                        </div>
-
-                        <div class="col s12 feedback-cell">
-                            <p class="feedback-label col s12 n-g">Bjorne Hoeksema:</p>
-                            <p class="feedback-info col s12 n-g">Iedereen verdiend hetzelfde cijfer omdat iedereen even
-                                veel gedaan heeft en dat is mijn mening.</p>
-                        </div>
-
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div class="col s12">
-            <ul class="collapsible" data-collapsible="accordion">
-                <li>
-                    <div class="collapsible-header">
-                        <div class="col s10 n-g">
-                            <div class="col s12 n-g">
-                                <p class="label col s6 n-g">Team lid:</p>
-                                <p class="label col s6 n-g">Cijfer:</p>
-                            </div>
-                            <div class="col s12 n-g">
-                                <p class="team-info col s6 n-g">Feedback overzicht</p>
-                                <p class="team-info col s6 n-g">Klik hier om uit te schuiven</p>
-                            </div>
-                        </div>
-                        <div class="col s2 feedback-icon"><i class="material-icons">content_paste</i></div>
-                    </div>
-                    <div class="collapsible-body">
-
-                        <div class="col s12 feedback-cell">
-                            <p class="feedback-label col s12 n-g">Bjorne Hoeksema:</p>
-                            <p class="feedback-info col s12 n-g">Iedereen verdiend hetzelfde cijfer omdat iedereen even
-                                veel gedaan heeft en dat is mijn mening.</p>
-                        </div>
-
-                        <div class="col s12 feedback-cell">
-                            <p class="feedback-label col s12 n-g">Bjorne Hoeksema:</p>
-                            <p class="feedback-info col s12 n-g">Iedereen verdiend hetzelfde cijfer omdat iedereen even
-                                veel gedaan heeft en dat is mijn mening.</p>
-                        </div>
-
-                        <div class="col s12 feedback-cell">
-                            <p class="feedback-label col s12 n-g">Bjorne Hoeksema:</p>
-                            <p class="feedback-info col s12 n-g">Iedereen verdiend hetzelfde cijfer omdat iedereen even
-                                veel gedaan heeft en dat is mijn mening.</p>
-                        </div>
-
-                        <div class="col s12 feedback-cell">
-                            <p class="feedback-label col s12 n-g">Bjorne Hoeksema:</p>
-                            <p class="feedback-info col s12 n-g">Iedereen verdiend hetzelfde cijfer omdat iedereen even
-                                veel gedaan heeft en dat is mijn mening.</p>
-                        </div>
-
-                        <div class="col s12 feedback-cell">
-                            <p class="feedback-label col s12 n-g">Bjorne Hoeksema:</p>
-                            <p class="feedback-info col s12 n-g">Iedereen verdiend hetzelfde cijfer omdat iedereen even
-                                veel gedaan heeft en dat is mijn mening.</p>
-                        </div>
-
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div class="col s12">
-            <ul class="collapsible" data-collapsible="accordion">
-                <li>
-                    <div class="collapsible-header">
-                        <div class="col s10 n-g">
-                            <div class="col s12 n-g">
-                                <p class="label col s6 n-g">Team lid:</p>
-                                <p class="label col s6 n-g">Cijfer:</p>
-                            </div>
-                            <div class="col s12 n-g">
-                                <p class="team-info col s6 n-g">Feedback overzicht</p>
-                                <p class="team-info col s6 n-g">Klik hier om uit te schuiven</p>
-                            </div>
-                        </div>
-                        <div class="col s2 feedback-icon"><i class="material-icons">content_paste</i></div>
-                    </div>
-                    <div class="collapsible-body">
-
-                        <div class="col s12 feedback-cell">
-                            <p class="feedback-label col s12 n-g">Bjorne Hoeksema:</p>
-                            <p class="feedback-info col s12 n-g">Iedereen verdiend hetzelfde cijfer omdat iedereen even
-                                veel gedaan heeft en dat is mijn mening.</p>
-                        </div>
-
-                        <div class="col s12 feedback-cell">
-                            <p class="feedback-label col s12 n-g">Bjorne Hoeksema:</p>
-                            <p class="feedback-info col s12 n-g">Iedereen verdiend hetzelfde cijfer omdat iedereen even
-                                veel gedaan heeft en dat is mijn mening.</p>
-                        </div>
-
-                        <div class="col s12 feedback-cell">
-                            <p class="feedback-label col s12 n-g">Bjorne Hoeksema:</p>
-                            <p class="feedback-info col s12 n-g">Iedereen verdiend hetzelfde cijfer omdat iedereen even
-                                veel gedaan heeft en dat is mijn mening.</p>
-                        </div>
-
-                        <div class="col s12 feedback-cell">
-                            <p class="feedback-label col s12 n-g">Bjorne Hoeksema:</p>
-                            <p class="feedback-info col s12 n-g">Iedereen verdiend hetzelfde cijfer omdat iedereen even
-                                veel gedaan heeft en dat is mijn mening.</p>
-                        </div>
-
-                        <div class="col s12 feedback-cell">
-                            <p class="feedback-label col s12 n-g">Bjorne Hoeksema:</p>
-                            <p class="feedback-info col s12 n-g">Iedereen verdiend hetzelfde cijfer omdat iedereen even
-                                veel gedaan heeft en dat is mijn mening.</p>
-                        </div>
-
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div class="col s12">
-            <ul class="collapsible" data-collapsible="accordion">
-                <li>
-                    <div class="collapsible-header">
-                        <div class="col s10 n-g">
-                            <div class="col s12 n-g">
-                                <p class="label col s6 n-g">Team lid:</p>
-                                <p class="label col s6 n-g">Cijfer:</p>
-                            </div>
-                            <div class="col s12 n-g">
-                                <p class="team-info col s6 n-g">Feedback overzicht</p>
-                                <p class="team-info col s6 n-g">Klik hier om uit te schuiven</p>
-                            </div>
-                        </div>
-                        <div class="col s2 feedback-icon"><i class="material-icons">content_paste</i></div>
-                    </div>
-                    <div class="collapsible-body">
-
-                        <div class="col s12 feedback-cell">
-                            <p class="feedback-label col s12 n-g">Bjorne Hoeksema:</p>
-                            <p class="feedback-info col s12 n-g">Iedereen verdiend hetzelfde cijfer omdat iedereen even
-                                veel gedaan heeft en dat is mijn mening.</p>
-                        </div>
-
-                        <div class="col s12 feedback-cell">
-                            <p class="feedback-label col s12 n-g">Bjorne Hoeksema:</p>
-                            <p class="feedback-info col s12 n-g">Iedereen verdiend hetzelfde cijfer omdat iedereen even
-                                veel gedaan heeft en dat is mijn mening.</p>
-                        </div>
-
-                        <div class="col s12 feedback-cell">
-                            <p class="feedback-label col s12 n-g">Bjorne Hoeksema:</p>
-                            <p class="feedback-info col s12 n-g">Iedereen verdiend hetzelfde cijfer omdat iedereen even
-                                veel gedaan heeft en dat is mijn mening.</p>
-                        </div>
-
-                        <div class="col s12 feedback-cell">
-                            <p class="feedback-label col s12 n-g">Bjorne Hoeksema:</p>
-                            <p class="feedback-info col s12 n-g">Iedereen verdiend hetzelfde cijfer omdat iedereen even
-                                veel gedaan heeft en dat is mijn mening.</p>
-                        </div>
-
-                        <div class="col s12 feedback-cell">
-                            <p class="feedback-label col s12 n-g">Bjorne Hoeksema:</p>
-                            <p class="feedback-info col s12 n-g">Iedereen verdiend hetzelfde cijfer omdat iedereen even
-                                veel gedaan heeft en dat is mijn mening.</p>
-                        </div>
-
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-</div>
-</div>
-

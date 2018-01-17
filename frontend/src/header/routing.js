@@ -30,6 +30,10 @@ app.config(function($routeProvider) {
             templateUrl: 'src/groups/group-detail/group-detail.html',
             activeTab: 'groups'
         })
+        .when('/grading', {
+            templateUrl: 'src/groups/group-grading/group-grading.html',
+            activeTab: 'groups'
+        })
 
 });
 
