@@ -1,5 +1,5 @@
 .detail-section .detail-card {
-    padding: 3rem 2rem;
+    padding: 2rem;
     background: white;
     margin: auto;
     overflow: auto;
@@ -33,19 +33,26 @@
 }
 
 .detail-button:hover, .detail-button:focus  {
-    background: #0083FF;
+    background: #0083FF !important;
     opacity: 0.8;
 }
-
+.input-label {
+    height: 2rem !important;
+}
+.input-label:focus {
+    border-bottom: 1px solid #0083FF !important;
+    -webkit-box-shadow: 0 1px 0 0 #0083FF !important;
+    box-shadow: 0 1px 0 0 #0083FF !important;
+}
 .add-new {
     margin-top: 2rem;
-    padding: 1rem;
+    padding: 14px;
     background: #0083FF;
     border-radius: 20px;
     line-height: 0;
 }
 
-.add-new:hover {
+.add-new:hover, .add-new:focus {
     background: #0083FF;
     opacity: 0.8;
 }

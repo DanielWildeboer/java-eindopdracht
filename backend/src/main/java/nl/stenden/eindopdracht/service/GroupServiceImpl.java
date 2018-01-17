@@ -1,44 +1,45 @@
 package nl.stenden.eindopdracht.service;
 
 import nl.stenden.eindopdracht.model.ProjectGroup;
-import nl.stenden.eindopdracht.model.User;
 import nl.stenden.eindopdracht.repository.GroupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
+import java.util.*;
 
 
 @Service
 public class GroupServiceImpl implements GroupService {
-    @Qualifier("groupRepository")
+
     @Autowired
     private GroupRepository groupRepository;
 
-    @Autowired
-    UserServiceImpl userServiceImpl;
-
     @Override
-    public ProjectGroup findGroupByGroupName(String groupName) {
-        return null;
+    public Set<ProjectGroup> findAllGroups() {
+        Set<ProjectGroup> groups = new HashSet<>();
+        {
+            groupRepository.findAll().forEach(groups::add);
+            return groups;
+        }
     }
 
     @Override
-    public ProjectGroup findById(int Id) {
-        return null;
+    public ProjectGroup findGroupById(int id) {
+        return groupRepository.findOne(id);
     }
 
     @Override
-    public Set<ProjectGroup> findGroupsByEmail(String email) {
-        User user = userServiceImpl.findByEmail(email);
-        return user.getGroups();
+    public void addGroup(ProjectGroup group) {
+        groupRepository.save(group);
     }
 
     @Override
-    public ProjectGroup findGroupById(String id) {
-        return groupRepository.findById(id);
+    public void updateGroup(int id, ProjectGroup group) {
+        groupRepository.save(group);
     }
 
-
+    @Override
+    public void deleteGroup(int id) {
+       groupRepository.delete(id);
+    }
 }
