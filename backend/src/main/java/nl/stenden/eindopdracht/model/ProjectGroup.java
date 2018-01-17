@@ -8,13 +8,24 @@ import java.util.Set;
 @Table(name = "projectGroup")
 public class ProjectGroup {
 
+    @Id
     private int id;
     private String name;
     private String subject;
     private float grade;
     private Set<Student> students;
 
-    @Id
+    public ProjectGroup(int id, String name, String subject, float grade)
+    {
+        this.id = id;
+        this.name = name;
+        this.subject = subject;
+        this.grade = grade;
+    }
+
+    public ProjectGroup() { }
+
+
     @GeneratedValue(strategy = GenerationType.AUTO)
     public int getId(){
         return id;

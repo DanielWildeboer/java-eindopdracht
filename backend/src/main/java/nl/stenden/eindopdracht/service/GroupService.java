@@ -2,12 +2,15 @@ package nl.stenden.eindopdracht.service;
 
 import nl.stenden.eindopdracht.model.ProjectGroup;
 
+import java.util.List;
 import java.util.Set;
 
 public interface GroupService {
     Set<ProjectGroup> findAllGroups();
-    ProjectGroup findGroupById(String id);
+    ProjectGroup findGroupById(int id);
     void addGroup(ProjectGroup group);
+    void updateGroup(int id, ProjectGroup group);
+    void deleteGroup(int id);
 }
 
 
