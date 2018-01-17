@@ -1,88 +1,103 @@
+.table-responsive {
+    background: white;
+    border: none;
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+}
+
+.table-responsive td, .table-responsive th {
+    padding: 1.5rem 3rem;
+}
+
+.table-responsive th {
+    color: #8f8f8f;
+    border-bottom: 1px solid #C7C7CD;
+}
+
 .tableContainer {
-	border-radius: 2px;
+    border-radius: 2px;
 }
 
 .header {
-	height: 70px;
-	background-color: white;
-	margin-bottom: 0px;
-	padding-bottom: 20px;
+ padding: 1rem;
+}
+
+.rotate {
+    transform: rotate(90deg);
+    padding-left: 10px;
 }
 
 .headerContainer {
-	background-color: white;
-	padding-top: 20px;
-	padding-bottom: 20px;
+    background-color: white;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .tableTitles {
-	height: 40px;
-	background-color: white;
-	color: #8f8f8f;
-	border-bottom: 1px solid #8f8f8f;
-	margin-left: 20px;
-	margin-right: 20px;
+    color: #8f8f8f;
+
 }
 
 .tableTitles h5 {
-	font-size: 15px;
+    font-size: 15px;
 }
 
 .tableContent {
-	background-color: white;
-	padding-left: 20px;
-	padding-right: 20px;
+    background-color: white;
 }
 
 .tableContentBlock {
-	border-bottom: 1px solid #8f8f8f;
-	height: 55px;
+    border-bottom: 1px solid #C7C7CD;
 
 }
 
 .groupsCount {
-	background-color: #0083ff;
-	border-radius: 6px;
-	width: 120px;
-	padding: 5px 5px 5px 10px;
-	margin-left: 10px;
+    background-color: #0083ff;
+    border-radius: 6px;
+    width: 120px;
+    padding: 5px 5px 5px 10px;
+    margin-left: 10px;
 }
 
 .groupsCount p {
-	color: white;
-	margin: 0;
+    color: white;
+    margin: 0;
 }
 
 .groupsSearch {
-	float: right;
-	margin: 0 !important;
-	background-color: #fafafa;
-	border-radius: 2px;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	width: 300px;
+    float: right;
+    margin: 0 !important;
+    background-color: #fafafa;
+    border-radius: 2px;
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+    width: 300px;
 }
 
 .groupsSearch input[type=text] {
-	margin: 0px 0px 0px 0px;
-	border: 0;
+    margin: 0px 0px 0px 0px;
+    border: 0;
 }
 
 .groupsSearch input[type=text]:focus {
-	margin: 0px 0px 0px 0px;
-	border-bottom: none  !important;
-	box-shadow: none !important;
+    margin: 0px 0px 0px 0px;
+    border-bottom: none !important;
+    box-shadow: none !important;
 }
 
 .groupsSearch .row {
-	margin: 0;
+    margin: 0;
 
 }
 
 .searchIcon {
-	padding-top: 10px !important;
+    padding-top: 10px !important;
+}
+
+.table-delete {
+    color: #0083ff;
+    font-weight: 500;
 }
 
 .alignRight {
-	margin-top: 15px;
-	text-align: right;
+    margin-top: 15px;
+    text-align: right;
 }

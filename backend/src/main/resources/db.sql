@@ -9,8 +9,8 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) DEFAULT NULL,
-  `first_name` varchar(255) DEFAULT NULL,
-  `last_name` varchar(255) DEFAULT NULL,
+  `firstName` varchar(255) DEFAULT NULL,
+  `lastName` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `project_group` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -58,6 +58,7 @@ CREATE TABLE `grade_assessment` (
   `user_id` varchar(255) DEFAULT NULL,
   `receiver_student` varchar(255) DEFAULT NULL,
   `grade` double DEFAULT NULL,
+  `status` ENUM('ongoing', 'finished') DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 

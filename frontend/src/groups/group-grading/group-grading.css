@@ -1,0 +1,73 @@
+.header-cell {
+    padding-left: 20px !important;
+    padding-bottom: 20px !important;
+}
+
+.label {
+    color: #8f8f8f;
+}
+
+.team-info {
+    font-weight: 500;
+}
+
+.team-info, .label {
+    font-size: 16px;
+    margin: 0;
+}
+
+.feedback-info {
+    font-size: 16px;
+    margin: 0;
+    color: #8f8f8f;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: normal;
+}
+
+.feedback-label {
+    color: black;
+    margin: 0;
+    font-weight: 500;
+}
+.feedback-cell {
+    padding: 0.5rem !important;
+}
+
+.collapsible-body {
+    background: white;
+    overflow: auto;
+    padding: 1rem;
+}
+
+.body-cell {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.subheader-text {
+    font-weight: 500;
+    color: #8f8f8f;
+    font-size: 18px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.info-row {
+    border-bottom: 1px solid #dfdfdf;
+}
+
+.grading-icon .material-icons {
+    color: #02366b;
+    margin-top: 1rem;
+    float: right;
+}
+.feedback-icon .material-icons {
+    color: #C83C2D;
+    margin-top: 1rem;
+    float: right;
+}
+
+.a-c {
+    text-align: center;
+}

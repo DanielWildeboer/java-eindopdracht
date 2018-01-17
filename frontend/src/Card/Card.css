@@ -6,7 +6,7 @@
 }
 
 .contentContainer:hover {
-	overflow-y: scroll;
+	overflow-y: auto;
 }
 
 .content {
@@ -22,7 +22,7 @@
 }
 
 .cardTitleExtra {
-	margin-left: 40px;
+	margin-left: 2.2vw;
 	color: #02366b;
 	padding-bottom: 20px;
 }
@@ -92,6 +92,7 @@
 .titleString {
 	float: left;
 	font-size: 22px;
+	font-size: 1.2vw;
 }
 
 .containerCards {

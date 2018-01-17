@@ -12,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class UserController {
 
@@ -27,6 +29,7 @@ public class UserController {
 
     @RequestMapping(value = "api/registration", method = RequestMethod.POST)
     public ResponseEntity registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult){
+
         HttpHeaders headers = new HttpHeaders();
 
             userValidator.validate(userForm, bindingResult);
@@ -40,10 +43,23 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "api/login", method = RequestMethod.POST)
-    public ResponseEntity login(){
-        
-        return null;
+
+    //get all users in the application
+    @RequestMapping(value = "users", method = RequestMethod.GET)
+    public List<User> users() {
+        return userService.findAll();
     }
+
+    //remove user from the db
+    @RequestMapping(value = "users/{Id}", method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void  removeUser(@PathVariable int Id) {
+        userService.delete(Id);
+    }
+
+
+
+
+
 
 }

@@ -37,7 +37,6 @@
                 </md-input-container>
             </div>
             <div class="col s1">
-
                 <div class="form-group">
                     <input type="submit" ng-click="addNew(personalDetail)"
                            class="btn btn-primary add-new pull-right" value="+">
@@ -53,7 +52,7 @@
     <div class="detail-card col s4 offset-s1">
         <h5 class="header-text col s12">Groepsleden:</h5>
         <div ng-repeat="personalDetail in personalDetails" class="col s12 personDetail n-g">
-          <p class="customName f-l" ng-if="personalDetail.fname">{{personalDetail.fname | limitTo : 2}}</p>
+            <p class="customName f-l" ng-if="personalDetail.fname">{{personalDetail.fname | limitTo : 2}}</p>
             <p class="personName f-l" ng-if="personalDetail.fname">{{personalDetail.fname}}</p>
             <button class="material-icons" ng-click="remove(personalDetail)">clear</button>
         </div>
