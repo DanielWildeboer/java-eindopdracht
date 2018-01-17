@@ -42,10 +42,7 @@ public class UserController {
         return new ResponseEntity<User>(userForm, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/api/login", method = RequestMethod.POST)
-    public ResponseEntity login(){
-        return null;
-    }
+
 
     //get all users in the application
     @RequestMapping(value = "users", method = RequestMethod.GET)
