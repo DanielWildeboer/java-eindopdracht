@@ -58,12 +58,11 @@ public class ProjectGroup {
 
     public void setGrade(float grade) { this.grade = grade; }
 
-    @ManyToOne
+    @ManyToMany
     @JoinTable(name = "group_student", joinColumns = @JoinColumn(name = "student_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "group_id", referencedColumnName = "id"))
     public Set<Student> getStudents() {
         return students;
     }
-
     public void setStudents(Set<Student> student) {
         this.students = student;
     }
