@@ -43,7 +43,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void updateUser(int id, Student student) {
+    public void updateStudent(int id, Student student) {
         studentRepository.save(student);
     }
 

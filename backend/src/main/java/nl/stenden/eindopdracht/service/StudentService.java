@@ -11,6 +11,6 @@ public interface StudentService {
     Student findByEmail(String email);
     Student findByStudentNumber(int student_number);
     Student findById(int id);
-    void updateUser(int id, Student student);
+    void updateStudent(int id, Student student);
     void delete(int id);
 }
