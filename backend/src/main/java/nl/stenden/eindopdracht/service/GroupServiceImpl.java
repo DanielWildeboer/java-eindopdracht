@@ -1,12 +1,13 @@
 package nl.stenden.eindopdracht.service;
 
 import nl.stenden.eindopdracht.model.ProjectGroup;
+import nl.stenden.eindopdracht.model.Student;
 import nl.stenden.eindopdracht.repository.GroupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.ManyToMany;
 import java.util.*;
-
 
 @Service
 public class GroupServiceImpl implements GroupService {
@@ -14,9 +15,12 @@ public class GroupServiceImpl implements GroupService {
     @Autowired
     private GroupRepository groupRepository;
 
+    @ManyToMany
+    private Set<Student> students;
+
     @Override
     public Set<ProjectGroup> findAllGroups() {
-        Set<ProjectGroup> groups = new HashSet<>();
+        Set<ProjectGroup> groups = new HashSet<ProjectGroup>();
         {
             groupRepository.findAll().forEach(groups::add);
             return groups;
@@ -41,5 +45,10 @@ public class GroupServiceImpl implements GroupService {
     @Override
     public void deleteGroup(int id) {
        groupRepository.delete(id);
+    }
+
+    @Override
+    public void addStudent(Student student) {
+        students.add(student);
     }
 }

@@ -41,6 +41,11 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
     @Override
+    public void updateUser(Long Id, User user) {
+
+    }
+
+    @Override
     public void delete(Long Id) {
 
     }

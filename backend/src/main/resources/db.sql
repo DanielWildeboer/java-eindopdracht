@@ -12,7 +12,6 @@ CREATE TABLE `user` (
   `firstName` varchar(255) DEFAULT NULL,
   `lastName` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
-  `project_group` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
@@ -69,6 +68,7 @@ CREATE TABLE `grade_assessment` (
 DROP TABLE IF EXISTS `token`;
 CREATE TABLE `token` (
   `id` int NOT NULL,
+  `randomString` varchar(30) DEFAULT NULL,
   `project_group_id` varchar(255) DEFAULT NULL,
   `student_id` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
