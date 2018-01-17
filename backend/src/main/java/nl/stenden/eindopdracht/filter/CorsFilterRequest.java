@@ -23,7 +23,7 @@ public class CorsFilterRequest implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-
+        logger.info("initialisingFilter");
     }
 
     @Override

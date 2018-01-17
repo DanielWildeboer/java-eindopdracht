@@ -6,12 +6,9 @@ import java.util.List;
 
 public interface UserService {
     void save(User user);
-
     List<User> findAll();
-
     User findByEmail(String email);
-
     User findById(Long Id);
-
+    void updateUser(Long Id, User user);
     void delete(Long Id);
 }

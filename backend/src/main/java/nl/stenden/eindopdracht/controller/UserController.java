@@ -45,13 +45,19 @@ public class UserController {
 
 
     //get all users in the application
-    @RequestMapping(value = "users", method = RequestMethod.GET)
+    @RequestMapping(value = "api/user", method = RequestMethod.GET)
     public List<User> users() {
         return userService.findAll();
     }
 
+    //update a user
+    @RequestMapping(method=RequestMethod.PUT, value="api/user/{id}")
+    public void updateUser(@RequestBody User user, @PathVariable Long id){
+        userService.updateUser(id, user);
+    }
+
     //remove user from the db
-    @RequestMapping(value = "users/{Id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "api/user/{Id}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void  removeUser(@PathVariable Long Id) {
         userService.delete(Id);
