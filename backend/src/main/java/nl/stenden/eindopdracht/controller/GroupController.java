@@ -35,8 +35,6 @@ public class GroupController {
     @Autowired
     private StudentRepository studentRepository;
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
     //GET ALL GROUPS
     @RequestMapping(value = "api/group", method = RequestMethod.GET)
     public Set<ProjectGroup> getGroups(){
