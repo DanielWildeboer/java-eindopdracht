@@ -1,4 +1,4 @@
-package nl.stenden.eindopdracht.controller;
+package nl.stenden.eindopdracht.utility;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -15,5 +15,11 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
     protected ResponseEntity<Object> handleNullPointer(RuntimeException e, WebRequest request){
         String response = "You done goofed mate";
         return handleExceptionInternal(e, response, new HttpHeaders(), HttpStatus.UNPROCESSABLE_ENTITY, request);
+    }
+
+    @ExceptionHandler(value = { Exception.class })
+    protected ResponseEntity<Object> handle(RuntimeException e, WebRequest request){
+        String response = "Exception occured on the server side";
+        return handleExceptionInternal(e, response, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
     }
 }
