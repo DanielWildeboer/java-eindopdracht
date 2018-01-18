@@ -1,12 +1,17 @@
 package nl.stenden.eindopdracht.controller;
 
 import nl.stenden.eindopdracht.model.ProjectGroup;
+import nl.stenden.eindopdracht.model.User;
 import nl.stenden.eindopdracht.model.Student;
 import nl.stenden.eindopdracht.repository.GroupRepository;
 import nl.stenden.eindopdracht.repository.StudentRepository;
 import nl.stenden.eindopdracht.service.GroupServiceImpl;
 import nl.stenden.eindopdracht.service.TokenServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,6 +33,8 @@ public class GroupController {
     @Autowired
     private StudentRepository studentRepository;
 
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     //GET ALL GROUPS
     @RequestMapping(value = "api/group", method = RequestMethod.GET)
     public Set<ProjectGroup> getGroups(){
@@ -36,15 +43,23 @@ public class GroupController {
 
     //GET GROUP BY ID
     @RequestMapping(value = "api/group/{id}", method = RequestMethod.GET)
-    public ProjectGroup getGroupById(@PathVariable int id){
-        return groupService.findGroupById(id);
+    public ResponseEntity getGroupById(@PathVariable int id){
+        ProjectGroup group = groupService.findGroupById(id);
+        return new ResponseEntity<>(group, HttpStatus.FOUND);
     }
 
     // POST A NEW GROUP AND RETURN THE ID OF THE GROUP WHICH CAN BE USED TO ADD USERS TO THE GROUP
     @RequestMapping(method=RequestMethod.POST, value="api/group")
-    public int addGroup(@RequestBody ProjectGroup group){
-        groupService.addGroup(group);
-        return group.getId();
+    public ResponseEntity addGroup(@ModelAttribute ProjectGroup group){
+        try {
+            groupService.addGroup(group);
+            group.setStatus(false);
+        } catch (Exception e)
+        {
+            logger.info(e.toString());
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     // ADD STUDENTS TO GROUP
@@ -61,14 +76,27 @@ public class GroupController {
 
     //UPDATE A GROUP
     @RequestMapping(method=RequestMethod.PUT, value="api/group/{id}")
-    public void updateGroup(@RequestBody ProjectGroup group, @PathVariable int id){
-        groupService.updateGroup(id, group);
+    public ResponseEntity updateGroup(@ModelAttribute ProjectGroup group, @PathVariable int id){
+        try {
+            groupService.updateGroup(id, group);
+        } catch(Exception e){
+            logger.info(e.toString());
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     //DELETE A GROUP
     @RequestMapping(method=RequestMethod.DELETE, value="api/group/{id}")
-    public void deleteGroup(@PathVariable int id) {
-        groupService.deleteGroup(id);
+    public ResponseEntity deleteGroup(@PathVariable int id) {
+        try{
+            groupService.deleteGroup(id);
+        } catch(Exception e){
+            logger.info(e.toString());
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

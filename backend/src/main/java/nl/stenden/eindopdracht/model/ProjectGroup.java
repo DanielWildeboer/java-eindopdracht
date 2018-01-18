@@ -14,6 +14,7 @@ public class ProjectGroup {
     private String name;
     private String subject;
     private float grade;
+    private boolean status;
 
     @ManyToMany
     private Set<Student> students;
@@ -69,4 +70,11 @@ public class ProjectGroup {
         students.add(student);
     }
 
+    public boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
 }
