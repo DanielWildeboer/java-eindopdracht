@@ -28,6 +28,11 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
+    public Set<ProjectGroup> findProjectGroupsByUserId(String id) {
+        return groupRepository.findAllByUserId(id);
+    }
+
+    @Override
     public ProjectGroup findGroupById(int id) {
         return groupRepository.findOne(id);
     }

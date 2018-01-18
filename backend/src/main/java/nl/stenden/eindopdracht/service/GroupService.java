@@ -9,6 +9,7 @@ import java.util.Set;
 public interface GroupService {
     Set<ProjectGroup> findAllGroups();
     ProjectGroup findGroupById(int id);
+    Set<ProjectGroup> findProjectGroupsByUserId(String id);
     void addGroup(ProjectGroup group);
     void updateGroup(int id, ProjectGroup group);
     void deleteGroup(int id);
