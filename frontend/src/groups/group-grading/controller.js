@@ -50,13 +50,58 @@ app.controller('gradingController', function($scope, $route) {
 		]}
 	]};
 		$scope.calc = function(){
-				var log = [];
+				/*var grades = [];*/
+				var numberOfMembers
+				var average = [];
+				var everything = [];
+				var single = [];
+				var totalAvg = [];
 				angular.forEach($scope.group.members, function(value, key) {
-
-		
+					angular.forEach(value.feedback, function(value, key) {
+						average.push(value.grade)
+					});
+					/*grades.push(average)*/
+							
 	  			
 			});
-		}
+				
+				numberOfMembers = $scope.group.members.length
+				var createGroupedArray = function(arr, chunkSize) {
+    				var groups = [], i;
+    				for (i = 0; i < arr.length; i += chunkSize) {
+       					groups.push(arr.slice(i, i + chunkSize));
+    				}
+    				return groups;
+				}
+
+				groupedArr = createGroupedArray(average, numberOfMembers);
+				function add(a, b) {
+	    				return a + b;
+					};
+
+				for (var i = 0; i < numberOfMembers.length; i++) {
+					var singleAvg
+					var singleSum = groupedArr[i].reduce(add, 0);
+					singleAvg = singleSum / numberOfMembers;
+					console.log(singleAvg)
+					totalAvg.push(singleAvg);
+
+				}
+
+				/*var groupedArr = createGroupedArray(average, numberOfMembers);
+				var singleAvg
+				var singleSum = groupedArr[0].reduce(add, 0);
+				function add(a, b) {
+    				return a + b;
+				}
+				singleAvg = singleSum / numberOfMembers;*/
+
+				/*var result = JSON.stringify(singleSum);*/
+
+
+				console.log(totalAvg)
+				return average[0].toString();
+		};
 
 
 
