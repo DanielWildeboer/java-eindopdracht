@@ -37,5 +37,21 @@ public class UserValidator implements Validator {
         if (user.getPassword().length() < 6 || user.getPassword().length() > 32) {
             errors.rejectValue("password", "Size.userForm.password");
         }
+//        String upperCaseChars = "(.*[A-Z].*)";
+//        if (!user.getPassword().contains(upperCaseChars )) {
+//            errors.rejectValue("password", "upperCase.userForm.password");
+//        }
+//        String lowerCaseChars = "(.*[a-z].*)";
+//        if (!user.getPassword().contains(lowerCaseChars )) {
+//            errors.rejectValue("password", "lowerCase.userForm.password");
+//        }
+//        String numbers = "(.*[0-9].*)";
+//        if (!user.getPassword().contains(numbers)) {
+//            errors.rejectValue("password", "number.userForm.password");
+//        }
+//        String specialChars = "(.*[,~,!,@,#,$,%,^,&,*,(,),-,_,=,+,[,{,],},|,;,:,<,>,/,?].*$)";
+//        if (user.getPassword().contains(specialChars )) {
+//            errors.rejectValue("password", "specialChar.userForm.password");
+//        }
     }
 }

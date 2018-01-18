@@ -2,6 +2,8 @@ package nl.stenden.eindopdracht.controller;
 
 import nl.stenden.eindopdracht.model.ProjectGroup;
 import nl.stenden.eindopdracht.model.Student;
+import nl.stenden.eindopdracht.repository.GroupRepository;
+import nl.stenden.eindopdracht.repository.StudentRepository;
 import nl.stenden.eindopdracht.service.GroupServiceImpl;
 import nl.stenden.eindopdracht.service.TokenServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,12 @@ public class GroupController {
 
     @Autowired
     private TokenServiceImpl tokenService;
+
+    @Autowired
+    private GroupRepository groupRepository;
+
+    @Autowired
+    private StudentRepository studentRepository;
 
     //GET ALL GROUPS
     @RequestMapping(value = "api/group", method = RequestMethod.GET)
@@ -40,9 +48,15 @@ public class GroupController {
     }
 
     // ADD STUDENTS TO GROUP
-    @RequestMapping(method=RequestMethod.POST, value="/groups/addStudent/{groupId}")
-    public void addStudent(@RequestBody Student student, @PathVariable int groupId){
-        groupService.findGroupById(groupId).addStudent(student);
+    @RequestMapping(method=RequestMethod.POST, value="/api/group/addStudent/{groupId}/{studentId}")
+    public void addStudent(@PathVariable int groupId, @PathVariable int studentId){
+        ProjectGroup projectGroup = groupRepository.findOne(groupId);
+        Student student = studentRepository.findOne(studentId);
+
+        if (projectGroup != null) {
+            projectGroup.getStudents().add(student);
+            studentRepository.save(student);
+        }
     }
 
     //UPDATE A GROUP
