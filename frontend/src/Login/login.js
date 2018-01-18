@@ -19,8 +19,8 @@ app.service('LoginService', function ($http, $q) {
 
     var payload =  new FormData();
 
-
     return function (email, password, success, error) {
+
         payload.append('password', email.password);
         payload.append('email', email.email);
 
