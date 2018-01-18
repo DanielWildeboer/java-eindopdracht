@@ -28,11 +28,11 @@ public class MailController {
     //GET ALL GROUPS
     @RequestMapping(value = "/sentMail/{toEmail}/{fromEmail}/{tokenId}", method = RequestMethod.POST)
     public void sentMail(@PathVariable String toEmail, @PathVariable String fromEmail, @PathVariable int tokenId){
-            tokenService.findTokenByIds(tokenId)
+            tokenService.findTokenByIds(tokenId);
             Email email = new Email(toEmail, fromEmail, "Beoordeling", "Beste Student," +
                     "\n\n bezoek de onderstaande link om je medegroepleden te beoordelen" +
                     "\n\n bezoek de onderstaande link om je medegroepleden te beoordelen" +
-                    "\n\n Met vriendelijke groet")
+                    "\n\n Met vriendelijke groet");
             emailService.sendEmail(email);
 
     }
