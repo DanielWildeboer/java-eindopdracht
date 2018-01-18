@@ -28,7 +28,6 @@ public class ProjectGroup {
 
     public ProjectGroup() { }
 
-
     @GeneratedValue(strategy = GenerationType.AUTO)
     public int getId(){
         return id;

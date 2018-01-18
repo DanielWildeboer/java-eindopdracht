@@ -7,41 +7,35 @@
 </head>
 <body ng-app="Register" ng-controller="RegisterController" ng-cloak>
 
-<div class="login-section">
+<div class="register-section">
     <div class="login-card">
-        <form>
+        <form name="registerForm">
             <div class="col-md-12">
                 <md-input-container class="mat-input">
                     <label>Voornaam</label>
-                    <input ng-model="firstName">
+                    <input ng-model="firstName" required>
                 </md-input-container>
             </div>
             <div class="col-md-12">
                 <md-input-container class="mat-input">
                     <label>Achternaam</label>
-                    <input ng-model="lastName">
+                    <input ng-model="lastName" required>
                 </md-input-container>
             </div>
             <div class="col-md-12">
                 <md-input-container class="mat-input">
                     <label>E-mailadres</label>
-                    <input ng-model="email">
+                    <input ng-model="email" required>
                 </md-input-container>
             </div>
             <div class="col-md-12">
                 <md-input-container class="mat-input">
                     <label>Wachtwoord</label>
-                    <input type="password" ng-model="password">
+                    <input type="password" ng-model="password" required>
                 </md-input-container>
             </div>
             <div class="col-md-12">
-                <md-input-container class="mat-input">
-                    <label>Herhaal wachtwoord</label>
-                    <input type="password" ng-model="passwordConfirm">
-                </md-input-container>
-            </div>
-            <div class="col-md-12">
-                <md-button class="login-button" ng-click="register()">REGISTREER</md-button>
+                <md-button ng-disabled="registerForm.$invalid" class="login-button" ng-click="register()">REGISTREER</md-button>
             </div>
             <div class="col-md-12 reference">
                 <a class="login-text" href="login.html">Bent u al lid log dan in</a>
