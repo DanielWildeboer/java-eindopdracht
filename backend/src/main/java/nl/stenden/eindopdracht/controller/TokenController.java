@@ -12,20 +12,20 @@ public class TokenController {
     private TokenServiceImpl tokenService;
 
     //ADD A TOKEN
-    @RequestMapping(method= RequestMethod.POST, value="/token")
+    @RequestMapping(method= RequestMethod.POST, value="api/token")
     public int deleteToken(@PathVariable Token token) {
         tokenService.addToken(token);
         return token.getTokenId();
     }
 
     //FIND A TOKEN
-    @RequestMapping(method= RequestMethod.GET, value="/token/{id}")
+    @RequestMapping(method= RequestMethod.GET, value="api/token/{id}")
     public void findToken(@PathVariable int id) {
         tokenService.findTokenByIds(id);
     }
 
     //DELETE A TOKEN
-    @RequestMapping(method= RequestMethod.DELETE, value="/token/{id}")
+    @RequestMapping(method= RequestMethod.DELETE, value="api/token/{id}")
     public void deleteToken(@PathVariable int id) {
         tokenService.deleteToken(id);
     }

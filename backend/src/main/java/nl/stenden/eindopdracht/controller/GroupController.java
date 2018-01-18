@@ -20,32 +20,32 @@ public class GroupController {
     private TokenServiceImpl tokenService;
 
     //GET ALL GROUPS
-    @RequestMapping(value = "/groups", method = RequestMethod.GET)
+    @RequestMapping(value = "api/group", method = RequestMethod.GET)
     public Set<ProjectGroup> getGroups(){
         return groupService.findAllGroups();
     }
 
     //GET GROUP BY ID
-    @RequestMapping(value = "/groups/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "api/group/{id}", method = RequestMethod.GET)
     public ProjectGroup getGroupById(@PathVariable int id){
         return groupService.findGroupById(id);
     }
 
     // POST A NEW GROUP AND RETURN THE ID OF THE GROUP WHICH CAN BE USED TO ADD USERS TO THE GROUP
-    @RequestMapping(method=RequestMethod.POST, value="/groups")
+    @RequestMapping(method=RequestMethod.POST, value="api/group")
     public int addGroup(@RequestBody ProjectGroup group){
         groupService.addGroup(group);
         return group.getId();
     }
 
     //UPDATE A GROUP
-    @RequestMapping(method=RequestMethod.PUT, value="/groups/{id}")
+    @RequestMapping(method=RequestMethod.PUT, value="api/group/{id}")
     public void updateGroup(@RequestBody ProjectGroup group, @PathVariable int id){
         groupService.updateGroup(id, group);
     }
 
     //DELETE A GROUP
-    @RequestMapping(method=RequestMethod.DELETE, value="/groups/{id}")
+    @RequestMapping(method=RequestMethod.DELETE, value="api/group/{id}")
     public void deleteGroup(@PathVariable int id) {
         groupService.deleteGroup(id);
     }
