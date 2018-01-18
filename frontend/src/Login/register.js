@@ -2,7 +2,6 @@ var app = angular.module('Register', ['ngMaterial']);
 
 app.controller('RegisterController', ['$scope', 'RegisterService', function ($scope, RegisterService) {
     $scope.register = function () {
-
         RegisterService.register($scope.firstName, $scope.lastName, $scope.email, $scope.password)
             .then(
                 function (errorMessage) {
