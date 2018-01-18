@@ -7,13 +7,13 @@ USE `java_minor_eindopdracht`;
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `email` varchar(255) DEFAULT NULL,
   `firstName` varchar(255) DEFAULT NULL,
   `lastName` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 --
@@ -22,13 +22,13 @@ CREATE TABLE `user` (
 
 DROP TABLE IF EXISTS `student`;
 CREATE TABLE `student` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `email` varchar(255) DEFAULT NULL,
   `full_name` varchar(255) DEFAULT NULL,
   `token` varchar(255) DEFAULT NULL,
   `grade_assessment` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `group`
@@ -36,14 +36,14 @@ CREATE TABLE `student` (
 
 DROP TABLE IF EXISTS `projectGroup`;
 CREATE TABLE `projectGroup` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   `subject` varchar(255) DEFAULT NULL,
   `grade` double DEFAULT NULL,
   `students` varchar(255) DEFAULT NULL,
   `status` BOOLEAN,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `projectGroup`
@@ -51,7 +51,7 @@ CREATE TABLE `projectGroup` (
 
 DROP TABLE IF EXISTS `grade_assessment`;
 CREATE TABLE `grade_assessment` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `project_group_id` varchar(255) DEFAULT NULL,
   `student_id` varchar(255) DEFAULT NULL,
   `user_id` varchar(255) DEFAULT NULL,
@@ -59,7 +59,7 @@ CREATE TABLE `grade_assessment` (
   `grade` double DEFAULT NULL,
   `status` ENUM('ongoing', 'finished') DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `token`
@@ -67,9 +67,9 @@ CREATE TABLE `grade_assessment` (
 
 DROP TABLE IF EXISTS `token`;
 CREATE TABLE `token` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `randomString` varchar(30) DEFAULT NULL,
   `project_group_id` varchar(255) DEFAULT NULL,
   `student_id` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
