@@ -48,13 +48,16 @@ body {
 .md-button.md-default-theme[disabled], .md-button[disabled]:hover {
     background: gray !important;
 }
-.login-text {
-    text-decoration: none;
-    color: #0083FF;
-}
 .reference {
     text-decoration: none;
     text-align: center;
+}
+.reference a {
+    text-decoration: none;
+    color: #0083FF;
+    text-transform: uppercase;
+    font-weight: 500;
+
 }
 .footer {
     width: 100%;
@@ -63,6 +66,14 @@ body {
     bottom: 0;
     background: #0083FF;
 }
+.md-input:focus {
+    border-bottom: 1px solid #0083FF !important;
+    -webkit-box-shadow: 0 1px 0 0 #0083FF !important;
+    box-shadow: 0 1px 0 0 #0083FF !important;
+}
+.md-input-focused label {
+        color: #0083FF !important;
+    }
 .f-l {
     float: left;
 }
