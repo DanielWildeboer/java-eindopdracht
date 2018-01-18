@@ -145,7 +145,7 @@ public class EmailServiceImpl implements EmailService {
 //                }
 
                 // Set the content of the signed message
-                signedMessage.setFrom(email.getFrom());
+                signedMessage.addFrom(InternetAddress.parse(email.getFrom()));
                 signedMessage.setSubject(email.getSubject());
                 signedMessage.setText(email.getBody());
                 //signedMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse("lesley.van.oostenrijk@student.stenden.com"));
