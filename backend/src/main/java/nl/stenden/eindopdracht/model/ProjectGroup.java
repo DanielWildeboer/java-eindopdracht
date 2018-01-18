@@ -67,5 +67,8 @@ public class ProjectGroup {
         this.students = student;
     }
 
+    public void addStudent(Student student) {
+        students.add(student);
+    }
 
 }

@@ -1,6 +1,7 @@
 package nl.stenden.eindopdracht.controller;
 
 import nl.stenden.eindopdracht.model.ProjectGroup;
+import nl.stenden.eindopdracht.model.Student;
 import nl.stenden.eindopdracht.service.GroupServiceImpl;
 import nl.stenden.eindopdracht.service.TokenServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,12 @@ public class GroupController {
     public int addGroup(@RequestBody ProjectGroup group){
         groupService.addGroup(group);
         return group.getId();
+    }
+
+    // ADD STUDENTS TO GROUP
+    @RequestMapping(method=RequestMethod.POST, value="/groups/addStudent/{groupId}")
+    public void addStudent(@RequestBody Student student, @PathVariable int groupId){
+        groupService.findGroupById(groupId).addStudent(student);
     }
 
     //UPDATE A GROUP

@@ -1,8 +1,8 @@
 package nl.stenden.eindopdracht.controller;
 
 import nl.stenden.eindopdracht.model.Student;
-import nl.stenden.eindopdracht.service.StudentService;
 import nl.stenden.eindopdracht.service.StudentServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,6 +10,7 @@ import java.util.List;
 @RestController
 public class StudentController {
 
+    @Autowired
     private StudentServiceImpl studentService;
 
     //retrieve all students
@@ -22,9 +23,9 @@ public class StudentController {
 
     //add new student
     @RequestMapping(value = "api/student", method = RequestMethod.POST)
-    public int addStudent(@RequestBody Student student) {
+    public Student addStudent(@RequestBody Student student) {
         studentService.addStudent(student);
-        return student.getId();
+        return student;
     }
 
     //update student
