@@ -64,6 +64,11 @@ public class EmailServiceImpl implements EmailService {
         try {
             Message message = new MimeMessage(session);
 
+            message.addFrom(InternetAddress.parse(email.getFrom()));
+            message.setSubject(email.getSubject());
+            message.setText(email.getBody());
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email.getTo()));
+
             //Add BouncyCastle content handlers to command map
             MailcapCommandMap mailcap = (MailcapCommandMap) CommandMap.getDefaultCommandMap();
 
@@ -145,11 +150,11 @@ public class EmailServiceImpl implements EmailService {
 //                }
 
                 // Set the content of the signed message
-                signedMessage.addFrom(InternetAddress.parse(email.getFrom()));
-                signedMessage.setSubject(email.getSubject());
-                signedMessage.setText(email.getBody());
+//                signedMessage.addFrom(InternetAddress.parse(email.getFrom()));
+//                signedMessage.setSubject(email.getSubject());
+//                signedMessage.setText(email.getBody());
                 //signedMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse("lesley.van.oostenrijk@student.stenden.com"));
-                signedMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email.getTo()));
+                //signedMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email.getTo()));
                 signedMessage.setContent(mm);
                 signedMessage.saveChanges();
 
