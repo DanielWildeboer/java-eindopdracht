@@ -4,12 +4,15 @@ import nl.stenden.eindopdracht.model.User;
 import nl.stenden.eindopdracht.service.SecurityService;
 import nl.stenden.eindopdracht.service.UserService;
 import nl.stenden.eindopdracht.service.UserValidator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,6 +29,8 @@ public class UserController {
     @Autowired
     private UserValidator userValidator;
 
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
 
     @RequestMapping(value = "api/registration", method = RequestMethod.POST)
     public ResponseEntity registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult){
@@ -34,6 +39,9 @@ public class UserController {
 
             userValidator.validate(userForm, bindingResult);
             if(bindingResult.hasErrors()){
+                for (ObjectError e: bindingResult.getAllErrors()) {
+                    logger.info(e.toString());
+                }
                 return new ResponseEntity<String>(bindingResult.getAllErrors().toString(),
                         headers, HttpStatus.INTERNAL_SERVER_ERROR);
             }
