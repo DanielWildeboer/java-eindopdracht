@@ -51,7 +51,7 @@ public class UserController {
     }
 
     //update a user
-    @RequestMapping(method=RequestMethod.PUT, value="api/user/{id}")
+    @RequestMapping(method=RequestMethod.PATCH, value="api/user/{id}")
     public void updateUser(@RequestBody User user, @PathVariable Long id){
         userService.updateUser(id, user);
     }
