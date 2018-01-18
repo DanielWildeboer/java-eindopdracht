@@ -32,11 +32,10 @@ public class UserController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 
-    @RequestMapping(value = "api/registration", method = RequestMethod.POST)
+    @RequestMapping(value = "api/register", method = RequestMethod.POST)
     public ResponseEntity registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult){
 
         HttpHeaders headers = new HttpHeaders();
-
             userValidator.validate(userForm, bindingResult);
             if(bindingResult.hasErrors()){
                 for (ObjectError e: bindingResult.getAllErrors()) {
