@@ -52,28 +52,24 @@ public class UserController {
 
     //get all users in the application
     @RequestMapping(value = "api/user", method = RequestMethod.GET)
-    public List<User> users() {
-        return userService.findAll();
+    public ResponseEntity users() {
+        List<User> userList = userService.findAll();
+        return new ResponseEntity<>(userList, HttpStatus.OK);
     }
 
     //update a user
     @RequestMapping(method=RequestMethod.PUT, value="api/user/{id}")
     public ResponseEntity updateUser(@ModelAttribute User user, @PathVariable Long id){
-        try {
-            userService.updateUser(id, user);
-        }
-        catch(Exception e){
-            logger.info(e.toString());
-            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        userService.updateUser(id, user);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     //remove user from the db
     @RequestMapping(value = "api/user/{Id}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void  removeUser(@PathVariable Long Id) {
+    public ResponseEntity removeUser(@PathVariable Long Id) {
         userService.delete(Id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }
