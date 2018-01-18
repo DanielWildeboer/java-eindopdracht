@@ -65,7 +65,7 @@ public class EmailServiceImpl implements EmailService {
             Message message = new MimeMessage(session);
 
             message.addFrom(InternetAddress.parse(email.getFrom()));
-            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email.getTo()));
+            //message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email.getTo()));
             message.setSubject(email.getSubject());
             message.setText(email.getBody());
 
@@ -155,7 +155,7 @@ public class EmailServiceImpl implements EmailService {
 //                signedMessage.setSubject(email.getSubject());
 //                signedMessage.setText(email.getBody());
                 //signedMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse("lesley.van.oostenrijk@student.stenden.com"));
-                //signedMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email.getTo()));
+                signedMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email.getTo()));
                 signedMessage.setContent(mm);
                 signedMessage.saveChanges();
 
