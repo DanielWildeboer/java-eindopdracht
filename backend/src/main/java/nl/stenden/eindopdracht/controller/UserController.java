@@ -32,21 +32,22 @@ public class UserController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 
-    @RequestMapping(value = "api/register", method = RequestMethod.POST)
-    public ResponseEntity registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult){
+    @RequestMapping(value = "api/register", method = RequestMethod.POST ,produces = "application/json")
+    public ResponseEntity registration(@RequestBody User userForm, BindingResult bindingResult){
 
         HttpHeaders headers = new HttpHeaders();
+        logger.info(userForm.getEmail(), userForm.getEmail());
             userValidator.validate(userForm, bindingResult);
             if(bindingResult.hasErrors()){
                 for (ObjectError e: bindingResult.getAllErrors()) {
                     logger.info(e.toString());
                 }
-                return new ResponseEntity<String>(bindingResult.getAllErrors().toString(),
+                return new ResponseEntity<>(bindingResult.getAllErrors().toString(),
                         headers, HttpStatus.INTERNAL_SERVER_ERROR);
             }
             userService.save(userForm);
 
-        return new ResponseEntity<User>(userForm, HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
 
