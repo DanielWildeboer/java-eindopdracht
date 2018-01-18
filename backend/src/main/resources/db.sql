@@ -37,6 +37,7 @@ CREATE TABLE `student` (
 DROP TABLE IF EXISTS `project_group`;
 CREATE TABLE `project_group` (
   `id` int NOT NULL AUTO_INCREMENT,
+  `userId` varchar(255) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `subject` varchar(255) DEFAULT NULL,
   `grade` double DEFAULT NULL,

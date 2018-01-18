@@ -4,11 +4,11 @@
     });
 </script>
 
-<div ng-controller="gradingController" ng-bind="calc()">
+<div ng-controller="gradingController">
     <div class="row info-row">
         <div class="col s3 header-cell">
             <p class="label">Team Naam:</p>
-            <p class="team-info">{{group.name}}</p>
+            <p class="team-info">{{calc()}}</p>
         </div>
 
         <div class="col s3 header-cell a-c">
@@ -23,7 +23,7 @@
 
         <div class="col s3 header-cell a-c">
             <p class="label">Status:</p>
-            <p class="team-info">{{group.status}}</p>
+            <p class="team-info">{{group.status}}<!--{{group.status}}--></p>
         </div>
 
     </div>

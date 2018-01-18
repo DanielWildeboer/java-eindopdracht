@@ -11,6 +11,7 @@ public class ProjectGroup {
 
     @Id
     private int id;
+    private String userId;
     private String name;
     private String subject;
     private float grade;
@@ -19,7 +20,7 @@ public class ProjectGroup {
     @ManyToMany
     private Set<Student> students;
 
-    public ProjectGroup(int id, String name, String subject, float grade)
+    public ProjectGroup(int id, String userId, String name, String subject, float grade)
     {
         this.id = id;
         this.name = name;
@@ -36,6 +37,14 @@ public class ProjectGroup {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getName() {

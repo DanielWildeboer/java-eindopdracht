@@ -25,9 +25,6 @@ public class GroupController {
     private GroupServiceImpl groupService;
 
     @Autowired
-    private TokenServiceImpl tokenService;
-
-    @Autowired
     private GroupRepository groupRepository;
 
     @Autowired
