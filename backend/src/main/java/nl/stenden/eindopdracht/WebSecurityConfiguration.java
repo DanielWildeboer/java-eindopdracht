@@ -2,24 +2,21 @@ package nl.stenden.eindopdracht;
 
 import nl.stenden.eindopdracht.filter.CorsFilterRequest;
 import nl.stenden.eindopdracht.service.UserDetailsServiceImpl;
+import nl.stenden.eindopdracht.utility.RequestAwareAuthenticationFailureHandler;
+import nl.stenden.eindopdracht.utility.RequestAwareAuthenticationSuccesHandler;
+import nl.stenden.eindopdracht.utility.RestAuthenticationEntryPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
-import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
-
-import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity

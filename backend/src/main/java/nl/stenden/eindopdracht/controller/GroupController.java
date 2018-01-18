@@ -27,8 +27,6 @@ public class GroupController {
     @Autowired
     private TokenServiceImpl tokenService;
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
     @Autowired
     private GroupRepository groupRepository;
 
@@ -37,34 +35,29 @@ public class GroupController {
 
     //GET ALL GROUPS
     @RequestMapping(value = "api/group", method = RequestMethod.GET)
-    public Set<ProjectGroup> getGroups(){
-        return groupService.findAllGroups();
+    public ResponseEntity getGroups() {
+        Set<ProjectGroup> groups = groupService.findAllGroups();
+        return new ResponseEntity<>(groups, HttpStatus.FOUND);
     }
 
     //GET GROUP BY ID
     @RequestMapping(value = "api/group/{id}", method = RequestMethod.GET)
-    public ResponseEntity getGroupById(@PathVariable int id){
+    public ResponseEntity getGroupById(@PathVariable int id) {
         ProjectGroup group = groupService.findGroupById(id);
         return new ResponseEntity<>(group, HttpStatus.FOUND);
     }
 
     // POST A NEW GROUP AND RETURN THE ID OF THE GROUP WHICH CAN BE USED TO ADD USERS TO THE GROUP
-    @RequestMapping(method=RequestMethod.POST, value="api/group")
-    public ResponseEntity addGroup(@ModelAttribute ProjectGroup group){
-        try {
-            groupService.addGroup(group);
-            group.setStatus(false);
-        } catch (Exception e)
-        {
-            logger.info(e.toString());
-            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @RequestMapping(method = RequestMethod.POST, value = "api/group")
+    public ResponseEntity addGroup(@ModelAttribute ProjectGroup group) {
+        groupService.addGroup(group);
+        group.setStatus(false);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     // ADD STUDENTS TO GROUP
-    @RequestMapping(method=RequestMethod.POST, value="/api/group/addStudent/{groupId}/{studentId}")
-    public void addStudent(@PathVariable int groupId, @PathVariable int studentId){
+    @RequestMapping(method = RequestMethod.POST, value = "/api/group/addStudent/{groupId}/{studentId}")
+    public ResponseEntity addStudent(@PathVariable int groupId, @PathVariable int studentId) {
         ProjectGroup projectGroup = groupRepository.findOne(groupId);
         Student student = studentRepository.findOne(studentId);
 
@@ -72,30 +65,20 @@ public class GroupController {
             projectGroup.getStudents().add(student);
             studentRepository.save(student);
         }
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     //UPDATE A GROUP
-    @RequestMapping(method=RequestMethod.PUT, value="api/group/{id}")
-    public ResponseEntity updateGroup(@ModelAttribute ProjectGroup group, @PathVariable int id){
-        try {
-            groupService.updateGroup(id, group);
-        } catch(Exception e){
-            logger.info(e.toString());
-            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @RequestMapping(method = RequestMethod.PUT, value = "api/group/{id}")
+    public ResponseEntity updateGroup(@ModelAttribute ProjectGroup group, @PathVariable int id) {
+        groupService.updateGroup(id, group);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     //DELETE A GROUP
-    @RequestMapping(method=RequestMethod.DELETE, value="api/group/{id}")
+    @RequestMapping(method = RequestMethod.DELETE, value = "api/group/{id}")
     public ResponseEntity deleteGroup(@PathVariable int id) {
-        try{
-            groupService.deleteGroup(id);
-        } catch(Exception e){
-            logger.info(e.toString());
-            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-
+        groupService.deleteGroup(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
