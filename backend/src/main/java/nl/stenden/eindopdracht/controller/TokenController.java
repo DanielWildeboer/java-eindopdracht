@@ -12,8 +12,10 @@ public class TokenController {
 
     //ADD A TOKEN
     @RequestMapping(method= RequestMethod.POST, value="api/token/{groupId}/{studentId}")
-    public void deleteToken(@PathVariable String groupId, @PathVariable String studentId) {
-        tokenService.addToken(new Token(groupId, studentId));
+    public int deleteToken(@PathVariable String groupId, @PathVariable String studentId) {
+        Token token = new Token(groupId, studentId);
+        tokenService.addToken(token);
+        return token.getTokenId();
     }
 
     //FIND A TOKEN
