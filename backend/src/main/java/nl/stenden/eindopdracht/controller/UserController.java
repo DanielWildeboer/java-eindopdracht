@@ -58,8 +58,15 @@ public class UserController {
 
     //update a user
     @RequestMapping(method=RequestMethod.PUT, value="api/user/{id}")
-    public void updateUser(@RequestBody User user, @PathVariable Long id){
-        userService.updateUser(id, user);
+    public ResponseEntity updateUser(@ModelAttribute User user, @PathVariable Long id){
+        try {
+            userService.updateUser(id, user);
+        }
+        catch(Exception e){
+            logger.info(e.toString());
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     //remove user from the db
@@ -68,10 +75,5 @@ public class UserController {
     public void  removeUser(@PathVariable Long Id) {
         userService.delete(Id);
     }
-
-
-
-
-
 
 }

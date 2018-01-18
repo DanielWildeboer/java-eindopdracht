@@ -42,12 +42,12 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     @Override
     public void updateUser(Long Id, User user) {
-
+        userRepository.save(user);
     }
 
     @Override
     public void delete(Long Id) {
-
+        userRepository.delete(Id);
     }
 
     @Override
