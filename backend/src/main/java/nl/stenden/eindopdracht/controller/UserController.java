@@ -49,8 +49,6 @@ public class UserController {
         return new ResponseEntity<User>(userForm, HttpStatus.CREATED);
     }
 
-
-
     //get all users in the application
     @RequestMapping(value = "api/user", method = RequestMethod.GET)
     public List<User> users() {
