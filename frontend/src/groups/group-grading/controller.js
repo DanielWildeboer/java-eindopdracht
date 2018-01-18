@@ -52,7 +52,7 @@ app.controller('gradingController', function($scope, $route) {
 		$scope.calc = function(){
 				var log = [];
 				angular.forEach($scope.group.members, function(value, key) {
-							console.log(value.grade);
+
 		
 	  			
 			});
