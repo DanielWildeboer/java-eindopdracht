@@ -15,7 +15,7 @@ public class ProjectGroup {
     private String subject;
     private float grade;
 
-    @OneToMany
+    @ManyToMany
     private Set<Student> students;
 
     public ProjectGroup(int id, String name, String subject, float grade)
@@ -58,8 +58,7 @@ public class ProjectGroup {
 
     public void setGrade(float grade) { this.grade = grade; }
 
-    @OneToMany
-    @JoinTable(name = "group_student", joinColumns = @JoinColumn(name = "student_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "group_id", referencedColumnName = "id"))
+    @ManyToMany(mappedBy = "groups")
     public Set<Student> getStudents() {
         return students;
     }
