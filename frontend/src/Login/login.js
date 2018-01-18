@@ -9,6 +9,7 @@ app.controller('LoginController', ['$scope', 'LoginService', '$localStorage', '$
                     console.warn(errorMessage);
                 }
             )
+        //hoihoi
         // new LoginService({email: $scope.email, password: $scope.password},
         //
         // function (data, headers) {
