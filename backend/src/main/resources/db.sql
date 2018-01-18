@@ -34,8 +34,8 @@ CREATE TABLE `student` (
 -- Table structure for table `group`
 --
 
-DROP TABLE IF EXISTS `projectGroup`;
-CREATE TABLE `projectGroup` (
+DROP TABLE IF EXISTS `project_group`;
+CREATE TABLE `project_group` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   `subject` varchar(255) DEFAULT NULL,
