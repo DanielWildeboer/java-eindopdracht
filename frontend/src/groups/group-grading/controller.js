@@ -88,18 +88,16 @@ app.controller('gradingController', function ($scope, $route) {
         ]
     };
 
-    $scope.calc = function () {
-        angular.forEach($scope.group.members, function (value, key) {
+    $scope.calc = function (member) {
             var gradeArray = new Array();
-            angular.forEach(value.feedback, function (value, key) {
+            angular.forEach(member.feedback, function (value, key) {
                 gradeArray.push(value.grade);
             });
             var sum = 0;
             angular.forEach(gradeArray, function (value) {
                 sum += parseFloat(value);
             });
-            console.log(sum / gradeArray.length);
-        })
+            return (sum / gradeArray.length);
     };
 });
 

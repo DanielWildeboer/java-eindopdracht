@@ -73,7 +73,7 @@ public class GroupController {
     }
 
     //UPDATE A GROUP
-    @RequestMapping(method = RequestMethod.PUT, value = "api/group/{id}")
+    @RequestMapping(method = RequestMethod.PATCH, value = "api/group/{id}")
     public ResponseEntity updateGroup(@ModelAttribute ProjectGroup group, @PathVariable int id) {
         groupService.updateGroup(id, group);
         return new ResponseEntity<>(HttpStatus.OK);
