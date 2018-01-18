@@ -13,8 +13,9 @@ public class TokenController {
 
     //ADD A TOKEN
     @RequestMapping(method= RequestMethod.POST, value="/token")
-    public void deleteToken(@PathVariable Token token) {
+    public int deleteToken(@PathVariable Token token) {
         tokenService.addToken(token);
+        return token.getTokenId();
     }
 
     //FIND A TOKEN
