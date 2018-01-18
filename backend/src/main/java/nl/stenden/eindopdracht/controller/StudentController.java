@@ -43,7 +43,7 @@ public class StudentController {
     }
 
     //update student
-    @RequestMapping(value = "api/student/{id}", method = RequestMethod.PATCH, consumes = "")
+    @RequestMapping(value = "api/student/{id}", method = RequestMethod.PATCH)
     public ResponseEntity updateStudent(@RequestBody Student student, @PathVariable int id) {
         logger.info(student.getEmail() + " " + student.getFirstName()+ " " + student.getLastName()+ " " + student.getStudentNumber());
         studentService.updateStudent(id, student);

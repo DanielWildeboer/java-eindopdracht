@@ -20,6 +20,7 @@ app.controller('LoginController', ['$scope', 'LoginService', '$localStorage', '$
 app.service('LoginService', function ($http, $q) {
 
     var payload =  new FormData();
+    payload.append(this.email, this.password);
     
     return function (email, password, success, error) {
        $http({
