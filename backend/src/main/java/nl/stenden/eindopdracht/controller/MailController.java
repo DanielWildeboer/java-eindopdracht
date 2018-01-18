@@ -31,11 +31,22 @@ public class MailController {
     @RequestMapping(value = "/sentMail/{toEmail}/{fromEmail}/{tokenId}", method = RequestMethod.POST)
     public void sentMail(@PathVariable String toEmail, @PathVariable String fromEmail, @PathVariable int tokenId){
             tokenService.findTokenByIds(tokenId);
-            Email email = new Email(toEmail, fromEmail, "Beoordeling", "Beste Student," +
+            Email email = new Email(fromEmail, toEmail, "Beoordeling", "Beste Student," +
                     "\n\n bezoek de onderstaande link om je medegroepleden te beoordelen" +
                     "\n\n bezoek de onderstaande link om je medegroepleden te beoordelen" +
                     "\n\n Met vriendelijke groet");
             emailService.sendEmail(email);
+
+    }
+
+    //GET ALL GROUPS
+    @RequestMapping(value = "/sentMail", method = RequestMethod.POST)
+    public void sentMail(){
+        Email email = new Email("p.gelmers@live.nl", "p.gelmers@live.nl", "Beoordeling", "Beste Student," +
+                "\n\n bezoek de onderstaande link om je medegroepleden te beoordelen" +
+                "\n\n bezoek de onderstaande link om je medegroepleden te beoordelen" +
+                "\n\n Met vriendelijke groet");
+        emailService.sendEmail(email);
 
     }
 }
