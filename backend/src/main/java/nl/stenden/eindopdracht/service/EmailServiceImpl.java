@@ -65,9 +65,10 @@ public class EmailServiceImpl implements EmailService {
             Message message = new MimeMessage(session);
 
             message.addFrom(InternetAddress.parse(email.getFrom()));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email.getTo()));
             message.setSubject(email.getSubject());
             message.setText(email.getBody());
-            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email.getTo()));
+
 
             //Add BouncyCastle content handlers to command map
             MailcapCommandMap mailcap = (MailcapCommandMap) CommandMap.getDefaultCommandMap();
