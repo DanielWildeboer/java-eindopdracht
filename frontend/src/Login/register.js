@@ -3,7 +3,7 @@ var app = angular.module('Register', ['ngMaterial']);
 app.controller('RegisterController', ['$scope', 'RegisterService', function ($scope, RegisterService) {
     $scope.register = function () {
 
-        RegisterService.register($scope.firstName, $scope.lastName, $scope.email, $scope.password, $scope.passwordConfirm)
+        RegisterService.register($scope.firstName, $scope.lastName, $scope.email, $scope.password)
             .then(
                 function (errorMessage) {
                     console.warn(errorMessage);
@@ -19,16 +19,15 @@ app.service('RegisterService', function ($http, $q) {
         register: register
     });
 
-    function register(firstName, lastName, email, password, passwordConfirm) {
+    function register(firstName, lastName, email, password) {
         var request = $http({
             method: "post",
-            url: "http://127.0.0.1:8080/api/registration",
+            url: "http://127.0.0.1:8080/api/register",
             data: {
                 firstName: firstName,
                 lastName: lastName,
                 email: email,
-                password: password,
-                passwordConfirm: passwordConfirm
+                password: password
             }
         });
 
