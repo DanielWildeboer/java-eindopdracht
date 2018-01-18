@@ -13,6 +13,10 @@ public class Token {
     private String group_id;
     private String student_id;
 
+    public Token() {
+
+    }
+
     public Token(String group_id, String student_id) {
         this.randomString = new RandomString(30).toString();
         this.group_id = group_id;
