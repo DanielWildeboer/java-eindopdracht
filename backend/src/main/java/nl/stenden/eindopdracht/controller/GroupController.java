@@ -45,7 +45,7 @@ public class GroupController {
     }
 
     //GET GROUPS BY USERID
-    @RequestMapping(value = "api/groupsByUserId/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "api/user/group/{id}", method = RequestMethod.GET)
     public ResponseEntity getGroupsByUserId(@PathVariable String id) {
         Set<ProjectGroup> groups = groupService.findProjectGroupsByUserId(id);
         return new ResponseEntity<>(groups, HttpStatus.FOUND);
