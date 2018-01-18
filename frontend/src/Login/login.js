@@ -5,8 +5,6 @@ app.controller('LoginController', ['$scope', 'LoginService', '$localStorage', '$
 
         new LoginService({email: $scope.email, password: $scope.password},
 
-
-
         function (data, headers) {
                 $localStorage.user = data.user;
                 $localStorage.authToken = headers['x-auth-token'];
@@ -19,12 +17,13 @@ app.controller('LoginController', ['$scope', 'LoginService', '$localStorage', '$
 
 app.service('LoginService', function ($http, $q) {
 
-
     var payload =  new FormData();
-    payload.append('password', this.password);
-    payload.append('email', this.email);
+
 
     return function (email, password, success, error) {
+        payload.append('password', email.password);
+        payload.append('email', email.email);
+
        $http({
             method: 'POST',
             url: 'http://localhost:8080/api/login',
