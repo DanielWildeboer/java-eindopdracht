@@ -19,9 +19,11 @@ app.controller('LoginController', ['$scope', 'LoginService', '$localStorage', '$
 
 app.service('LoginService', function ($http, $q) {
 
+
     var payload =  new FormData();
-    payload.append(this.email, this.password);
-    
+    payload.append('password', this.password);
+    payload.append('email', this.email);
+
     return function (email, password, success, error) {
        $http({
             method: 'POST',
