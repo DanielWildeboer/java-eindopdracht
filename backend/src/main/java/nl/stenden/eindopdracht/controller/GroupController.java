@@ -27,6 +27,8 @@ public class GroupController {
     @Autowired
     private TokenServiceImpl tokenService;
 
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @Autowired
     private GroupRepository groupRepository;
 
