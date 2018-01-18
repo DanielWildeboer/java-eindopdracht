@@ -25,6 +25,7 @@ public class UserValidator implements Validator {
     public void validate(Object o, Errors errors){
         User user = (User) o;
         logger.info(user.getEmail(), user.getPassword());
+
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "NotEmpty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");
         if (user.getEmail().length() < 6 || user.getEmail().length() > 32) {
@@ -37,19 +38,19 @@ public class UserValidator implements Validator {
             errors.rejectValue("password", "Size.userForm.password");
         }
         String upperCaseChars = "(.*[A-Z].*)";
-        if (!user.getPassword().matches(upperCaseChars )) {
+        if (!user.getPassword().contains(upperCaseChars )) {
             errors.rejectValue("password", "upperCase.userForm.password");
         }
         String lowerCaseChars = "(.*[a-z].*)";
-        if (!user.getPassword().matches(lowerCaseChars )) {
+        if (!user.getPassword().contains(lowerCaseChars )) {
             errors.rejectValue("password", "lowerCase.userForm.password");
         }
         String numbers = "(.*[0-9].*)";
-        if (!user.getPassword().matches(numbers)) {
+        if (!user.getPassword().contains(numbers)) {
             errors.rejectValue("password", "number.userForm.password");
         }
         String specialChars = "(.*[,~,!,@,#,$,%,^,&,*,(,),-,_,=,+,[,{,],},|,;,:,<,>,/,?].*$)";
-        if (user.getPassword().matches(specialChars )) {
+        if (user.getPassword().contains(specialChars )) {
             errors.rejectValue("password", "specialChar.userForm.password");
         }
     }
