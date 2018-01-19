@@ -23,20 +23,25 @@ public class RequestAwareAuthenticationSuccesHandler extends SimpleUrlAuthentica
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
             throws ServletException, IOException
     {
-        logger.info("Successful login detected");
-        SavedRequest savedRequest = requestCache.getRequest(request, response);
-        if (savedRequest == null){
-            clearAuthenticationAttributes(request);
-            return;
-        }
-        String targetUrlParam = getTargetUrlParameter();
-        if (isAlwaysUseDefaultTargetUrl() || (targetUrlParam != null && StringUtils.hasText(targetUrlParam))){
-            requestCache.removeRequest(request, response);
-            clearAuthenticationAttributes(request);
-            return;
-        }
+        if (request.getHeader("Content-Type").equals("application/json")) {
+            response.getWriter().print("{\"responseCode\":\"SUCCESS\"}");
+            response.getWriter().flush();
+        } else {
+            logger.info("Successful login detected");
+            SavedRequest savedRequest = requestCache.getRequest(request, response);
+            if (savedRequest == null) {
+                clearAuthenticationAttributes(request);
+                return;
+            }
+            String targetUrlParam = getTargetUrlParameter();
+            if (isAlwaysUseDefaultTargetUrl() || (targetUrlParam != null && StringUtils.hasText(targetUrlParam))) {
+                requestCache.removeRequest(request, response);
+                clearAuthenticationAttributes(request);
+                return;
+            }
 
-        clearAuthenticationAttributes(request);
+            clearAuthenticationAttributes(request);
+        }
     }
 
     public void setRequestCache(RequestCache requestCache){

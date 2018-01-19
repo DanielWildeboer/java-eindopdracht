@@ -36,7 +36,6 @@ public class UserController {
     public ResponseEntity registration(@RequestBody User userForm, BindingResult bindingResult){
 
         HttpHeaders headers = new HttpHeaders();
-        logger.info(userForm.getEmail(), userForm.getEmail());
             userValidator.validate(userForm, bindingResult);
             if(bindingResult.hasErrors()){
                 for (ObjectError e: bindingResult.getAllErrors()) {

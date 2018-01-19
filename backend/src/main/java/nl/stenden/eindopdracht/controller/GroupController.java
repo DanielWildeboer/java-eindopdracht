@@ -60,7 +60,7 @@ public class GroupController {
     }
 
     // ADD STUDENTS TO GROUP
-    @RequestMapping(method = RequestMethod.POST, value = "/api/group/addStudent/{groupId}/{studentId}")
+    @RequestMapping(method = RequestMethod.POST, value = "/api/group/{groupId}/student/{studentId}")
     public ResponseEntity addStudent(@PathVariable int groupId, @PathVariable int studentId) {
         ProjectGroup projectGroup = groupRepository.findOne(groupId);
         Student student = studentRepository.findOne(studentId);
