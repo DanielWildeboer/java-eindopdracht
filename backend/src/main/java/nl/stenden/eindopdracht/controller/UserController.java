@@ -16,6 +16,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
@@ -57,8 +58,15 @@ public class UserController {
         return new ResponseEntity<>(userList, HttpStatus.OK);
     }
 
+    //get a single user
+    @RequestMapping(value = "api/user/{id}", method = RequestMethod.GET)
+    public ResponseEntity getUserById(@PathVariable Long id) {
+        User user = userService.findById(id);
+        return new ResponseEntity<>(user, HttpStatus.FOUND);
+    }
+
     //update a user
-    @RequestMapping(method=RequestMethod.PUT, value="api/user/update/{id}")
+    @RequestMapping(value="api/user/{id}", method = RequestMethod.PUT)
     public ResponseEntity updateUser(@ModelAttribute User user, @PathVariable Long id){
         userService.updateUser(id, user);
         return new ResponseEntity<>(HttpStatus.OK);
