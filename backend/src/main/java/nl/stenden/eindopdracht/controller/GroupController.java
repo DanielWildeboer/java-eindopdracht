@@ -45,7 +45,7 @@ public class GroupController {
     }
 
     //GET GROUPS BY USERID
-    @RequestMapping(value = "api/groupsByUserId/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "api/user/group/{id}", method = RequestMethod.GET)
     public ResponseEntity getGroupsByUserId(@PathVariable String id) {
         Set<ProjectGroup> groups = groupService.findProjectGroupsByUserId(id);
         return new ResponseEntity<>(groups, HttpStatus.FOUND);
@@ -73,7 +73,7 @@ public class GroupController {
     }
 
     //UPDATE A GROUP
-    @RequestMapping(method = RequestMethod.PUT, value = "api/group/{id}")
+    @RequestMapping(method = RequestMethod.PATCH, value = "api/group/{id}")
     public ResponseEntity updateGroup(@ModelAttribute ProjectGroup group, @PathVariable int id) {
         groupService.updateGroup(id, group);
         return new ResponseEntity<>(HttpStatus.OK);

@@ -15,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -57,7 +58,7 @@ public class UserController {
     }
 
     //update a user
-    @RequestMapping(method=RequestMethod.PUT, value="api/user/{id}")
+    @RequestMapping(method=RequestMethod.PUT, value="api/user/update/{id}")
     public ResponseEntity updateUser(@ModelAttribute User user, @PathVariable Long id){
         userService.updateUser(id, user);
         return new ResponseEntity<>(HttpStatus.OK);

@@ -1,4 +1,4 @@
-app.controller('groupsController', function($scope, $location) {
+app.controller('groupsController', function($scope, $location, getGroups) {
 
     $scope.go = function ( path ) {
         $location.path( path );
@@ -13,4 +13,6 @@ app.controller('groupsController', function($scope, $location) {
 		{name: "Team 6", subject: "Java Minor", status: "Compleet" },
 		{name: "Team 7", subject: "Java Minor", status: "Compleet" },
 	]
+
+	getGroups.get(id)
 });
