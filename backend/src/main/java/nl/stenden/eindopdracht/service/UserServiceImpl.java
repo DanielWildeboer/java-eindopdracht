@@ -42,7 +42,14 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     @Override
     public void updateUser(Long Id, User user) {
-        userRepository.save(user);
+
+        for (int i = 0; i < userRepository.findAll().size(); i++) {
+            User u = userRepository.findAll().get(i);
+            if (u.getId().equals(Id))  {
+                userRepository.findAll().set(i, user);
+                return;
+            }
+        }
     }
 
     @Override

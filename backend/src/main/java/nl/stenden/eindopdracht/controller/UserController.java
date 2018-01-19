@@ -57,6 +57,13 @@ public class UserController {
         return new ResponseEntity<>(userList, HttpStatus.OK);
     }
 
+    //get a single user
+    @RequestMapping(value = "api/user/{id}", method = RequestMethod.GET)
+    public ResponseEntity getUserById(@PathVariable Long id) {
+        User user = userService.findById(id);
+        return new ResponseEntity<>(user, HttpStatus.FOUND);
+    }
+
     //update a user
     @RequestMapping(method=RequestMethod.PUT, value="api/user/update/{id}")
     public ResponseEntity updateUser(@ModelAttribute User user, @PathVariable Long id){
