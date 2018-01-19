@@ -9,5 +9,5 @@ import java.util.Set;
 
 @Repository("GradeAssessmentRepository")
 public interface GradeAssessmentRepository extends JpaRepository<GradeAssessment, Integer> {
-    Set<GradeAssessment> findAllByGroup_idAndStudent_id(String group_id, String student_id);
+    GradeAssessment findByGroup_idAndStudent_id(String group_id, String student_id);
 }
