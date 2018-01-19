@@ -33,12 +33,14 @@ app.service('LoginService', function ($http, $q) {
         formData.append('email', email);
         formData.append('password', password);
 
-
         var request = $http({
             method: "post",
             url: "http://127.0.0.1:8080/api/login",
-            data: formData
-
+            data: formData,
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Accept': 'multipart/form-data'
+            }
         });
 
         return (request.then(handleSuccess, handleError));
