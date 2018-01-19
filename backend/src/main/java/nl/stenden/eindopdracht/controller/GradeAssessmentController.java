@@ -18,10 +18,15 @@ public class GradeAssessmentController {
 
     //GET GRADEASSESSMENT BY USERID AND GROUPID
     @RequestMapping(value = "api/grade/assessment/{gid}/{sid}", method = RequestMethod.GET)
-    public ResponseEntity getGroupsByUserId(@PathVariable String gid, @PathVariable String sid) {
+    public ResponseEntity getGradeAssessmentByGroupIdAndStudentId(@PathVariable String gid, @PathVariable String sid) {
        GradeAssessment gradeAssessment = gradeAssessmentService.findGradeAssessmentsByGroupIdAndStudentId(gid, sid);
         return new ResponseEntity<>(gradeAssessment, HttpStatus.FOUND);
     }
 
     //ADD GRADEASSESSMENT
+    @RequestMapping(value = "api/grade/assessment/{gid}/{sid}", method = RequestMethod.GET)
+    public ResponseEntity addGradeAssessment(@PathVariable String gid, @PathVariable String sid) {
+        GradeAssessment gradeAssessment = gradeAssessmentService.findGradeAssessmentsByGroupIdAndStudentId(gid, sid);
+        return new ResponseEntity<>(gradeAssessment, HttpStatus.FOUND);
+    }
 }
