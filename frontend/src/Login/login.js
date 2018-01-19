@@ -28,13 +28,17 @@ app.service('LoginService', function ($http, $q) {
     });
 
     function login(email, password) {
+        var formData = new FormData();
+
+        formData.append('email', email);
+        formData.append('password', password);
+
+
         var request = $http({
             method: "post",
             url: "http://127.0.0.1:8080/api/login",
-            data: {
-                email: email,
-                password: password,
-            }
+            data: formData
+
         });
 
         return (request.then(handleSuccess, handleError));
