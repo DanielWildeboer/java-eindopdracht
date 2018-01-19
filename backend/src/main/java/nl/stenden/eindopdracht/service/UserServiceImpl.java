@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
             User u = userRepository.findAll().get(i);
             if (u.getId().equals(Id))  {
                 userRepository.findAll().set(i, user);
-                return;
+                userRepository.save(user);
             }
         }
     }
