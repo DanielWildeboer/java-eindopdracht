@@ -69,10 +69,10 @@ public class JsonAuthenticationFilter extends UsernamePasswordAuthenticationFilt
                 ObjectMapper mapper = new ObjectMapper();
                 LoginRequest loginRequest = mapper.readValue(sb.toString(), LoginRequest.class);
 
-                this.jsonEmail = loginRequest.getUsername();
+                this.jsonEmail = loginRequest.getEmail();
                 this.jsonPassword = loginRequest.getPassword();
 
-                UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword());
+                UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword());
                 return this.getAuthenticationManager().authenticate(authRequest);
 
             } catch(Exception e) {
