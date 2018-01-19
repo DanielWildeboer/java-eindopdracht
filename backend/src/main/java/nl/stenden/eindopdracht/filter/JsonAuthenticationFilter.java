@@ -10,12 +10,14 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.stereotype.Component;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 
-
+@Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class JsonAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private String jsonEmail;
@@ -72,14 +74,19 @@ public class JsonAuthenticationFilter extends UsernamePasswordAuthenticationFilt
                 this.jsonEmail = loginRequest.getEmail();
                 this.jsonPassword = loginRequest.getPassword();
 
-                UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword());
-                return this.getAuthenticationManager().authenticate(authRequest);
 
             } catch(Exception e) {
                 logger.info(e.toString());
             }
         }
 
+
+
+        Cookie cookie = new Cookie("JSESSIONID", request.getSession().getId());
+        cookie.setMaxAge(3600);
+        cookie.setHttpOnly(true);
+        cookie.setPath("/");
+        response.addCookie(cookie);
         return super.attemptAuthentication(request, response);
     }
 }
