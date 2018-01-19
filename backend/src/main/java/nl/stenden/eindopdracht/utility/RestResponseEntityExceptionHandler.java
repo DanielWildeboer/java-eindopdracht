@@ -19,7 +19,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
 
     @ExceptionHandler(value = { Exception.class })
     protected ResponseEntity<Object> handle(RuntimeException e, WebRequest request){
-        String response = "Exception occured on the server side";
+        String response = "Exception occured on the server side" + e.toString();
         return handleExceptionInternal(e, response, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
     }
 }

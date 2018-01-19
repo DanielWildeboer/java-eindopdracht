@@ -1,6 +1,7 @@
 package nl.stenden.eindopdracht;
 
 import nl.stenden.eindopdracht.filter.CorsFilterRequest;
+import nl.stenden.eindopdracht.filter.JsonAuthenticationFilter;
 import nl.stenden.eindopdracht.service.UserDetailsServiceImpl;
 import nl.stenden.eindopdracht.utility.RequestAwareAuthenticationFailureHandler;
 import nl.stenden.eindopdracht.utility.RequestAwareAuthenticationSuccesHandler;
@@ -17,6 +18,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -55,15 +57,15 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
-                .addFilterBefore(new CorsFilterRequest(), ChannelProcessingFilter.class)
                 .exceptionHandling()
                 .authenticationEntryPoint(restAuthenticationEntryPoint)
                 .and()
                 .authorizeRequests()
-                //.antMatchers("/api/login", "/api/register").permitAll()
-                .antMatchers("/api/**").permitAll()
+                .antMatchers("/api/login", "/api/register").permitAll()
                 .anyRequest().authenticated()
                 .and()
+                .addFilterBefore(jsonAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(new CorsFilterRequest(), ChannelProcessingFilter.class)
                 .formLogin()
                 .loginPage("/api/login")
                 .successHandler(succesHandler)
@@ -75,7 +77,17 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutUrl("/api/logout");
+    }
 
+    @Bean
+    public JsonAuthenticationFilter jsonAuthenticationFilter() throws Exception{
+        JsonAuthenticationFilter authFilter = new JsonAuthenticationFilter();
+        authFilter.setAuthenticationManager(this.authenticationManager());
+        authFilter.setUsernameParameter("email");
+        authFilter.setPasswordParameter("password");
+        authFilter.setAuthenticationFailureHandler(new RequestAwareAuthenticationFailureHandler());
+        authFilter.setAuthenticationSuccessHandler(succesHandler);
+        return authFilter;
 
     }
 

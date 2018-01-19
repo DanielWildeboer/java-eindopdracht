@@ -14,7 +14,7 @@ app.controller('groupsController', function($scope, $location, getGroups) {
 		{name: "Team 5", subject: "Java Minor", status: "Compleet" },
 		{name: "Team 6", subject: "Java Minor", status: "Compleet" },
 		{name: "Team 7", subject: "Java Minor", status: "Compleet" },
-	]
+	];
 
 	getGroups.get(id)
 });
