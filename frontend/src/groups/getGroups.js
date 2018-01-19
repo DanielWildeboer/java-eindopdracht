@@ -1,6 +1,6 @@
-app.service('getGroups', function($http) {
+app.service('getGroups', ['$http', function($http) {
     this.get = function (id) {
-    	var url = "/api/group/" + id;
+    	var url = "/api/user/group/" + id;
         $http.get(url)
         			.then(function (response){
 						return response.data;
@@ -9,4 +9,4 @@ app.service('getGroups', function($http) {
 					  console.error('Error occurred:', response.status, response.data);
 					});
     }
-});
+}]);

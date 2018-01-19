@@ -1,5 +1,7 @@
 app.controller('groupsController', function($scope, $location, getGroups) {
 
+	var id = "123";
+
     $scope.go = function ( path ) {
         $location.path( path );
     };
