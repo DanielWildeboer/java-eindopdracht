@@ -5,7 +5,7 @@ import nl.stenden.eindopdracht.model.GradeAssessment;
 import java.util.Set;
 
 public interface GradeAssessmentService {
-    GradeAssessment findGradeAssessmentsByGroupIdAndStudentId(String groupId, String studentId);
+    Set<GradeAssessment> findGradeAssessmentsByGroupIdAndStudentId(String groupId, String studentId);
     void addGradeAssessment(GradeAssessment gradeAssessment);
 }
 
