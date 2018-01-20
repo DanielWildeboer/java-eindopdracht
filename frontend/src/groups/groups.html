@@ -23,7 +23,7 @@
             </tr>
 
             <tr ng-repeat="group in groups | filter:searchQuery" class="tableContentBlock">
-                <td>{{group.name}}</td>
+                <td>{{data.id}}</td>
                 <td>{{group.subject}}</td>
                 <td>{{group.status}}</td>
                 <td class="table-delete">VERWIJDEREN</td>
@@ -33,6 +33,8 @@
               		<a class="btn-floating btn-large blue" href="#addGroup" > 
                			<i class="large material-icons">add</i> 
               		</a> 
-            	</div> 
+
+                </div>
+        </div>
     </table>
 </div>
