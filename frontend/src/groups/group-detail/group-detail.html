@@ -1,6 +1,6 @@
 <div class="detail-section row" ng-controller="ListController">
     <div class="detail-card col s6">
-        <form>
+        <form name="addStudent">
             <h5 class="header-text">Maak een nieuwe groep aan:</h5>
             <div class="col s4 group">
                 <md-input-container accent class="mat-input">
@@ -27,18 +27,18 @@
             <div class="col s5 group">
                 <md-input-container accent class="mat-input">
                     <label>Student naam</label>
-                    <input class="form-control input-label" ng-model="students.firstName" type="text">
+                    <input class="form-control input-label" ng-model="students.firstName" type="text" required>
                 </md-input-container>
             </div>
             <div class="col s6">
                 <md-input-container accent class="mat-input">
                     <label>Student email</label>
-                    <input class="form-control input-label" ng-model="students.email" type="text">
+                    <input class="form-control input-label" ng-model="students.email" type="text" required>
                 </md-input-container>
             </div>
             <div class="col s1">
                 <div class="form-group">
-                    <input type="submit" ng-click="addNew(students)"
+                    <input type="submit" ng-click="addNew(students)" ng-disabled="addStudent.$invalid"
                            class="btn btn-primary add-new pull-right" value="+">
                 </div>
             </div>

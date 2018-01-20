@@ -3,7 +3,7 @@
         <div class="headerContainer">
             <div class="header row">
                 <div class="col s6">
-                    <div class="groupsCount"><p>Groepen (325)</p></div>
+                    <div class="groupsCount"><p>Groepen (14)</p></div>
                 </div>
                 <div class="col s6">
                     <div class="groupsSearch">
@@ -22,8 +22,8 @@
                 <th>Verwijderen <i class="material-icons rotate">code</i></th>
             </tr>
 
-            <tr ng-repeat="group in groups |  filter:searchQuery" class="tableContentBlock">
-                <td>{{group.id}}</td>
+            <tr ng-repeat="group in groups | filter:searchQuery" class="tableContentBlock">
+                <td>{{group.name}}</td>
                 <td>{{group.subject}}</td>
                 <td>{{group.status}}</td>
                 <td class="table-delete" ng-click="delete(group.id, $index)">VERWIJDEREN</td>
