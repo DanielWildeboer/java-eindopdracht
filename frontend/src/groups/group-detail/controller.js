@@ -43,8 +43,8 @@ app.service('AddGroupService', function ($http, $q) {
             method: "post",
             url: "http://127.0.0.1:8080/api/group",
             data:  "name=" + encodeURIComponent(name) +
-            "&subject=" + encodeURIComponent(grade) +
-            "&grade=" + encodeURIComponent(subject),
+            "&subject=" + encodeURIComponent(subject) +
+            "&grade=" + encodeURIComponent(grade),
             header: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }

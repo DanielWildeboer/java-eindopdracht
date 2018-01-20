@@ -93,6 +93,7 @@
 }
 
 .table-delete {
+    cursor: pointer;
     color: #0083ff;
     font-weight: 500;
 }
