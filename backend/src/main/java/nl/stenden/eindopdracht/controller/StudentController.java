@@ -25,14 +25,14 @@ public class StudentController {
     @RequestMapping(value = "api/student", method = RequestMethod.GET)
     public ResponseEntity students() {
         List<Student> studentList = studentService.findAll();
-        return new ResponseEntity<>(studentList, HttpStatus.FOUND);
+        return new ResponseEntity<>(studentList, HttpStatus.OK);
     }
 
     //get student by id
     @RequestMapping(value = "api/student/{id}", method = RequestMethod.GET)
     public ResponseEntity student(@PathVariable int id) {
         Student student = studentService.findById(id);
-        return new ResponseEntity<>(student, HttpStatus.FOUND);
+        return new ResponseEntity<>(student, HttpStatus.OK);
     }
 
     //add new student

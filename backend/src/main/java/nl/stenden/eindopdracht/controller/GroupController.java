@@ -41,14 +41,14 @@ public class GroupController {
     @RequestMapping(value = "api/group/{id}", method = RequestMethod.GET)
     public ResponseEntity getGroupById(@PathVariable int id) {
         ProjectGroup group = groupService.findGroupById(id);
-        return new ResponseEntity<>(group, HttpStatus.FOUND);
+        return new ResponseEntity<>(group, HttpStatus.OK);
     }
 
     //GET GROUPS BY USERID
     @RequestMapping(value = "api/user/group/{id}", method = RequestMethod.GET)
     public ResponseEntity getGroupsByUserId(@PathVariable String id) {
         Set<ProjectGroup> groups = groupService.findProjectGroupsByUserId(id);
-        return new ResponseEntity<>(groups, HttpStatus.FOUND);
+        return new ResponseEntity<>(groups, HttpStatus.OK);
     }
 
     // POST A NEW GROUP AND RETURN THE ID OF THE GROUP WHICH CAN BE USED TO ADD USERS TO THE GROUP
