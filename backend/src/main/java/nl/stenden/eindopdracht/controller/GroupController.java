@@ -32,9 +32,10 @@ public class GroupController {
 
     //GET ALL GROUPS
     @RequestMapping(value = "api/group", method = RequestMethod.GET)
-    public ResponseEntity getGroups() {
+    public Set<ProjectGroup> getGroups() {
         Set<ProjectGroup> groups = groupService.findAllGroups();
-        return new ResponseEntity<>(groups, HttpStatus.FOUND);
+        return groups;
+//        return new ResponseEntity<>(groups, HttpStatus.FOUND);
     }
 
     //GET GROUP BY ID
