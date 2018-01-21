@@ -24,7 +24,7 @@ public class MailController {
     @RequestMapping(value = "/sentMail/{toEmail}/{fromEmail}/{tokenId}", method = RequestMethod.POST)
     public void sentMail(@PathVariable String toEmail, @PathVariable String fromEmail, @PathVariable int tokenId) {
         Token token = tokenService.findTokenByIds(tokenId);
-        UriComponentsBuilder builder = UriComponentsBuilder.fromUriString("http://localhost:8080/beoordeling");
+        UriComponentsBuilder builder = UriComponentsBuilder.fromUriString("http://localhost/JavaEindOpdracht/java-eindopdracht/frontend/src/grade.html");
 
         builder.queryParam("studentId", token.getStudentId());
         builder.queryParam("groupId", token.getGroupId());

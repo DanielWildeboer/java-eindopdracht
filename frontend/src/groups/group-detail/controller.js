@@ -76,7 +76,7 @@ app.service('AddGroupService', function ($http, $q) {
         });
 
         return (request.then(handleSuccess, handleError));
-    }
+}
 
     function addStudents(groupId, studentId) {
 
