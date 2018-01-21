@@ -11,10 +11,12 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
+import javax.lang.model.type.ErrorType;
 import javax.servlet.http.HttpServletRequest;
 import javax.websocket.server.PathParam;
 import java.util.List;
@@ -30,6 +32,9 @@ public class UserController {
 
     @Autowired
     private UserValidator userValidator;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -65,10 +70,9 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    //update a user
-    @RequestMapping(value="api/user/{id}", method = RequestMethod.PUT)
-    public ResponseEntity updateUser(@PathVariable(value = "id") Long id, @RequestBody User user){
-        userService.updateUser(id, user);
+    @RequestMapping(method=RequestMethod.PATCH, value="api/user/{userid}")
+    public ResponseEntity updateUser(@RequestBody User user, @PathVariable("userid") Long userid){
+        userService.updateUser(userid, user);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

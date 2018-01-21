@@ -43,16 +43,16 @@ public class StudentController {
     }
 
     //update student
-    @RequestMapping(value = "api/student/{id}", method = RequestMethod.PATCH)
-    public ResponseEntity updateStudent(@ModelAttribute Student student, @PathVariable int id) {
-        logger.info(student.getEmail() + " " + student.getFirstName()+ " " + student.getLastName()+ " " + student.getStudentNumber());
-        studentService.updateStudent(id, student);
+    @RequestMapping(value = "api/student/{studentid}", method = RequestMethod.PATCH)
+    public ResponseEntity updateStudent(@RequestBody Student student, @PathVariable int studentid) {
+        //logger.info(student.getEmail() + " " + student.getFirstName()+ " " + student.getLastName()+ " " + student.getStudentNumber());
+        studentService.updateStudent(studentid, student);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     //remove student
     @RequestMapping(value = "api/student/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity removeStudent(@ModelAttribute Student student, @PathVariable int id) {
+    public ResponseEntity removeStudent(@PathVariable int id) {
         studentService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
