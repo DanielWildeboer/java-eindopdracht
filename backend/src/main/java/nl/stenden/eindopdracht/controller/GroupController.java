@@ -83,7 +83,7 @@ public class GroupController {
     }
 
     //DELETE A GROUP
-    @RequestMapping(method = RequestMethod.DELETE, value = "api/group/{id}", consumes = "application/json")
+    @RequestMapping(method = RequestMethod.DELETE, value = "api/group/{id}")
     public ResponseEntity deleteGroup(@PathVariable int id) {
         groupService.deleteGroup(id);
         return new ResponseEntity<>(HttpStatus.OK);
