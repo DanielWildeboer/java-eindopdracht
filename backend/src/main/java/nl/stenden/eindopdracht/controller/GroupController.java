@@ -63,7 +63,7 @@ public class GroupController {
     }
 
     // ADD STUDENTS TO GROUP
-    @RequestMapping(method = RequestMethod.POST, value = "/api/group/{groupId}/student/{studentId}")
+    @RequestMapping(method = RequestMethod.POST, value = "api/group/{groupId}/student/{studentId}")
     public ResponseEntity addStudent(@PathVariable int groupId, @PathVariable int studentId) {
         ProjectGroup projectGroup = groupRepository.findOne(groupId);
         Student student = studentRepository.findOne(studentId);
@@ -76,7 +76,7 @@ public class GroupController {
     }
 
     //UPDATE A GROUP
-    @RequestMapping(method = RequestMethod.PUT, value = "api/groups/{id}", consumes = "application/json")
+    @RequestMapping(method = RequestMethod.PUT, value = "api/group/{id}", consumes = "application/json")
     public ResponseEntity updateGroup(@RequestBody ProjectGroup group, @PathVariable int id) {
         groupService.updateGroup(id, group);
         return new ResponseEntity<>(HttpStatus.OK);
