@@ -4,4 +4,8 @@ app.controller('gradingController', function ($scope, $location, gradingService)
         .then(function (response) {
             $scope.gradeAssessment = response;
         });
+
+    $scope.addGradingAssessment = function() {
+        gradingService.addGradingAssessment()
+    }
 });
