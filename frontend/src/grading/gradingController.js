@@ -9,8 +9,8 @@ app.controller('gradingController', function ($scope, $location, gradingService)
             $scope.gradeAssessment = response;
         });
 
-    $scope.addGradingAssessment = function() {
-        angular.forEach($scope.gradeAssessment.students, function(student, key) {
+    $scope.addGradingAssessment = function () {
+        angular.forEach($scope.gradeAssessment.students, function (student, key) {
             console.log(student);
             gradingService.addGradingAssessment($scope.groupId, student.id, $scope.userId, $scope.studentId, student.id, student.description, student.grade)
         });
