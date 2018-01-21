@@ -64,9 +64,9 @@ public class UserController {
     }
 
     //update a user
-    @RequestMapping(method=RequestMethod.PATCH, value="api/user/{userid}")
-    public ResponseEntity updateUser(@RequestBody User user, @PathVariable("userid") Long userid){
-        userService.updateUser(userid, user);
+    @RequestMapping(method=RequestMethod.PUT, value="api/user/{id}")
+    public ResponseEntity updateUser(@ModelAttribute User user, @PathVariable Long id){
+        userService.updateUser(id, user);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
