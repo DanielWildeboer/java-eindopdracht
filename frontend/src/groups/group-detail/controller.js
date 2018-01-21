@@ -35,18 +35,18 @@ app.service('AddGroupService', function ($http, $q) {
     });
 
     function postGroup(name, grade, subject, students) {
-       var formGroup = new FormData();
-
-
 
         var request = $http({
             method: "post",
             url: "http://127.0.0.1:8080/api/group",
-            data:  "name=" + encodeURIComponent(name) +
-            "&subject=" + encodeURIComponent(subject) +
-            "&grade=" + encodeURIComponent(grade),
+            data: {
+                name: name,
+                grade: grade,
+                subject: subject,
+                students: students
+            },
             header: {
-                'Content-Type': 'application/x-www-form-urlencoded'
+                'Content-Type': 'application/json'
             }
         });
 
