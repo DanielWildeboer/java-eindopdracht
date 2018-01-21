@@ -59,7 +59,7 @@ public class GroupController {
     public ResponseEntity addGroup(@RequestBody  ProjectGroup group) {
         groupService.addGroup(group);
         group.setStatus(false);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(group.getId(), HttpStatus.CREATED);
     }
 
     // ADD STUDENTS TO GROUP

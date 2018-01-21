@@ -1,4 +1,4 @@
-app.service('cardService', ['$http', function($scope, $http) {
+app.service('cardService', function($http) {
 
     return ({
         getGroups : getGroups,
@@ -35,4 +35,4 @@ app.service('cardService', ['$http', function($scope, $http) {
         return ( response.data );
     }
 
-}]);
+});
