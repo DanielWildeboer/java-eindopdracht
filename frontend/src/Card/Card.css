@@ -72,6 +72,7 @@
 }
 
 .addGroups {
+	cursor: pointer;
 	width: 100%;
 	height: 46px;
 	background-color: #F0F7FE;

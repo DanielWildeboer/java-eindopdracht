@@ -62,7 +62,7 @@ public class UserController {
     @RequestMapping(value = "api/user/{id}", method = RequestMethod.GET)
     public ResponseEntity getUserById(@PathVariable Long id) {
         User user = userService.findById(id);
-        return new ResponseEntity<>(user, HttpStatus.FOUND);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     //update a user

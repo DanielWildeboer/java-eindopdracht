@@ -3,7 +3,7 @@
         <div class="headerContainer">
             <div class="header row">
                 <div class="col s6">
-                    <div class="groupsCount"><p>Groepen (325)</p></div>
+                    <div class="groupsCount"><p>Groepen (14)</p></div>
                 </div>
                 <div class="col s6">
                     <div class="groupsSearch">
@@ -22,17 +22,20 @@
                 <th>Verwijderen <i class="material-icons rotate">code</i></th>
             </tr>
 
-            <tr ng-repeat="group in groups | filter:searchQuery" class="tableContentBlock">
+
+            <tr ng-repeat="group in groups | filter:searchQuery" class="tableContentBlock" ng-click="routeToGroup(group.id)">
                 <td>{{group.name}}</td>
                 <td>{{group.subject}}</td>
                 <td>{{group.status}}</td>
-                <td class="table-delete">VERWIJDEREN</td>
-
+                <td class="table-delete" ng-click="delete(group.id, $index)">VERWIJDEREN</td>
             </tr>
+
             	<div class="fixed-action-btn"> 
               		<a class="btn-floating btn-large blue" href="#addGroup" > 
                			<i class="large material-icons">add</i> 
               		</a> 
-            	</div> 
+
+                </div>
+        </div>
     </table>
 </div>

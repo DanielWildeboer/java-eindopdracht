@@ -4,11 +4,7 @@ app.controller('LoginController', ['$scope', 'LoginService', '$localStorage', '$
     $scope.login = function () {
 
         LoginService.login($scope.email, $scope.password)
-            .then(
-                function (errorMessage) {
-                    console.warn(errorMessage);
-                }
-            );
+
         // new LoginService({email: $scope.email, password: $scope.password},
         //
         // function (data, headers) {
@@ -42,8 +38,6 @@ app.service('LoginService', function ($http, $q) {
                 'Accept': ''
             }
         });
-
-
     }
 
     function handleError(response) {

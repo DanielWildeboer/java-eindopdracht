@@ -26,11 +26,15 @@ app.config(function($routeProvider) {
             templateUrl: 'src/groups/groups.html',
             activeTab: 'groups'
         })
+        .when('/groups', {
+            templateUrl: 'src/groups/groups.html',
+            activeTab: 'groups'
+        })
         .when('/addGroup', {
             templateUrl: 'src/groups/group-detail/group-detail.html',
             activeTab: 'groups'
         })
-        .when('/grading', {
+        .when('/grading/:id', {
             templateUrl: 'src/groups/group-grading/group-grading.html',
             activeTab: 'groups'
         })
