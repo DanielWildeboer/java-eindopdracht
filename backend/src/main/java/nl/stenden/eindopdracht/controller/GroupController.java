@@ -55,7 +55,7 @@ public class GroupController {
     }
 
     // POST A NEW GROUP AND RETURN THE ID OF THE GROUP WHICH CAN BE USED TO ADD USERS TO THE GROUP
-    @RequestMapping(method = RequestMethod.POST, value = "api/group", consumes = "application/json")
+    @RequestMapping(method = RequestMethod.POST, value = "api/group")
     public ResponseEntity addGroup(@RequestBody  ProjectGroup group) {
         groupService.addGroup(group);
         group.setStatus(false);
@@ -76,9 +76,9 @@ public class GroupController {
     }
 
     //UPDATE A GROUP
-    @RequestMapping(method = RequestMethod.PUT, value = "api/group/{id}", consumes = "application/json")
-    public ResponseEntity updateGroup(@RequestBody ProjectGroup group, @PathVariable int id) {
-        groupService.updateGroup(id, group);
+    @RequestMapping(method = RequestMethod.PATCH, value = "api/group/{groupid}")
+    public ResponseEntity updateGroup(@RequestBody ProjectGroup group, @PathVariable int groupid) {
+        groupService.updateGroup(groupid, group);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

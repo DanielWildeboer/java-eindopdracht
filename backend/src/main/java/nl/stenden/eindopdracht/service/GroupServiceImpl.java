@@ -44,7 +44,23 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public void updateGroup(int id, ProjectGroup group) {
-        groupRepository.save(group);
+        ProjectGroup currentGroup = findGroupById(id);
+        if(group.getStudents() != null){
+            currentGroup.setStudents(group.getStudents());
+        }
+        if(group.getStatus() != false) {
+            currentGroup.setStatus(true);
+        }
+        if(group.getName() != null) {
+            currentGroup.setName(group.getName());
+        }
+        if(group.getGrade() != 0) {
+            currentGroup.setGrade(group.getGrade());
+        }
+        if(group.getSubject() != ""){
+            currentGroup.setSubject(group.getSubject());
+        }
+        groupRepository.save(currentGroup);
     }
 
     @Override
