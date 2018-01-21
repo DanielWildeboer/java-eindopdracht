@@ -26,7 +26,7 @@
             <tr ng-repeat="group in groups | filter:searchQuery" class="tableContentBlock" ng-click="routeToGroup(group.id)">
                 <td>{{group.name}}</td>
                 <td>{{group.subject}}</td>
-                <td>{{gradeStatus}}</td>
+                <td>{{group.status}}</td>
                 <td class="table-delete" ng-click="delete(group.id, $index)">VERWIJDEREN</td>
             </tr>
 
