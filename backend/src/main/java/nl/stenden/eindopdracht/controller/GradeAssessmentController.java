@@ -17,13 +17,12 @@ public class GradeAssessmentController {
 
     @Autowired
     private GradeAssessmentService gradeAssessmentService;
-//
-//    //GET GRADEASSESSMENT BY USERID AND GROUPID
-//    @RequestMapping(value = "api/grade/assessment/{gid}/{sid}", method = RequestMethod.GET)
-//    public ResponseEntity getGroupsByUserId(@PathVariable String gid, @PathVariable String sid) {
-//       Set<GradeAssessment> gradeAssessment = gradeAssessmentService.findGradeAssessmentsByGroupIdAndStudentId(gid, sid);
-//        return new ResponseEntity<>(gradeAssessment, HttpStatus.FOUND);
-//    }
 
-    //ADD GRADEASSESSMENT
+    //GET GRADEASSESSMENT BY USERID AND GROUPID
+    @RequestMapping(value = "api/grade/assessment/{gid}/{sid}", method = RequestMethod.GET)
+    public ResponseEntity getGroupsByUserId(@PathVariable String gid, @PathVariable String sid) {
+       Set<GradeAssessment> gradeAssessment = gradeAssessmentService.findGradeAssessmentsByGroupIdAndStudentId(gid, sid);
+        return new ResponseEntity<>(gradeAssessment, HttpStatus.OK);
+    }
+
 }
