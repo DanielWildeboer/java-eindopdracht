@@ -18,10 +18,16 @@ public class TokenController {
         return token.getTokenId();
     }
 
+    //FIND A TOKEN BY GORUPID AND STUDENTID
+    @RequestMapping(method= RequestMethod.GET, value="api/token/group/{id}/student/{id}")
+    public void findTokenByGroupIdAndStudentId(@PathVariable int groupId, @PathVariable int studentId) {
+        tokenService.findTokenByIds(groupId, studentId);
+    }
+
     //FIND A TOKEN
     @RequestMapping(method= RequestMethod.GET, value="api/token/{id}")
     public void findToken(@PathVariable int id) {
-        tokenService.findTokenByIds(id);
+        tokenService.findTokenById(id);
     }
 
     //DELETE A TOKEN
