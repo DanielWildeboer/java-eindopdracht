@@ -42,7 +42,20 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     @Override
     public void updateUser(Long Id, User user) {
-        userRepository.save(user);
+        User currentUser = findById(Id);
+        if(user.getEmail() != null){
+            currentUser.setEmail(user.getEmail());
+        }
+        if(user.getLastName() != null){
+            currentUser.setLastName(user.getLastName());
+        }
+        if(user.getFirstName() != null){
+            currentUser.setFirstName(user.getFirstName());
+        }
+        if(user.getPassword() != null){
+            currentUser.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        }
+        userRepository.save(currentUser);
     }
 
     @Override

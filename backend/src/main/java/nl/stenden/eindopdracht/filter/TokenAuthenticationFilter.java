@@ -1,7 +1,5 @@
 package nl.stenden.eindopdracht.filter;
 
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.GenericFilterBean;
 
 import javax.servlet.FilterChain;
@@ -29,7 +27,6 @@ public class TokenAuthenticationFilter extends GenericFilterBean
             //TODO Populate SecurityContextHolder by fetching relevant information using token
 
             //TODO FIND THE USER ASSOCIATED WITH THE accesToken variable
-
 
 
             //TODO Uncomment when you find the right user

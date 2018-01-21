@@ -1,9 +1,12 @@
 package nl.stenden.eindopdracht.controller;
 
+import nl.stenden.eindopdracht.model.AuthToken;
 import nl.stenden.eindopdracht.model.User;
+import nl.stenden.eindopdracht.service.AuthTokenService;
 import nl.stenden.eindopdracht.service.SecurityService;
 import nl.stenden.eindopdracht.service.UserService;
 import nl.stenden.eindopdracht.service.UserValidator;
+import nl.stenden.eindopdracht.utility.JwtTokenFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +26,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private AuthTokenService authTokenService;
 
     @Autowired
     private SecurityService securityService;
@@ -58,9 +64,9 @@ public class UserController {
     }
 
     //update a user
-    @RequestMapping(method=RequestMethod.PUT, value="api/user/update/{id}")
-    public ResponseEntity updateUser(@ModelAttribute User user, @PathVariable Long id){
-        userService.updateUser(id, user);
+    @RequestMapping(method=RequestMethod.PATCH, value="api/user/{userid}")
+    public ResponseEntity updateUser(@RequestBody User user, @PathVariable("userid") Long userid){
+        userService.updateUser(userid, user);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -70,6 +76,19 @@ public class UserController {
     public ResponseEntity removeUser(@PathVariable Long Id) {
         userService.delete(Id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "api/user/getToken", method = RequestMethod.POST)
+    public ResponseEntity getTokenTest(@RequestBody User user) {
+        JwtTokenFactory factory = new JwtTokenFactory();
+        String token = factory.createAccessJwtToken(user);
+        return new ResponseEntity<>(token, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "api/user/getToken/{userid}", method = RequestMethod.GET)
+    public ResponseEntity getTokenTest(@PathVariable Long userid) {
+        AuthToken authToken = authTokenService.findByUserId(userid);
+        return new ResponseEntity<>(authToken.getToken(), HttpStatus.OK);
     }
 
 }

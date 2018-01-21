@@ -24,7 +24,7 @@ import org.springframework.security.web.authentication.session.SessionAuthentica
 
 @Configuration
 @EnableWebSecurity
-@Order(2)
+@Order(1)
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -62,11 +62,11 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .exceptionHandling()
                 .authenticationEntryPoint(restAuthenticationEntryPoint)
                 .and()
-                .authorizeRequests()
-                .antMatchers("/api/login", "/api/register").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .addFilterBefore(jsonAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
+                //.authorizeRequests()
+                //.antMatchers("/api/login", "/api/register").permitAll()
+                //.anyRequest().authenticated()
+                //.and()
+                //.addFilterBefore(jsonAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(new CorsFilterRequest(), ChannelProcessingFilter.class)
                 .formLogin()
                 .loginPage("/api/login")
