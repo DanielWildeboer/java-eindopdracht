@@ -12,11 +12,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Set;
+
+import static org.springframework.http.MediaType.APPLICATION_JSON;
 
 @RestController
 public class GroupController {
@@ -52,7 +55,7 @@ public class GroupController {
     }
 
     // POST A NEW GROUP AND RETURN THE ID OF THE GROUP WHICH CAN BE USED TO ADD USERS TO THE GROUP
-    @RequestMapping(method = RequestMethod.POST, value = "api/group")
+    @RequestMapping(method = RequestMethod.POST, value = "api/group", consumes = "application/json")
     public ResponseEntity addGroup(@ModelAttribute ProjectGroup group) {
         groupService.addGroup(group);
         group.setStatus(false);
@@ -73,14 +76,14 @@ public class GroupController {
     }
 
     //UPDATE A GROUP
-    @RequestMapping(method = RequestMethod.PUT, value = "api/groups/{id}")
+    @RequestMapping(method = RequestMethod.PUT, value = "api/groups/{id}", consumes = "application/json")
     public ResponseEntity updateGroup(@RequestBody ProjectGroup group, @PathVariable int id) {
         groupService.updateGroup(id, group);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     //DELETE A GROUP
-    @RequestMapping(method = RequestMethod.DELETE, value = "api/group/{id}")
+    @RequestMapping(method = RequestMethod.DELETE, value = "api/group/{id}", consumes = "application/json")
     public ResponseEntity deleteGroup(@PathVariable int id) {
         groupService.deleteGroup(id);
         return new ResponseEntity<>(HttpStatus.OK);
