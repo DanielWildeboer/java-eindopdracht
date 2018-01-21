@@ -13,7 +13,9 @@ app.controller("ListController", ['$scope', 'AddGroupService', function ($scope,
 
     $scope.postGroup = function () {
         AddGroupService.postGroup($scope.name, $scope.grade, $scope.subject).then (
-            AddGroupService.postStudents($scope.students)
+            $scope.postGroup =  angular.forEach($scope.students, function (singleStudent) {
+                AddGroupService.postStudents(singleStudent);
+            })
         )
             .then(
                 function (errorMessage) {

@@ -66,17 +66,17 @@ public class UserController {
     }
 
     //update a user
-    @RequestMapping(value="api/user/{id}", method = RequestMethod.PUT)
-    public ResponseEntity updateUser(@RequestBody User user, @PathVariable Long id){
+    @RequestMapping(value="api/user/{id}", method = RequestMethod.PATCH)
+    public ResponseEntity updateUser(@PathVariable Long id, @RequestBody User user){
         userService.updateUser(id, user);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     //remove user from the db
-    @RequestMapping(value = "api/user/{Id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "api/user/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public ResponseEntity removeUser(@PathVariable Long Id) {
-        userService.delete(Id);
+    public ResponseEntity removeUser(@PathVariable Long id) {
+        userService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

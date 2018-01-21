@@ -37,8 +37,8 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
     @Override
-    public User findById(Long Id) {
-        return userRepository.findOne(Id);
+    public User findById(Long id) {
+        return userRepository.findOne(id);
     }
 
     @Override
@@ -54,8 +54,8 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
     @Override
-    public void delete(Long Id) {
-        userRepository.delete(Id);
+    public void delete(Long id) {
+        userRepository.delete(id);
     }
 
     @Override
