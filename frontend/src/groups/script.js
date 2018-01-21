@@ -12,4 +12,7 @@ app.controller('groupsController', function($scope, $location, $http) {
 
         });
     };
+    $scope.routeToGroup = function(routeID){
+        $location.path("grading/"+ routeID);
+    };
 });

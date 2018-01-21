@@ -38,8 +38,6 @@ app.service('LoginService', function ($http, $q) {
                 'Accept': ''
             }
         });
-
-
     }
 
     function handleError(response) {

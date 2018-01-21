@@ -22,13 +22,14 @@
                 <th>Verwijderen <i class="material-icons rotate">code</i></th>
             </tr>
 
-            <tr ng-repeat="group in groups | filter:searchQuery" class="tableContentBlock">
+
+            <tr ng-repeat="group in groups | filter:searchQuery" class="tableContentBlock" ng-click="routeToGroup(group.id)">
                 <td>{{group.name}}</td>
                 <td>{{group.subject}}</td>
                 <td>{{group.status}}</td>
                 <td class="table-delete" ng-click="delete(group.id, $index)">VERWIJDEREN</td>
-
             </tr>
+
             	<div class="fixed-action-btn"> 
               		<a class="btn-floating btn-large blue" href="#addGroup" > 
                			<i class="large material-icons">add</i> 
