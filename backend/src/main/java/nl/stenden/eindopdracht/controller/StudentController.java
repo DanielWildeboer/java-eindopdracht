@@ -45,7 +45,7 @@ public class StudentController {
     //update student
     @RequestMapping(value = "api/student/{studentid}", method = RequestMethod.PATCH)
     public ResponseEntity updateStudent(@RequestBody Student student, @PathVariable int studentid) {
-        //logger.info(student.getEmail() + " " + student.getFirstName()+ " " + student.getLastName()+ " " + student.getStudentNumber());
+        logger.info(student.getEmail() + " " + student.getFirstName()+ " " + student.getLastName()+ " " + student.getStudentNumber());
         studentService.updateStudent(studentid, student);
         return new ResponseEntity<>(HttpStatus.OK);
     }
