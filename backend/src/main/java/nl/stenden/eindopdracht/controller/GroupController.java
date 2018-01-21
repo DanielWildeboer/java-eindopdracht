@@ -56,7 +56,7 @@ public class GroupController {
 
     // POST A NEW GROUP AND RETURN THE ID OF THE GROUP WHICH CAN BE USED TO ADD USERS TO THE GROUP
     @RequestMapping(method = RequestMethod.POST, value = "api/group", consumes = "application/json")
-    public ResponseEntity addGroup(@ModelAttribute ProjectGroup group) {
+    public ResponseEntity addGroup(@RequestBody  ProjectGroup group) {
         groupService.addGroup(group);
         group.setStatus(false);
         return new ResponseEntity<>(HttpStatus.CREATED);

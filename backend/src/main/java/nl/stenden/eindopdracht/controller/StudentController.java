@@ -37,7 +37,7 @@ public class StudentController {
 
     //add new student
     @RequestMapping(value = "api/student", method = RequestMethod.POST)
-    public ResponseEntity addStudent(@ModelAttribute Student student) {
+    public ResponseEntity addStudent(@RequestBody Student student) {
         studentService.addStudent(student);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

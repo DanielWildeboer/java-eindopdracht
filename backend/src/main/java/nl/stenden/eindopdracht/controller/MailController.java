@@ -17,7 +17,6 @@ public class MailController {
     @Autowired
     private EmailService emailService;
 
-
     @Autowired
     private TokenService tokenService;
 
