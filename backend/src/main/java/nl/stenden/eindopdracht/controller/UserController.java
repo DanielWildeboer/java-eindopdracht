@@ -24,21 +24,26 @@ import java.util.List;
 @RestController
 public class UserController {
 
+    //object userService
     @Autowired
     private UserService userService;
 
+    //object securityService
     @Autowired
     private SecurityService securityService;
 
+    //object userValidator
     @Autowired
     private UserValidator userValidator;
 
+    //object BCryptPasswordEncoder
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    //object logger
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-
+    //register a user
     @RequestMapping(value = "api/register", method = RequestMethod.POST ,produces = "application/json")
     public ResponseEntity registration(@RequestBody User userForm, BindingResult bindingResult){
 
@@ -56,20 +61,21 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    //get all users in the application
+    //get all users in the db
     @RequestMapping(value = "api/user", method = RequestMethod.GET)
     public ResponseEntity users() {
         List<User> userList = userService.findAll();
         return new ResponseEntity<>(userList, HttpStatus.OK);
     }
 
-    //get a single user
+    //get a single user from db
     @RequestMapping(value = "api/user/{id}", method = RequestMethod.GET)
     public ResponseEntity getUserById(@PathVariable Long id) {
         User user = userService.findById(id);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
+    //update an existing user in db
     @RequestMapping(method=RequestMethod.PATCH, value="api/user/{userid}")
     public ResponseEntity updateUser(@RequestBody User user, @PathVariable("userid") Long userid){
         userService.updateUser(userid, user);

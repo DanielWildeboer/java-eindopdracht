@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Table(name = "gradeAssessment")
 public class GradeAssessment {
 
+    //fields of GradeAssessment
     private int id;
     private String group_id;
     private String student_id;
@@ -18,6 +19,7 @@ public class GradeAssessment {
     private float grade;
     private String description;
 
+    //getters and setters
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public int getId(){ return id; }
