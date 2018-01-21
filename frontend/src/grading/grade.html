@@ -28,11 +28,11 @@
                         <p class="col-md-5 f-l n-g">Toelichting cijfer</p>
                     </div>
                     <div class="grade-content">
-                        <div ng-repeat="grade in grades.names">
+                        <div ng-repeat="student in gradeAssessment.students">
                             <div>
                                 <div class="col-md-5 f-l n-g student">
                                     <md-input-container class="mat-input">
-                                        <input placeholder="{{grade}}" disabled>
+                                        <input placeholder="{{student.firstName + ' ' + student.lastName}}" disabled>
                                     </md-input-container>
                                 </div>
                                 <div class="col-md-2 f-l n-g">

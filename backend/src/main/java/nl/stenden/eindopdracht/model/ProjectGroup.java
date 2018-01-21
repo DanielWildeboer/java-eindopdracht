@@ -10,6 +10,7 @@ import java.util.Set;
 public class ProjectGroup {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String userId;
     private String name;
