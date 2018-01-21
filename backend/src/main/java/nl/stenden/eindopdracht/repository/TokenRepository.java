@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository("tokenRepository")
 public interface TokenRepository extends JpaRepository<Token, Integer> {
-    Token findByGroup_idAndStudent_id(int groupId, int studentId);
+    Token findByGroupIdAndStudentId(int groupId, int studentId);
 }
 
