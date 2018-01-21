@@ -3,6 +3,9 @@ app.controller('gradingController', function ($scope, $location, gradingService)
     $scope.userId = 1;
     $scope.groupId = getParameterByName('groupId');
     $scope.studentId = getParameterByName('studentId');
+    $scope.token = getParameterByName('token');
+
+
 
     gradingService.getGradeAssessment($scope.groupId)
         .then(function (response) {
@@ -11,7 +14,6 @@ app.controller('gradingController', function ($scope, $location, gradingService)
 
     $scope.addGradingAssessment = function () {
         angular.forEach($scope.gradeAssessment.students, function (student, key) {
-            console.log(student);
             gradingService.addGradingAssessment($scope.groupId, student.id, $scope.userId, $scope.studentId, student.id, student.description, student.grade)
         });
     };
