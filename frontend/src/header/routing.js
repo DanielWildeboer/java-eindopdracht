@@ -13,6 +13,9 @@ app.controller('headerController', function($scope, $route) {
 
         return acronym
     };
+    $scope.logout = function() {
+        window.location = "http://localhost/java-eindopdracht/frontend/src/Login/login.html";
+    }
 });
 
 
