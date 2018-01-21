@@ -9,6 +9,6 @@ public interface UserService {
     List<User> findAll();
     User findByEmail(String email);
     User findById(Long Id);
-    void updateUser(User user);
+    void updateUser(Long Id, User user);
     void delete(Long Id);
 }
