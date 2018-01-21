@@ -16,13 +16,13 @@ public class GradeAssessment {
     private String sender_Student;
     private String receiver_Student;
     private float grade;
-    private boolean status;
+    private String description;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public int getId(){ return id; }
 
-    public void setId(long Id){ this.id = id; }
+    public void setId(int id) { this.id = id; }
 
     public String getGroupId() {
         return group_id;
@@ -44,10 +44,14 @@ public class GradeAssessment {
 
     public String getReceiverStudent() { return receiver_Student; }
 
-    public void setReceiverStudent(String receiverStudent) { this.receiver_Student = receiver_Student; }
+    public void setReceiverStudent(String receiver_Student) { this.receiver_Student = receiver_Student; }
 
     public float getGrade() { return grade; }
 
     public void setGrade(float grade) { this.grade = grade; }
+
+    public String getDescription() { return description; }
+
+    public void setDescription(String description) { this.description = description; }
 
 }

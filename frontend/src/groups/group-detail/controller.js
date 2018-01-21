@@ -13,14 +13,14 @@ app.controller("ListController", ['$scope', 'AddGroupService', function ($scope,
 
     $scope.postGroup = function () {
         AddGroupService.postGroup($scope.name, $scope.grade, $scope.subject) .then(function (response) {
-
+            $scope.groupID = response;
         })
             .then(
             $scope.postStudent = angular.forEach($scope.students, function (singleStudent) {
                 AddGroupService.postStudents(singleStudent).then(function (response) {
                    $scope.studentID = response;
 
-                        AddGroupService.addStudents($scope.studentID)
+                        AddGroupService.addStudents( $scope.groupID, $scope.studentID)
 
                     })
                 })
@@ -76,13 +76,13 @@ app.service('AddGroupService', function ($http, $q) {
         });
 
         return (request.then(handleSuccess, handleError));
-    }
+}
 
-    function addStudents(studentId) {
+    function addStudents(groupId, studentId) {
 
         var request = $http({
             method: "post",
-            url: 'http://127.0.0.1:8080/api/group/' + 69 + '/student/' + studentId,
+            url: 'http://127.0.0.1:8080/api/group/' + groupId + '/student/' + studentId,
             header: {
                 'Content-Type': 'application/json'
             }
