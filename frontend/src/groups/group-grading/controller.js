@@ -1,4 +1,4 @@
-app.controller('gradingController', function ($scope, $route) {
+app.controller('gradingController', function ($scope, $route, $routeParams, $http) {
     $scope.group = {
         name: "Team Rood", subject: "Java Minor", groupGrade: 7.4, status: "Gesloten", members: [
             {name: "Bjorne Hoeksema", grade: 2.0, feedback: [
@@ -57,6 +57,11 @@ app.controller('gradingController', function ($scope, $route) {
             }
         ]
     };
+
+    var currentId = $routeParams.id;
+    $scope.singleGroup = $http.get('http://127.0.0.1:8080/api/group/'+ currentId).then(function(result) {
+        $scope.singleGroup = result.data;
+    });
 
     $scope.calc = function (member) {
             var gradeArray = new Array();
