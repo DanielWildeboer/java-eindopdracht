@@ -10,8 +10,6 @@ import java.util.Set;
 @Table(name = "student")
 public class Student {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String email;
     private String firstName;
@@ -24,7 +22,8 @@ public class Student {
     @OneToMany
     private Set<Token> token;
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getId() { return id; }
 
     public void setId(int id) { this.id = id; }
