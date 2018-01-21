@@ -68,7 +68,7 @@ public class UserController {
     //update a user
     @RequestMapping(value="api/user/{id}", method = RequestMethod.PUT)
     public ResponseEntity updateUser(@RequestBody User user, @PathVariable Long id){
-        userService.updateUser(user);
+            userService.updateUser(user);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
