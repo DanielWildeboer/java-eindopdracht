@@ -1,19 +1,10 @@
 var app = angular.module('Login', ['ngMaterial', 'ngStorage']);
 
-app.controller('LoginController', ['$scope', 'LoginService', '$localStorage', '$http', function ($scope, LoginService, $localStorage, $http) {
+app.controller('LoginController', ['$scope', 'LoginService', '$localStorage', '$http', '$location', function ($scope, LoginService, $localStorage, $http, $location) {
     $scope.login = function () {
 
         LoginService.login($scope.email, $scope.password)
 
-        // new LoginService({email: $scope.email, password: $scope.password},
-        //
-        // function (data, headers) {
-        //         $localStorage.user = data.user;
-        //         $localStorage.authToken = headers['x-auth-token'];
-        //         $http.defaults.headers.common['x-auth-token'] = headers['x-auth-token'];
-        //     }, function (error) {
-        //         console.log(error);
-        //     });
     };
 }]);
 
@@ -34,9 +25,16 @@ app.service('LoginService', function ($http, $q) {
                 password: password
             },
             headers: {
-                'Content-Type': 'application/json',
-                'Accept': ''
+                'Content-Type': 'application/json'
             }
+
+        }).then(function successCallback() {
+            window.location = "http://localhost/java-eindopdracht/frontend/";
+
+
+        }, function errorCallback() {
+            console.log("Verkeerde gebruikersnaam / Wachtwoord")
+
         });
     }
 

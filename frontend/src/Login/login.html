@@ -8,6 +8,7 @@
 <div class="login-section">
     <div class="login-card">
         <form name="loginForm" id="loginForm">
+            <div ng-if="errorMessage" class="col-md-12">{{errorMessage}}</div>
             <div class="col-md-12">
                 <md-input-container accent class="mat-input">
                     <label>E-mailadres</label>
