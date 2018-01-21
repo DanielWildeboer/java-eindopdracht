@@ -19,17 +19,12 @@ app.controller("ListController", ['$scope', 'AddGroupService', function ($scope,
             $scope.postStudent = angular.forEach($scope.students, function (singleStudent) {
                 AddGroupService.postStudents(singleStudent).then(function (response) {
                    $scope.studentID = response;
-                })
-            })
-                .then(
-                    $scope.getStudentId = angular.forEach($scope.studentID, function (studentId) {
-                        console.log("test");
-                        AddGroupService.addStudents(96)
+
+                        AddGroupService.addStudents($scope.studentID)
 
                     })
-        )
-
-        )
+                })
+            )
     };
 
     $scope.remove = function (students) {
@@ -87,7 +82,7 @@ app.service('AddGroupService', function ($http, $q) {
 
         var request = $http({
             method: "post",
-            url: 'http://127.0.0.1:8080/api/group/' + 1 + '/student/' + studentId,
+            url: 'http://127.0.0.1:8080/api/group/' + 69 + '/student/' + studentId,
             header: {
                 'Content-Type': 'application/json'
             }
