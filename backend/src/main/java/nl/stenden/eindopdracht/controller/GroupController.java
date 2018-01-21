@@ -72,7 +72,7 @@ public class GroupController {
             projectGroup.getStudents().add(student);
             studentRepository.save(student);
         }
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(groupId,HttpStatus.OK);
     }
 
     //UPDATE A GROUP
