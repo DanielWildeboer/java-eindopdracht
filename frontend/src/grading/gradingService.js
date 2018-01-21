@@ -1,4 +1,4 @@
-app.service('gradingService', function ($http) {
+app.service('gradingService', function ($http, $q) {
     this.getGradeAssessment = function (groupId) {
         return $http({
             method: "GET",
@@ -8,16 +8,17 @@ app.service('gradingService', function ($http) {
         });
     };
 
-    this.addGradingAssessment = function (groupId, studentId, userId, sender_student, receiver_student, grade) {
+    this.addGradingAssessment = function (groupId, studentId, userId, sender_student, receiver_student, description, grade) {
         var request = $http({
             method: "POST",
             url: 'http://127.0.0.1:8080/api/grade/assessment',
             data: {
-                group_id: groupId,
-                student_id: studentId,
-                user_id: userId,
-                sender_student: sender_student,
-                receiver_student: receiver_student,
+                groupId: groupId,
+                studentId: studentId,
+                userId: userId,
+                senderStudent: sender_student,
+                receiverStudent: receiver_student,
+                description: description,
                 grade: grade
             },
             header: {
