@@ -7,9 +7,13 @@ import nl.stenden.eindopdracht.model.AuthToken;
 import nl.stenden.eindopdracht.model.User;
 import nl.stenden.eindopdracht.service.AuthTokenService;
 import nl.stenden.eindopdracht.service.TokenService;
+import nl.stenden.eindopdracht.service.UserService;
 import org.joda.time.DateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.validation.constraints.Null;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.UUID;
@@ -20,11 +24,14 @@ public class JwtTokenFactory {
     @Autowired
     AuthTokenService authTokenService;
 
-    public String createAccessJwtToken(User user) {
+    @Autowired
+    UserService userService;
+
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    public AuthToken createAccessJwtToken(User user) throws NullPointerException {
         if (user.getEmail() == null)
             throw new IllegalArgumentException("Cannot create JWT Token without username");
-
-
 
         DateTime currentTime = new DateTime();
 
@@ -34,8 +41,8 @@ public class JwtTokenFactory {
                 .signWith(SignatureAlgorithm.HS512, user.getEmail().getBytes())
                 .compact();
 
-        AuthToken authToken = new AuthToken(token, user);
-        authTokenService.save(authToken);
-        return token;
+        return new AuthToken(token, currentTime.plusMinutes(60).toDate());
+
+
     }
 }

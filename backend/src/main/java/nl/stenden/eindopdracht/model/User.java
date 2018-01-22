@@ -1,5 +1,7 @@
 package nl.stenden.eindopdracht.model;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -13,6 +15,7 @@ public class User {
     private String lastName;
     private String email;
     private String password;
+    private AuthToken authToken;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -52,6 +55,13 @@ public class User {
 
     public void setPassword(String password) { this.password = password; }
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "auth_token_id")
+    public AuthToken getAuthToken() {
+        return authToken;
+    }
 
-
+    public void setAuthToken(AuthToken authToken) {
+        this.authToken = authToken;
+    }
 }

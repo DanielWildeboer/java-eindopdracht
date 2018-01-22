@@ -9,7 +9,7 @@ import java.util.List;
 public interface AuthTokenService {
     void save(AuthToken authToken);
     Page<AuthToken> findTop10();
-    AuthToken findByUserId(Long userId);
     AuthToken findById(Long Id);
+    AuthToken findByUserId(Long id);
     void delete(Long Id);
 }

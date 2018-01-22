@@ -78,10 +78,9 @@ CREATE TABLE `token` (
 --
 -- Table structure for table `authToken`
 --
-DROP TABLE IF EXISTS `authToken`;
-CREATE TABLE `authToken` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `token` varchar(30) DEFAULT NULL,
-  `user_id` int NOT NULL,
-  PRIMARY KEY (`id`), FOREIGN KEY (user_id) REFERENCES user(id)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+# DROP TABLE IF EXISTS `auth_token`;
+# CREATE TABLE `auth_token` (
+#   `id` int NOT NULL AUTO_INCREMENT,
+#   `token` varchar(30) DEFAULT NULL,
+#   PRIMARY KEY (`id`)
+# ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

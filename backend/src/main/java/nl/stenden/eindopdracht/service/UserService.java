@@ -11,4 +11,5 @@ public interface UserService {
     User findById(Long Id);
     void updateUser(Long Id, User user);
     void delete(Long Id);
+    User findByAuthToken(String authToken);
 }

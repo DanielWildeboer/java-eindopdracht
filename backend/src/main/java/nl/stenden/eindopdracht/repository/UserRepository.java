@@ -1,10 +1,14 @@
 package nl.stenden.eindopdracht.repository;
 
+import nl.stenden.eindopdracht.model.AuthToken;
 import nl.stenden.eindopdracht.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository("userRepository")
 public interface UserRepository extends JpaRepository<User, Long> {
     User findByEmail(String email);
+    @Query("select u from User u where u.authToken = :authToken")
+    User findByAuthToken(AuthToken authToken);
 }

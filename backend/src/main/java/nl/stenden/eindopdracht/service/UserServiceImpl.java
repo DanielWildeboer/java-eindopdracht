@@ -1,6 +1,7 @@
 package nl.stenden.eindopdracht.service;
 
 import nl.stenden.eindopdracht.model.User;
+import nl.stenden.eindopdracht.repository.AuthTokenRepository;
 import nl.stenden.eindopdracht.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -17,6 +18,9 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     @Qualifier("userRepository")
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    AuthTokenRepository authTokenRepository;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -55,6 +59,10 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         if(user.getPassword() != null){
             currentUser.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         }
+        if(user.getAuthToken() != null)
+        {
+            currentUser.setAuthToken(user.getAuthToken());
+        }
         userRepository.save(currentUser);
     }
 
@@ -66,5 +74,10 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         return null;
+    }
+
+    @Override
+    public User findByAuthToken(String authToken){
+        return userRepository.findByAuthToken(authTokenRepository.findByToken(authToken));
     }
 }

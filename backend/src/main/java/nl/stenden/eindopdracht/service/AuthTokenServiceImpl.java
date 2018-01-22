@@ -4,6 +4,7 @@ import nl.stenden.eindopdracht.model.AuthToken;
 import nl.stenden.eindopdracht.model.User;
 import nl.stenden.eindopdracht.repository.AuthTokenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -14,6 +15,7 @@ import java.util.List;
 @Service
 public class AuthTokenServiceImpl implements AuthTokenService {
 
+    @Qualifier("authTokenRepository")
     @Autowired
     AuthTokenRepository authTokenRepository;
 
@@ -29,8 +31,8 @@ public class AuthTokenServiceImpl implements AuthTokenService {
     }
 
     @Override
-    public AuthToken findByUserId(Long userId) {
-        return authTokenRepository.findByUserId(userId);
+    public AuthToken findByUserId(Long id){
+        return authTokenRepository.findByUserId(id);
     }
 
     @Override

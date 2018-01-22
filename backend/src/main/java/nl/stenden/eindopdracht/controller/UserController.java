@@ -33,6 +33,7 @@ public class UserController {
     @Autowired
     private SecurityService securityService;
 
+
     @Autowired
     private UserValidator userValidator;
 
@@ -78,17 +79,20 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @RequestMapping(value = "api/user/getToken", method = RequestMethod.POST)
-    public ResponseEntity getTokenTest(@RequestBody User user) {
+    @RequestMapping(value = "api/user/getToken/{userid}", method = RequestMethod.GET)
+    public ResponseEntity createTokenTest(@PathVariable Long userid) {
         JwtTokenFactory factory = new JwtTokenFactory();
-        String token = factory.createAccessJwtToken(user);
-        return new ResponseEntity<>(token, HttpStatus.OK);
+        User user = userService.findById(userid);
+        user.setAuthToken(factory.createAccessJwtToken(user));
+        userService.updateUser(userid, user);
+        return new ResponseEntity<>(user.getAuthToken().getToken(), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "api/user/getToken/{userid}", method = RequestMethod.GET)
+    @RequestMapping(value = "api/user/token/{userid}", method = RequestMethod.GET)
     public ResponseEntity getTokenTest(@PathVariable Long userid) {
-        AuthToken authToken = authTokenService.findByUserId(userid);
-        return new ResponseEntity<>(authToken.getToken(), HttpStatus.OK);
+        User currentUser = userService.findById(userid);
+        User user = userService.findByAuthToken(currentUser.getAuthToken().getToken());
+        return new ResponseEntity<>(user.getEmail(), HttpStatus.OK);
     }
 
 }
