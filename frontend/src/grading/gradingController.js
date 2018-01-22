@@ -9,8 +9,6 @@ app.controller('gradingController', function ($scope, $location, gradingService,
         gradingService.getToken($scope.groupId, $scope.studentId)
             .then(function (response) {
                 $scope.tokenOnServer = response.randomString;
-                console.log($scope.tokenOnServer)
-                console.log($scope.token)
                 if($scope.tokenOnServer !== $scope.token) {
                     $window.location.href = 'http://www.google.com';
                 }
