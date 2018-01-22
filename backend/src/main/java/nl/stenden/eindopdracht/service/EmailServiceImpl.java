@@ -43,17 +43,22 @@ public class EmailServiceImpl implements EmailService {
 
     @Override
     public void sendEmail(final Email email) {
+        //login details for mailtrap
         final String username = "29754260239579";
         final String password = "b357a9e2bdfc0a";
+
+        //fiels required for the signing
         boolean isAlias = false;
         String alias = "";
 
+        //add smtp details of mailtrap server
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.smtp.host","smtp.mailtrap.io");
         props.put("mail.smtp.port", "2525");
 
+        //get instance of the session
         Session session = Session.getInstance(props,
                 new Authenticator() {
                     protected PasswordAuthentication getPasswordAuthentication() {
@@ -62,36 +67,35 @@ public class EmailServiceImpl implements EmailService {
                 });
 
         try {
+            //set message parameters (before signing)
             Message message = new MimeMessage(session);
-
             message.addFrom(InternetAddress.parse(email.getFrom()));
-            //message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email.getTo()));
             message.setSubject(email.getSubject());
             message.setText(email.getBody());
 
 
             //Add BouncyCastle content handlers to command map
             MailcapCommandMap mailcap = (MailcapCommandMap) CommandMap.getDefaultCommandMap();
-
             mailcap.addMailcap("application/pkcs7-signature;; x-java-content-handler=org.bouncycastle.mail.smime.handlers.pkcs7_signature");
             mailcap.addMailcap("application/pkcs7-mime;; x-java-content-handler=org.bouncycastle.mail.smime.handlers.pkcs7_mime");
             mailcap.addMailcap("application/x-pkcs7-signature;; x-java-content-handler=org.bouncycastle.mail.smime.handlers.x_pkcs7_signature");
             mailcap.addMailcap("application/x-pkcs7-mime;; x-java-content-handler=org.bouncycastle.mail.smime.handlers.x_pkcs7_mime");
             mailcap.addMailcap("multipart/signed;; x-java-content-handler=org.bouncycastle.mail.smime.handlers.multipart_signed");
-
             CommandMap.setDefaultCommandMap(mailcap);
 
+            //add BouncyCastle as security provider to enable signing of emails
             Security.addProvider(new BouncyCastleProvider());
 
+            //definition of the keystore type
             KeyStore keyStore = KeyStore.getInstance("JKS");
 
+            //Relative path to the certification
             File file = new File("src/main/resources/cert.jks");
             String absolutePath = file.getAbsolutePath();
 
             //Provide location of Java Keystore and password for access
             keyStore.load(new FileInputStream(absolutePath),
                     "lesley123".toCharArray());
-
 
             //Find the first legit alias in the keystore and use it
             Enumeration<String> es = keyStore.aliases();
@@ -144,19 +148,15 @@ public class EmailServiceImpl implements EmailService {
                 MimeMultipart mm = signer.generate((MimeMessage) message, "BC");
                 MimeMessage signedMessage = new MimeMessage(session);
 
-//                // Set all original MIME headers in the signed message
+                // Set all original MIME headers in the signed message (does not work)
 //                Enumeration headers = message.getAllHeaders();
 //                while (headers.hasMoreElements()) {
 //                    signedMessage.addHeaderLine((String) headers.nextElement());
 //                }
 
-                // Set the content of the signed message
-//                signedMessage.addFrom(InternetAddress.parse(email.getFrom()));
-//                signedMessage.setSubject(email.getSubject());
-//                signedMessage.setText(email.getBody());
-                //signedMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse("lesley.van.oostenrijk@student.stenden.com"));
                 signedMessage.addFrom(InternetAddress.parse(email.getFrom()));
                 signedMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email.getTo()));
+                // Set the content of the signed message
                 signedMessage.setContent(mm);
                 signedMessage.saveChanges();
 
@@ -164,6 +164,7 @@ public class EmailServiceImpl implements EmailService {
                 Transport.send(signedMessage);
                 System.out.println("message sent");
             }
+
         } catch (NoSuchProviderException e) {
             e.printStackTrace();
         } catch (UnrecoverableEntryException e) {

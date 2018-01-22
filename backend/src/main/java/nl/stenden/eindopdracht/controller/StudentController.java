@@ -19,6 +19,7 @@ public class StudentController {
     @Autowired
     private StudentServiceImpl studentService;
 
+    //object logger
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     //retrieve all students

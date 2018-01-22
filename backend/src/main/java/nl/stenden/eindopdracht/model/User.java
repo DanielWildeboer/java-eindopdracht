@@ -8,12 +8,14 @@ import java.util.Set;
 @Table(name = "user")
 public class User {
 
+    //fields of user
     private Long id;
     private String firstName;
     private String lastName;
     private String email;
     private String password;
 
+    //getters and setters
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId(){

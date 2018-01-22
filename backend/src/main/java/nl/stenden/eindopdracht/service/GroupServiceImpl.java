@@ -18,6 +18,7 @@ public class GroupServiceImpl implements GroupService {
     @ManyToMany
     private Set<Student> students;
 
+    //get all groups
     @Override
     public Set<ProjectGroup> findAllGroups() {
         Set<ProjectGroup> groups = new HashSet<ProjectGroup>();
@@ -27,21 +28,25 @@ public class GroupServiceImpl implements GroupService {
         }
     }
 
+    //get group by User id
     @Override
     public Set<ProjectGroup> findProjectGroupsByUserId(String id) {
         return groupRepository.findAllByUserId(id);
     }
 
+    //get group by Group id
     @Override
     public ProjectGroup findGroupById(int id) {
         return groupRepository.findOne(id);
     }
 
+    //add new group
     @Override
     public void addGroup(ProjectGroup group) {
         groupRepository.save(group);
     }
 
+    //update an existing group
     @Override
     public void updateGroup(int id, ProjectGroup group) {
         ProjectGroup currentGroup = findGroupById(id);
@@ -63,11 +68,13 @@ public class GroupServiceImpl implements GroupService {
         groupRepository.save(currentGroup);
     }
 
+    //remove a group
     @Override
     public void deleteGroup(int id) {
        groupRepository.delete(id);
     }
 
+    //add student to group
     @Override
     public void addStudent(Student student) {
         students.add(student);

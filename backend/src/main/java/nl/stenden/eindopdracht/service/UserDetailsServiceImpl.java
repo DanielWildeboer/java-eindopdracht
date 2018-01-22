@@ -16,9 +16,11 @@ import java.util.List;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
+    //create UserRepository
     @Autowired
     private UserRepository userRepository;
 
+    //finds the user by email
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException{
         User user = userRepository.findByEmail(email);

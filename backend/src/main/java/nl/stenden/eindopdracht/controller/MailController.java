@@ -14,9 +14,11 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RestController
 public class MailController {
 
+    //Object EmailService
     @Autowired
     private EmailService emailService;
 
+    //Object Tokenservice
     @Autowired
     private TokenService tokenService;
 
