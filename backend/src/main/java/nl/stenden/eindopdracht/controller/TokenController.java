@@ -19,9 +19,9 @@ public class TokenController {
     }
 
     //FIND A TOKEN BY GORUPID AND STUDENTID
-    @RequestMapping(method= RequestMethod.GET, value="api/token/group/{id}/student/{id}")
-    public void findTokenByGroupIdAndStudentId(@PathVariable int groupId, @PathVariable int studentId) {
-        tokenService.findTokenByIds(groupId, studentId);
+    @RequestMapping(method= RequestMethod.GET, value="api/token/group/{groupId}/student/{studentId}")
+    public Token findTokenByGroupIdAndStudentId(@PathVariable String groupId, @PathVariable String studentId) {
+        return tokenService.findTokenByIds(groupId, studentId);
     }
 
     //FIND A TOKEN

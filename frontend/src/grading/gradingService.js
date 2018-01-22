@@ -8,6 +8,15 @@ app.service('gradingService', function ($http, $q) {
         });
     };
 
+    this.getToken = function (groupId, studentId) {
+        return $http({
+            method: "GET",
+            url: "http://127.0.0.1:8080/api/token/group/" + groupId + "/student/" + studentId
+        }).then(function (response) {
+            return response.data;
+        });
+    };
+
     this.addGradingAssessment = function (groupId, studentId, userId, sender_student, receiver_student, description, grade) {
         var request = $http({
             method: "POST",

@@ -1,11 +1,21 @@
 var app = angular.module('gradeApp', ['ngRoute', 'ngMaterial']);
-app.controller('gradingController', function ($scope, $location, gradingService) {
+app.controller('gradingController', function ($scope, $location, gradingService, $window) {
     $scope.userId = 1;
     $scope.groupId = getParameterByName('groupId');
     $scope.studentId = getParameterByName('studentId');
     $scope.token = getParameterByName('token');
 
-
+    $scope.init = function () {
+        gradingService.getToken($scope.groupId, $scope.studentId)
+            .then(function (response) {
+                $scope.tokenOnServer = response.randomString;
+                console.log($scope.tokenOnServer)
+                console.log($scope.token)
+                if($scope.tokenOnServer !== $scope.token) {
+                    $window.location.href = 'http://www.google.com';
+                }
+            });
+    };
 
     gradingService.getGradeAssessment($scope.groupId)
         .then(function (response) {
