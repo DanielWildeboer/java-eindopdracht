@@ -24,15 +24,21 @@
             </div>
 
             <h5 class="header-text col s12">Voeg groepsleden toe:</h5>
-            <div class="col s5 group">
+            <div class="col s3 group">
                 <md-input-container accent class="mat-input">
-                    <label>Student naam</label>
+                    <label>Voornaam</label>
                     <input class="form-control input-label" ng-model="students.firstName" type="text" required>
                 </md-input-container>
             </div>
-            <div class="col s6">
+            <div class="col s3 group">
                 <md-input-container accent class="mat-input">
-                    <label>Student email</label>
+                    <label>Achternaam</label>
+                    <input class="form-control input-label" ng-model="students.lastName" type="text" required>
+                </md-input-container>
+            </div>
+            <div class="col s5">
+                <md-input-container accent class="mat-input">
+                    <label>email</label>
                     <input class="form-control input-label" ng-model="students.email" type="text" required>
                 </md-input-container>
             </div>

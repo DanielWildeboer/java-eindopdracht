@@ -16,7 +16,6 @@ app.controller("ListController", ['$scope', 'AddGroupService', function ($scope,
         AddGroupService.postGroup($scope.name, $scope.grade, $scope.subject).then(function (response) {
             $scope.groupID = response;
             angular.forEach($scope.students, function (singleStudent) {
-                console.log(singleStudent);
                 AddGroupService.postStudents(singleStudent.email, singleStudent.firstName, singleStudent.lastName).then(function (response) {
                     $scope.studentID = response;
                     AddGroupService.addStudents($scope.groupID, $scope.studentID);
