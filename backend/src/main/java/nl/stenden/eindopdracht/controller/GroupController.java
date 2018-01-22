@@ -56,7 +56,7 @@ public class GroupController {
 
     // POST A NEW GROUP AND RETURN THE ID OF THE GROUP WHICH CAN BE USED TO ADD USERS TO THE GROUP
     @RequestMapping(method = RequestMethod.POST, value = "api/group")
-    public ResponseEntity addGroup(@RequestBody  ProjectGroup group) {
+    public ResponseEntity addGroup(@RequestBody ProjectGroup group) {
         groupService.addGroup(group);
         group.setStatus(false);
         return new ResponseEntity<>(group.getId(), HttpStatus.CREATED);
@@ -72,7 +72,7 @@ public class GroupController {
             projectGroup.getStudents().add(student);
             studentRepository.save(student);
         }
-        return new ResponseEntity<>(groupId,HttpStatus.OK);
+        return new ResponseEntity<>(groupId, HttpStatus.OK);
     }
 
     //UPDATE A GROUP
