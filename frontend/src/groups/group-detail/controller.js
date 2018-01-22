@@ -12,22 +12,21 @@ app.controller("ListController", ['$scope', 'AddGroupService', function ($scope,
     };
 
     $scope.postGroup = function () {
-        AddGroupService.postGroup($scope.name, $scope.grade, $scope.subject) .then(function (response) {
+        AddGroupService.postGroup($scope.name, $scope.grade, $scope.subject).then(function (response) {
             $scope.groupID = response;
-        })
-            .then(
-            $scope.postStudent = angular.forEach($scope.students, function (singleStudent) {
+            angular.forEach($scope.students, function (singleStudent) {
                 AddGroupService.postStudents(singleStudent).then(function (response) {
-                   $scope.studentID = response;
-                        AddGroupService.addStudents( $scope.groupID, $scope.studentID);
-                        AddGroupService.postToken($scope.groupID, $scope.studentID)
-                            .then(function (response){
-                                $scope.tokenID = response;
-                                AddGroupService.sentMail(singleStudent.email, "Rob@Stenden.com", $scope.tokenID)
-                            })
-                    })
+                    $scope.studentID = response;
+                    AddGroupService.addStudents($scope.groupID, $scope.studentID);
+                    AddGroupService.postToken($scope.groupID, $scope.studentID)
+                        .then(function (response) {
+                            $scope.tokenID = response;
+                            AddGroupService.sentMail(singleStudent.email, "Rob@Stenden.com", $scope.tokenID)
+                        })
                 })
-            )
+            })
+        })
+
     };
 
     $scope.remove = function (students) {
@@ -101,7 +100,7 @@ app.service('AddGroupService', function ($http, $q) {
         });
 
         return (request.then(handleSuccess, handleError));
-}
+    }
 
     function addStudents(groupId, studentId) {
 
