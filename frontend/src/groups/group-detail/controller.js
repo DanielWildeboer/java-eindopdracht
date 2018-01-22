@@ -19,9 +19,12 @@ app.controller("ListController", ['$scope', 'AddGroupService', function ($scope,
             $scope.postStudent = angular.forEach($scope.students, function (singleStudent) {
                 AddGroupService.postStudents(singleStudent).then(function (response) {
                    $scope.studentID = response;
-
-                        AddGroupService.addStudents( $scope.groupID, $scope.studentID)
-
+                        AddGroupService.addStudents( $scope.groupID, $scope.studentID);
+                        AddGroupService.postToken($scope.groupID, $scope.studentID)
+                            .then(function (response){
+                                $scope.tokenID = response;
+                                AddGroupService.sentMail(singleStudent.email, "Rob@Stenden.com", $scope.tokenID)
+                            })
                     })
                 })
             )
@@ -39,8 +42,30 @@ app.service('AddGroupService', function ($http, $q) {
     return ({
         postGroup: postGroup,
         postStudents: postStudents,
-        addStudents: addStudents
+        addStudents: addStudents,
+        postToken: postToken,
+        sentMail: sentMail
     });
+
+    function sentMail(toEmail, fromEmail, tokenId) {
+
+        var request = $http({
+            method: "POST",
+            url: "http://127.0.0.1:8080/sentMail/" + toEmail + "/" + fromEmail + "/" + tokenId
+        });
+
+        return (request.then(handleSuccess, handleError));
+    }
+
+    function postToken(groupId, studentId) {
+
+        var request = $http({
+            method: "POST",
+            url: "http://127.0.0.1:8080/api/token/" + groupId + "/" + studentId
+        });
+
+        return (request.then(handleSuccess, handleError));
+    }
 
     function postGroup(name, grade, subject, userId) {
 
