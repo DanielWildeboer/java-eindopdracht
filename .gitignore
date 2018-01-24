@@ -30,3 +30,5 @@ frontend/src/\.DS_Store
 
 
 frontend/\.DS_Store
+backend/pom.xml
+backend/java-eindopdracht.iml
