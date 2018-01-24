@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Set;
 
-import static org.springframework.http.MediaType.APPLICATION_JSON;
 
 @RestController
 public class GroupController {

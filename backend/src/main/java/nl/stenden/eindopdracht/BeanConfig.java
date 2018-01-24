@@ -21,22 +21,5 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Order(2)
 public class BeanConfig extends WebSecurityConfigurerAdapter {
 
-    @Bean
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
-    }
-
-    @Bean
-    public UserDetailsService userDetailsService(){
-        return super.userDetailsService();
-    }
-
-    @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
-
-
 
 }
