@@ -8,9 +8,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AuthTokenRepository extends JpaRepository<AuthToken, Long> {
-    @Query("select a from AuthToken a where a.user = :userId")
-    AuthToken findByUserId(@Param("userId") Long userId);
 
-    @Query("select a from AuthToken a where a.token = :authToken")
-    AuthToken findByToken(@Param("authToken")String authToken);
+    AuthToken findByUserId(Long userId);
+
+    AuthToken findByToken(String authToken);
 }

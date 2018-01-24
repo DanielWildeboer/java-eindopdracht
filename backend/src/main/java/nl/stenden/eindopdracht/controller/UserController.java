@@ -33,7 +33,6 @@ public class UserController {
     @Autowired
     private SecurityService securityService;
 
-
     @Autowired
     private UserValidator userValidator;
 
@@ -42,7 +41,6 @@ public class UserController {
 
     @RequestMapping(value = "api/register", method = RequestMethod.POST ,produces = "application/json")
     public ResponseEntity registration(@RequestBody User userForm, BindingResult bindingResult){
-
         HttpHeaders headers = new HttpHeaders();
             userValidator.validate(userForm, bindingResult);
             if(bindingResult.hasErrors()){

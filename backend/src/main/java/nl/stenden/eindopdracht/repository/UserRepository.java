@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository("userRepository")
 public interface UserRepository extends JpaRepository<User, Long> {
     User findByEmail(String email);
-    @Query("select u from User u where u.authToken = :authToken")
+
     User findByAuthToken(AuthToken authToken);
 }

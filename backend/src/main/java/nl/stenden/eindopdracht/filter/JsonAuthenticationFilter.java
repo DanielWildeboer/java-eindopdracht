@@ -4,10 +4,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import nl.stenden.eindopdracht.utility.LoginRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.stereotype.Component;
@@ -34,7 +36,6 @@ public class JsonAuthenticationFilter extends UsernamePasswordAuthenticationFilt
     @Override
     protected String obtainPassword(HttpServletRequest request){
         String password = null;
-        logger.info("obtaining password");
         if("application/json".equals(request.getHeader("Content-Type"))){
             password = this.jsonPassword;
         } else {
@@ -46,7 +47,6 @@ public class JsonAuthenticationFilter extends UsernamePasswordAuthenticationFilt
     @Override
     protected String obtainUsername(HttpServletRequest request){
         String email = null;
-        logger.info("obtaining username");
         if("application/json".equals(request.getHeader("Content-Type"))){
             email = this.jsonEmail;
         } else {
@@ -73,6 +73,7 @@ public class JsonAuthenticationFilter extends UsernamePasswordAuthenticationFilt
 
                 this.jsonEmail = loginRequest.getEmail();
                 this.jsonPassword = loginRequest.getPassword();
+                logger.info("email: " + jsonEmail + " || password: " + jsonPassword );
 
 
             } catch(Exception e) {
@@ -80,13 +81,6 @@ public class JsonAuthenticationFilter extends UsernamePasswordAuthenticationFilt
             }
         }
 
-
-
-        Cookie cookie = new Cookie("JSESSIONID", request.getSession().getId());
-        cookie.setMaxAge(3600);
-        cookie.setHttpOnly(true);
-        cookie.setPath("/");
-        response.addCookie(cookie);
         return super.attemptAuthentication(request, response);
     }
 }
