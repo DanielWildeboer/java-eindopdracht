@@ -31,8 +31,8 @@ app.service('RegisterService', function ($http, $q) {
             }
         });
 
-        return (request.then(handleSuccess, handleError));
-    }
+        window.location = "http://localhost/JavaEindOpdracht/java-eindopdracht/frontend/src/Login/login.html";
+        }
 
     function handleError(response) {
         if (

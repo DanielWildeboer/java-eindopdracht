@@ -26,8 +26,8 @@ app.controller("ListController", ['$scope', 'AddGroupService', function ($scope,
                         })
                 })
             })
-        })
-
+        });
+        window.location = "http://localhost/JavaEindOpdracht/java-eindopdracht/frontend/#/groups";
     };
 
     $scope.remove = function (students) {

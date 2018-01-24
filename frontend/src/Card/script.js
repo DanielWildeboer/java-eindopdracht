@@ -1,7 +1,7 @@
 app.controller('cardController', function($scope) {
 
 	$scope.cards = [
-		{title: "LEERLINGEN TOTAAL", content: ["Bjorne Hoeksema", "Lesley van Oostenrijk", "Pim Gelmers", "Daniël Wildeboer", "Rik Hassing", "Ramon Valk"]},
+		{title: "LEERLINGEN TOTAAL", content: ["Bjorne Hoeksema", "Lesley van Oostenrijk", "Pim Gelmers", "Daniel Wildeboer", "Rik Hassing", "Ramon Valk"]},
 		{title: "GROEPEN TOTAAL", content: ["Team 1", "Team 2", "Team 3", "Team 4", "Team 5", "Team 6", "Team 7", "Team 8", "Team 9", "Team 10", "Team 420"]},
 		{title: "LOPENDE RESULTATEN", content: ["Team 2", "Team 3"]},
 		{title: "COMPLETE RESULTATEN", content: ["Team 1", "Team 4", "Team 420", "Team 5"]}
