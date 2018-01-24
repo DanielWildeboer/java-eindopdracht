@@ -31,20 +31,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    //object securityService
-    @Autowired
-    private AuthTokenService authTokenService;
-
-    @Autowired
-    private SecurityService securityService;
-
     //object userValidator
     @Autowired
     private UserValidator userValidator;
-
-    //object BCryptPasswordEncoder
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     //object logger
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -94,22 +83,6 @@ public class UserController {
     public ResponseEntity removeUser(@PathVariable Long id) {
         userService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "api/user/getToken/{userid}", method = RequestMethod.GET)
-    public ResponseEntity createTokenTest(@PathVariable Long userid) {
-        JwtTokenFactory factory = new JwtTokenFactory();
-        User user = userService.findById(userid);
-        user.setAuthToken(factory.createAccessJwtToken(user));
-        userService.updateUser(userid, user);
-        return new ResponseEntity<>(user.getAuthToken().getToken(), HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "api/user/token/{userid}", method = RequestMethod.GET)
-    public ResponseEntity getTokenTest(@PathVariable Long userid) {
-        User currentUser = userService.findById(userid);
-        User user = userService.findByAuthToken(currentUser.getAuthToken().getToken());
-        return new ResponseEntity<>(user.getEmail(), HttpStatus.OK);
     }
 
 }

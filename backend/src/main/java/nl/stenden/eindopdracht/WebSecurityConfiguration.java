@@ -65,29 +65,34 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                //Disable csrf for now
                 .csrf().disable()
                 .addFilterBefore(jsonAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
-                //.addFilterBefore(tokenAuthenticationFilter(), BasicAuthenticationFilter.class)
                 .addFilterBefore(new CorsFilterRequest(), ChannelProcessingFilter.class)
-                //.addFilterBefore(customBasicAuthenticationFilter(), jsonAuthenticationFilter().getClass())
-                .exceptionHandling()
-                .authenticationEntryPoint(restAuthenticationEntryPoint)
+                .addFilterBefore(tokenAuthenticationFilter(), BasicAuthenticationFilter.class)
+                .addFilterBefore(customBasicAuthenticationFilter(), jsonAuthenticationFilter().getClass())
+
+                //Set the server to not use sessions
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
 
-//                .authorizeRequests()
-//                .antMatchers("/api/login", "/api/register").permitAll()
-//                .anyRequest().authenticated()
-//                .and()
-//                .addFilterBefore(jsonAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
-                .addFilterBefore(new CorsFilterRequest(), ChannelProcessingFilter.class)
-                .formLogin()
-                .loginPage("/api/login")
-                .successHandler(succesHandler)
-                .failureHandler(new RequestAwareAuthenticationFailureHandler())
-                .usernameParameter("email")
-                .passwordParameter("password")
+                //Allow users to register and login
+                .authorizeRequests()
+                .antMatchers("/api/login", "/api/register")
+                .permitAll()
                 .and()
-                .httpBasic()
+
+                //Force others url's to require authentication
+                .authorizeRequests()
+                .anyRequest()
+                .authenticated()
+
+                //Introduce a exception handler for better debugging
+                .and()
+                .exceptionHandling()
+                .authenticationEntryPoint(restAuthenticationEntryPoint())
+
+                //logout
                 .and()
                 .logout()
                 .logoutUrl("/api/logout");
@@ -97,6 +102,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     public JsonAuthenticationFilter jsonAuthenticationFilter() throws Exception{
         JsonAuthenticationFilter authFilter = new JsonAuthenticationFilter();
         authFilter.setAuthenticationManager(this.authenticationManager());
+        authFilter.setPasswordParameter("password");
+        authFilter.setUsernameParameter("email");
+        authFilter.setAuthenticationSuccessHandler(mySuccessHandler());
+        authFilter.setAuthenticationFailureHandler(myFailureHandler());
         return authFilter;
     }
 
@@ -115,8 +124,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new RequestAwareAuthenticationSuccesHandler();
     }
     @Bean
-    public SimpleUrlAuthenticationFailureHandler myFailureHandler(){
-        return new SimpleUrlAuthenticationFailureHandler();
+    public RequestAwareAuthenticationFailureHandler myFailureHandler(){
+        return new RequestAwareAuthenticationFailureHandler();
     }
 
     @Bean RestAuthenticationEntryPoint restAuthenticationEntryPoint(){
