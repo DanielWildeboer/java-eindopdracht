@@ -18,7 +18,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @Configuration
-@Order(3)
+@Order(2)
 public class BeanConfig extends WebSecurityConfigurerAdapter {
 
     @Bean

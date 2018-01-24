@@ -74,3 +74,13 @@ CREATE TABLE `token` (
   `student_id` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `authToken`
+--
+# DROP TABLE IF EXISTS `auth_token`;
+# CREATE TABLE `auth_token` (
+#   `id` int NOT NULL AUTO_INCREMENT,
+#   `token` varchar(30) DEFAULT NULL,
+#   PRIMARY KEY (`id`)
+# ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

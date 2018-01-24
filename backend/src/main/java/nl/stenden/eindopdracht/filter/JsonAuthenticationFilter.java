@@ -4,18 +4,22 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import nl.stenden.eindopdracht.utility.LoginRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.stereotype.Component;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 
-
+@Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class JsonAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private String jsonEmail;
@@ -32,7 +36,6 @@ public class JsonAuthenticationFilter extends UsernamePasswordAuthenticationFilt
     @Override
     protected String obtainPassword(HttpServletRequest request){
         String password = null;
-        logger.info("obtaining password");
         if("application/json".equals(request.getHeader("Content-Type"))){
             password = this.jsonPassword;
         } else {
@@ -44,7 +47,6 @@ public class JsonAuthenticationFilter extends UsernamePasswordAuthenticationFilt
     @Override
     protected String obtainUsername(HttpServletRequest request){
         String email = null;
-        logger.info("obtaining username");
         if("application/json".equals(request.getHeader("Content-Type"))){
             email = this.jsonEmail;
         } else {
@@ -71,9 +73,8 @@ public class JsonAuthenticationFilter extends UsernamePasswordAuthenticationFilt
 
                 this.jsonEmail = loginRequest.getEmail();
                 this.jsonPassword = loginRequest.getPassword();
+                logger.info("email: " + jsonEmail + " || password: " + jsonPassword );
 
-                UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword());
-                return this.getAuthenticationManager().authenticate(authRequest);
 
             } catch(Exception e) {
                 logger.info(e.toString());
