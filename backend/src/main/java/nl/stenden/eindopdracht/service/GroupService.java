@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Set;
 
 public interface GroupService {
+
+    //Create a group function
     Set<ProjectGroup> findAllGroups();
     ProjectGroup findGroupById(int id);
     Set<ProjectGroup> findProjectGroupsByUserId(String id);

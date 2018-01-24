@@ -5,6 +5,8 @@ import nl.stenden.eindopdracht.model.User;
 import java.util.List;
 
 public interface UserService {
+
+    //Interface of User functions
     void save(User user);
     List<User> findAll();
     User findByEmail(String email);

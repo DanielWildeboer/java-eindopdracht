@@ -8,6 +8,7 @@ import javax.persistence.*;
 @Table(name = "token")
 public class Token {
 
+    //Fields of token
     private int id;
     private String randomString;
     private String group_id;
@@ -23,6 +24,7 @@ public class Token {
         this.student_id = student_id;
     }
 
+    //getters and setters
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public int getTokenId(){

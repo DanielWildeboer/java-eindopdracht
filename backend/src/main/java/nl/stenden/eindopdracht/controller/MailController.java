@@ -32,6 +32,7 @@ public class MailController {
         builder.queryParam("groupId", token.getGroupId());
         builder.queryParam("token", token.getRandomString());
 
+        //Build and send an email to a student
         Email email = new Email(fromEmail, toEmail, "Beoordeling", "Beste Student," +
                 "\n\n bezoek de onderstaande link om je medegroepleden te beoordelen" +
                 "\n\n" + builder.build().toString() +

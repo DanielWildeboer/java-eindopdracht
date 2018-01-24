@@ -5,6 +5,9 @@ import nl.stenden.eindopdracht.model.Student;
 import java.util.List;
 
 public interface StudentService {
+
+    //Interface of the student functions
+
     void addStudent(Student student);
     void save(Student student);
     List<Student> findAll();

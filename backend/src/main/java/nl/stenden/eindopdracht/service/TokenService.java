@@ -3,6 +3,8 @@ package nl.stenden.eindopdracht.service;
 import nl.stenden.eindopdracht.model.Token;
 
 public interface TokenService
+
+        //Interface of the token functions
 {
     Token findTokenByIds(String groupId, String studentId);
     Token findTokenById(int id);

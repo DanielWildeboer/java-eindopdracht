@@ -29,6 +29,7 @@ public class CorsFilterRequest implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         // Cast request/response to the HTTP equivalent
+
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
@@ -36,6 +37,8 @@ public class CorsFilterRequest implements Filter {
         response.setHeader("Access-Control-Allow-Methods", "POST, PUT, GET, OPTIONS, DELETE");
         response.setHeader("Access-Control-Allow-Headers", "x-requested-with, Authorization, Content-Type");
         response.setHeader("Access-Control-Max-Age", "3600");
+
+        //Handles local and public Cross origin resource sharing
 
         if (request.getMethod().equalsIgnoreCase("OPTIONS")) {
             response.setStatus(HttpServletResponse.SC_OK);
