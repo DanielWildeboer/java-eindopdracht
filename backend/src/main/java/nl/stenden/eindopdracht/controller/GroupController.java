@@ -24,6 +24,8 @@ import static org.springframework.http.MediaType.APPLICATION_JSON;
 @RestController
 public class GroupController {
 
+    public static final String URL = "group/{groupNumber}";
+
     @Autowired
     private GroupServiceImpl groupService;
 
