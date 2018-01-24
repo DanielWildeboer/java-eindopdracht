@@ -149,10 +149,10 @@ public class EmailServiceImpl implements EmailService {
                 MimeMessage signedMessage = new MimeMessage(session);
 
                 // Set all original MIME headers in the signed message (does not work)
-//                Enumeration headers = message.getAllHeaders();
-//                while (headers.hasMoreElements()) {
-//                    signedMessage.addHeaderLine((String) headers.nextElement());
-//                }
+                //Enumeration headers = message.getAllHeaders();
+                //while (headers.hasMoreElements()) {
+                //      signedMessage.addHeaderLine((String) headers.nextElement());
+                //  }
 
                 signedMessage.addFrom(InternetAddress.parse(email.getFrom()));
                 signedMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email.getTo()));
@@ -164,31 +164,18 @@ public class EmailServiceImpl implements EmailService {
                 Transport.send(signedMessage);
                 System.out.println("message sent");
             }
-
-        } catch (NoSuchProviderException e) {
-            e.printStackTrace();
-        } catch (UnrecoverableEntryException e) {
-            e.printStackTrace();
-        } catch (KeyStoreException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (AddressException e) {
-            e.printStackTrace();
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        } catch (CertificateException e) {
-            e.printStackTrace();
-        } catch (InvalidAlgorithmParameterException e) {
-            e.printStackTrace();
-        } catch (CertStoreException e) {
-            e.printStackTrace();
-        } catch (SMIMEException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+        catch (NoSuchProviderException e) { e.printStackTrace(); }
+        catch (UnrecoverableEntryException e) { e.printStackTrace(); }
+        catch (KeyStoreException e) { e.printStackTrace(); }
+        catch (NoSuchAlgorithmException e) { e.printStackTrace(); }
+        catch (FileNotFoundException e) { e.printStackTrace(); }
+        catch (AddressException e) { e.printStackTrace(); }
+        catch (MessagingException e) { e.printStackTrace(); }
+        catch (CertificateException e) { e.printStackTrace(); }
+        catch (InvalidAlgorithmParameterException e) { e.printStackTrace(); }
+        catch (CertStoreException e) { e.printStackTrace(); }
+        catch (SMIMEException e) { e.printStackTrace(); }
+        catch (IOException e) { e.printStackTrace(); }
     }
 }
