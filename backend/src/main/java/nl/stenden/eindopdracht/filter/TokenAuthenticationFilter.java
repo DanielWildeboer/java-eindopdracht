@@ -9,6 +9,8 @@ import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -26,10 +28,12 @@ import java.io.IOException;
 import java.util.Date;
 
 @Component
+@Order(Ordered.HIGHEST_PRECEDENCE)
 public class TokenAuthenticationFilter extends GenericFilterBean
 {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private static String AUTH_HEADER_NAME = "AUTH-TOKEN";
 
     @Autowired
     private UserService userService;
@@ -51,7 +55,7 @@ public class TokenAuthenticationFilter extends GenericFilterBean
         final HttpServletRequest httpRequest = (HttpServletRequest)request;
 
         //extract token from header
-        final String accessToken = httpRequest.getHeader("auth-token");
+        final String accessToken = httpRequest.getHeader(AUTH_HEADER_NAME);
         if (accessToken != null) {
             Date currentTime = new Date();
 
@@ -61,6 +65,7 @@ public class TokenAuthenticationFilter extends GenericFilterBean
             }
 
             if(currentTime.before(user.getAuthToken().getDate())){
+
                 UserDetails userDetails = userDetailsService.loadUserByUsername(user.getEmail());
                 final UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
                         new UsernamePasswordAuthenticationToken(userDetails, user.getPassword(), userDetails.getAuthorities());

@@ -24,7 +24,7 @@ public class RequestAwareAuthenticationFailureHandler implements AuthenticationF
         } else if (e.getClass().isAssignableFrom(LockedException.class)) {
             errorMessage = "Too many attempts";
         } else if(e.getClass().isAssignableFrom(BadCredentialsException.class)) {
-            errorMessage = "Bad credentials";
+            errorMessage = "Bad credentials: " + e.getMessage();
         } else {
             errorMessage = "you done goofed: " + e.toString();
         }

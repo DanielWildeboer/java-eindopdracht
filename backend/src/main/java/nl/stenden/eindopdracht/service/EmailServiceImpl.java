@@ -1,6 +1,5 @@
 package nl.stenden.eindopdracht.service;
 import nl.stenden.eindopdracht.model.Email;
-
 import org.bouncycastle.asn1.ASN1EncodableVector;
 import org.bouncycastle.asn1.cms.AttributeTable;
 import org.bouncycastle.asn1.cms.IssuerAndSerialNumber;
@@ -12,9 +11,6 @@ import org.bouncycastle.asn1.x500.X500Name;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.mail.smime.SMIMEException;
 import org.bouncycastle.mail.smime.SMIMESignedGenerator;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import javax.activation.CommandMap;
@@ -24,7 +20,6 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -149,10 +144,10 @@ public class EmailServiceImpl implements EmailService {
                 MimeMessage signedMessage = new MimeMessage(session);
 
                 // Set all original MIME headers in the signed message (does not work)
-//                Enumeration headers = message.getAllHeaders();
-//                while (headers.hasMoreElements()) {
-//                    signedMessage.addHeaderLine((String) headers.nextElement());
-//                }
+                //Enumeration headers = message.getAllHeaders();
+                //while (headers.hasMoreElements()) {
+                //      signedMessage.addHeaderLine((String) headers.nextElement());
+                //  }
 
                 signedMessage.addFrom(InternetAddress.parse(email.getFrom()));
                 signedMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email.getTo()));
@@ -164,31 +159,18 @@ public class EmailServiceImpl implements EmailService {
                 Transport.send(signedMessage);
                 System.out.println("message sent");
             }
-
-        } catch (NoSuchProviderException e) {
-            e.printStackTrace();
-        } catch (UnrecoverableEntryException e) {
-            e.printStackTrace();
-        } catch (KeyStoreException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (AddressException e) {
-            e.printStackTrace();
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        } catch (CertificateException e) {
-            e.printStackTrace();
-        } catch (InvalidAlgorithmParameterException e) {
-            e.printStackTrace();
-        } catch (CertStoreException e) {
-            e.printStackTrace();
-        } catch (SMIMEException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+        catch (NoSuchProviderException e) { e.printStackTrace(); }
+        catch (UnrecoverableEntryException e) { e.printStackTrace(); }
+        catch (KeyStoreException e) { e.printStackTrace(); }
+        catch (NoSuchAlgorithmException e) { e.printStackTrace(); }
+        catch (FileNotFoundException e) { e.printStackTrace(); }
+        catch (AddressException e) { e.printStackTrace(); }
+        catch (MessagingException e) { e.printStackTrace(); }
+        catch (CertificateException e) { e.printStackTrace(); }
+        catch (InvalidAlgorithmParameterException e) { e.printStackTrace(); }
+        catch (CertStoreException e) { e.printStackTrace(); }
+        catch (SMIMEException e) { e.printStackTrace(); }
+        catch (IOException e) { e.printStackTrace(); }
     }
 }

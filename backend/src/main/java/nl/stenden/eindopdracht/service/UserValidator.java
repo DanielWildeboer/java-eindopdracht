@@ -24,7 +24,7 @@ public class UserValidator implements Validator {
     @Override
     public void validate(Object o, Errors errors){
         User user = (User) o;
-        logger.info(user.getEmail(), user.getPassword());
+        logger.info(user.getEmail() + " " + user.getPassword());
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "NotEmpty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");
