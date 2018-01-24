@@ -33,7 +33,7 @@ public class CustomBasicAuthenticationFilter extends BasicAuthenticationFilter {
      */
     @Override
     protected void onSuccessfulAuthentication(final HttpServletRequest request, final HttpServletResponse response, final Authentication authResult) {
-        logger.info(request.getUserPrincipal().getName());
+        logger.info("Creating accestoken");
 
         //find the user with the request
         User user = userService.findByEmail(request.getUserPrincipal().getName());

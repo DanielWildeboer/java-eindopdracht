@@ -30,6 +30,7 @@ public class TokenAuthenticationFilter extends GenericFilterBean
 {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private static String AUTH_HEADER_NAME = "AUTH-TOKEN";
 
     @Autowired
     private UserService userService;
@@ -51,7 +52,8 @@ public class TokenAuthenticationFilter extends GenericFilterBean
         final HttpServletRequest httpRequest = (HttpServletRequest)request;
 
         //extract token from header
-        final String accessToken = httpRequest.getHeader("auth-token");
+        final String accessToken = httpRequest.getHeader(AUTH_HEADER_NAME);
+        logger.info("Checking for accesToken");
         if (accessToken != null) {
             Date currentTime = new Date();
 

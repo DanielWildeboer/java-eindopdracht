@@ -16,6 +16,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -67,10 +68,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 //Disable csrf for now
                 .csrf().disable()
+                .addFilterAfter(tokenAuthenticationFilter(), JsonAuthenticationFilter.class)
                 .addFilterBefore(jsonAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(new CorsFilterRequest(), ChannelProcessingFilter.class)
-                .addFilterBefore(tokenAuthenticationFilter(), BasicAuthenticationFilter.class)
-                .addFilterBefore(customBasicAuthenticationFilter(), jsonAuthenticationFilter().getClass())
+                .addFilter(customBasicAuthenticationFilter())
 
                 //Set the server to not use sessions
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -86,6 +87,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .anyRequest()
                 .authenticated()
+
+                //Stackoverflow told me to do this
+                .and()
+                .httpBasic()
 
                 //Introduce a exception handler for better debugging
                 .and()
