@@ -1,33 +1,29 @@
 package nl.stenden.eindopdracht.controller;
 
+import nl.stenden.eindopdracht.model.Student;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 class StudentControllerTest {
-    @Test
-    void students() {
-        System.out.println("1");
-    }
 
-    @Test
-    void student() {
-        System.out.println("2");
-    }
+    @MockBean
+    private StudentController controller;
 
     @Test
     void addStudent() {
-        System.out.println("3");
+        Student newStudent = new Student();
+        newStudent.setEmail("nieuwe@student.nl");
+        newStudent.setFirstName("Nieuwe");
+        newStudent.setLastName("Student");
     }
 
-    @Test
-    void updateStudent() {
-        System.out.println("4");
-    }
 
     @Test
-    void removeStudent() {
-        System.out.println("5");
+    void students() {
+        addStudent();
+        controller.students();
     }
+
 
 }
