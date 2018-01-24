@@ -24,6 +24,6 @@ public class GroupControllerTest {
     @Test
     public void allGroupsTest(){
         final int groupNumber = 5;
-       // mvc.perform(get(GroupController.URL, groupNumber).accept(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().isOk()).andExpect(content().string("testing"));
+        mvc.perform(get(GroupController.URL, groupNumber).accept(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().isOk()).andExpect(content().string("testing"));
     }
 }
