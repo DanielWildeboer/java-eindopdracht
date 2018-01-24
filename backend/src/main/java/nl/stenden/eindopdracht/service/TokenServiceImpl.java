@@ -12,7 +12,12 @@ public class TokenServiceImpl implements TokenService {
     private TokenRepository tokenRepository;
 
     @Override
-    public Token findTokenByIds(int id) {
+    public Token findTokenByIds(String groupId, String studentId) {
+        return tokenRepository.findByGroupIdAndStudentId(groupId, studentId);
+    }
+
+    @Override
+    public Token findTokenById(int id) {
         return tokenRepository.findOne(id);
     }
 

@@ -14,18 +14,19 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RestController
 public class MailController {
 
+    //Object EmailService
     @Autowired
     private EmailService emailService;
 
-
+    //Object Tokenservice
     @Autowired
     private TokenService tokenService;
 
     //GET ALL GROUPS
     @RequestMapping(value = "/sentMail/{toEmail}/{fromEmail}/{tokenId}", method = RequestMethod.POST)
     public void sentMail(@PathVariable String toEmail, @PathVariable String fromEmail, @PathVariable int tokenId) {
-        Token token = tokenService.findTokenByIds(tokenId);
-        UriComponentsBuilder builder = UriComponentsBuilder.fromUriString("http://localhost:8080/beoordeling");
+        Token token = tokenService.findTokenById(tokenId);
+        UriComponentsBuilder builder = UriComponentsBuilder.fromUriString("http://localhost/JavaEindOpdracht/java-eindopdracht/frontend/src/grading/grade.html");
 
         builder.queryParam("studentId", token.getStudentId());
         builder.queryParam("groupId", token.getGroupId());

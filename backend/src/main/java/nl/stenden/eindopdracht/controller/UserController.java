@@ -14,31 +14,42 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
+import javax.lang.model.type.ErrorType;
 import javax.servlet.http.HttpServletRequest;
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
 public class UserController {
 
+    //object userService
     @Autowired
     private UserService userService;
 
+    //object securityService
     @Autowired
     private AuthTokenService authTokenService;
 
     @Autowired
     private SecurityService securityService;
 
+    //object userValidator
     @Autowired
     private UserValidator userValidator;
 
+    //object BCryptPasswordEncoder
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    //object logger
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-
+    //register a user
     @RequestMapping(value = "api/register", method = RequestMethod.POST ,produces = "application/json")
     public ResponseEntity registration(@RequestBody User userForm, BindingResult bindingResult){
         HttpHeaders headers = new HttpHeaders();
@@ -55,25 +66,33 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    //get all users in the application
+    //get all users in the db
     @RequestMapping(value = "api/user", method = RequestMethod.GET)
     public ResponseEntity users() {
         List<User> userList = userService.findAll();
         return new ResponseEntity<>(userList, HttpStatus.OK);
     }
 
-    //update a user
-    @RequestMapping(method=RequestMethod.PUT, value="api/user/{id}")
-    public ResponseEntity updateUser(@ModelAttribute User user, @PathVariable Long id){
-        userService.updateUser(id, user);
+
+    //get a single user from db
+    @RequestMapping(value = "api/user/{id}", method = RequestMethod.GET)
+    public ResponseEntity getUserById(@PathVariable Long id) {
+        User user = userService.findById(id);
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    //update an existing user in db
+    @RequestMapping(method=RequestMethod.PATCH, value="api/user/{userid}")
+    public ResponseEntity updateUser(@RequestBody User user, @PathVariable("userid") Long userid){
+        userService.updateUser(userid, user);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     //remove user from the db
-    @RequestMapping(value = "api/user/{Id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "api/user/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public ResponseEntity removeUser(@PathVariable Long Id) {
-        userService.delete(Id);
+    public ResponseEntity removeUser(@PathVariable Long id) {
+        userService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -94,3 +113,4 @@ public class UserController {
     }
 
 }
+

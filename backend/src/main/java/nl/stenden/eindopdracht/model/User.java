@@ -10,6 +10,7 @@ import java.util.Set;
 @Table(name = "user")
 public class User {
 
+    //fields of user
     private Long id;
     private String firstName;
     private String lastName;
@@ -17,6 +18,7 @@ public class User {
     private String password;
     private AuthToken authToken;
 
+    //getters and setters
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId(){

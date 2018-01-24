@@ -2,8 +2,20 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+    <script data-require="angular-route@1.5.8" data-semver="1.5.8"
+            src="https://code.angularjs.org/1.5.8/angular-route.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel=stylesheet href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="grade.css">
+    <script src="gradingController.js"></script>
+    <script src="gradingService.js"></script>
 </head>
-<body ng-app="gradeApp" ng-cloak>
+<body ng-app="gradeApp" ng-controller="gradingController" data-ng-init="init()" ng-cloak>
 <div class="wrapper">
     <div class="grade-section">
         <div class="grade-card">
@@ -16,133 +28,28 @@
                         <p class="col-md-5 f-l n-g">Toelichting cijfer</p>
                     </div>
                     <div class="grade-content">
-
-                        <div class="col-md-5 f-l n-g student">
-                            <md-input-container class="mat-input">
-                                <label>Naam</label>
-                                <input placeholder="Rik Hassing" disabled>
-                            </md-input-container>
+                        <div ng-repeat="student in gradeAssessment.students">
+                            <div>
+                                <div class="col-md-5 f-l n-g student">
+                                    <md-input-container class="mat-input">
+                                        <input placeholder="{{student.firstName + ' ' + student.lastName}}" disabled>
+                                    </md-input-container>
+                                </div>
+                                <div class="col-md-2 f-l n-g">
+                                    <md-input-container class="mat-input">
+                                        <input ng-model="student.grade" type="number" step="0.1">
+                                    </md-input-container>
+                                </div>
+                                <div class="col-md-5 f-l n-g">
+                                    <md-input-container class="mat-input">
+                                        <input ng-model="student.description" type="text">
+                                    </md-input-container>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-2 f-l n-g">
-                            <md-input-container class="mat-input">
-                                <label>Cijfer</label>
-                                <input ng-model="grade" type="number" step="0.1">
-                            </md-input-container>
-                        </div>
-                        <div class="col-md-5 f-l n-g">
-                            <md-input-container class="mat-input">
-                                <label>Vul hier een korte beschrijving in</label>
-                                <input ng-model="description" type="text">
-                            </md-input-container>
-                        </div>
-
-
-                        <div class="col-md-5 f-l n-g student">
-                            <md-input-container class="mat-input">
-                                <label>Naam</label>
-                                <input placeholder="Bjorne Hoeksema" disabled>
-                            </md-input-container>
-                        </div>
-                        <div class="col-md-2 f-l n-g">
-                            <md-input-container class="mat-input">
-                                <label>Cijfer</label>
-                                <input ng-model="grade" type="number" step="0.1">
-                            </md-input-container>
-                        </div>
-                        <div class="col-md-5 f-l n-g">
-                            <md-input-container class="mat-input">
-                                <label>Vul hier een korte beschrijving in</label>
-                                <input ng-model="description" type="text">
-                            </md-input-container>
-                        </div>
-
-
-
-                        <div class="col-md-5 f-l n-g student">
-                            <md-input-container class="mat-input">
-                                <label>Naam</label>
-                                <input placeholder="Ramon Valk" disabled>
-                            </md-input-container>
-                        </div>
-                        <div class="col-md-2 f-l n-g">
-                            <md-input-container class="mat-input">
-                                <label>Cijfer</label>
-                                <input ng-model="grade" type="number" step="0.1">
-                            </md-input-container>
-                        </div>
-                        <div class="col-md-5 f-l n-g">
-                            <md-input-container class="mat-input">
-                                <label>Vul hier een korte beschrijving in</label>
-                                <input ng-model="description" type="text">
-                            </md-input-container>
-                        </div>
-
-
-
-                        <div class="col-md-5 f-l n-g student">
-                            <md-input-container class="mat-input">
-                                <label>Naam</label>
-                                <input placeholder="Pim Gelmers" disabled>
-                            </md-input-container>
-                        </div>
-                        <div class="col-md-2 f-l n-g">
-                            <md-input-container class="mat-input">
-                                <label>Cijfer</label>
-                                <input ng-model="grade" type="number" step="0.1">
-                            </md-input-container>
-                        </div>
-                        <div class="col-md-5 f-l n-g">
-                            <md-input-container class="mat-input">
-                                <label>Vul hier een korte beschrijving in</label>
-                                <input ng-model="description" type="text">
-                            </md-input-container>
-                        </div>
-
-
-
-                        <div class="col-md-5 f-l n-g student">
-                            <md-input-container class="mat-input">
-                                <label>Naam</label>
-                                <input placeholder="Daniel Wildeboer" disabled>
-                            </md-input-container>
-                        </div>
-                        <div class="col-md-2 f-l n-g">
-                            <md-input-container class="mat-input">
-                                <label>Cijfer</label>
-                                <input ng-model="grade" type="number" step="0.1">
-                            </md-input-container>
-                        </div>
-                        <div class="col-md-5 f-l n-g">
-                            <md-input-container class="mat-input">
-                                <label>Vul hier een korte beschrijving in</label>
-                                <input ng-model="description" type="text">
-                            </md-input-container>
-                        </div>
-
-
-                        <div class="col-md-5 f-l n-g student">
-                            <md-input-container class="mat-input">
-                                <label>Naam</label>
-                                <input placeholder="Lesley van Oostenrijk" disabled>
-                            </md-input-container>
-                        </div>
-                        <div class="col-md-2 f-l n-g">
-                            <md-input-container class="mat-input">
-                                <label>Cijfer</label>
-                                <input ng-model="grade" type="number" step="0.1">
-                            </md-input-container>
-                        </div>
-                        <div class="col-md-5 f-l n-g">
-                            <md-input-container class="mat-input">
-                                <label>Vul hier een korte beschrijving in</label>
-                                <input ng-model="description" type="text">
-                            </md-input-container>
-                        </div>
-
                     </div>
-
                     <div class="col-md-12">
-                        <md-button class="grade-button">VERSTUUR BEOORDELING</md-button>
+                        <md-button class="grade-button" ng-click="addGradingAssessment()">VERSTUUR BEOORDELING</md-button>
                     </div>
                 </div>
             </form>
@@ -152,21 +59,4 @@
     <div class="footer"></div>
 </div>
 </body>
-
-<!-- Hax -->
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link rel=stylesheet href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="grade.css">
-
-
-<script type="text/javascript">
-    angular.module('gradeApp', ['ngMaterial']);
-
-</script>
-
 </html>

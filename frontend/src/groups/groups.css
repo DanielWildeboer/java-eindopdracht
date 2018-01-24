@@ -16,6 +16,9 @@
 .tableContainer {
     border-radius: 2px;
 }
+tr {
+    cursor: pointer;
+}
 
 .header {
  padding: 1rem;
@@ -93,6 +96,7 @@
 }
 
 .table-delete {
+    cursor: pointer;
     color: #0083ff;
     font-weight: 500;
 }

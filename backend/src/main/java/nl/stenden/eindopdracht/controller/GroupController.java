@@ -12,11 +12,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Set;
+
+import static org.springframework.http.MediaType.APPLICATION_JSON;
 
 @RestController
 public class GroupController {
@@ -34,33 +37,33 @@ public class GroupController {
     @RequestMapping(value = "api/group", method = RequestMethod.GET)
     public ResponseEntity getGroups() {
         Set<ProjectGroup> groups = groupService.findAllGroups();
-        return new ResponseEntity<>(groups, HttpStatus.FOUND);
+        return new ResponseEntity<>(groups, HttpStatus.OK);
     }
 
     //GET GROUP BY ID
     @RequestMapping(value = "api/group/{id}", method = RequestMethod.GET)
     public ResponseEntity getGroupById(@PathVariable int id) {
         ProjectGroup group = groupService.findGroupById(id);
-        return new ResponseEntity<>(group, HttpStatus.FOUND);
+        return new ResponseEntity<>(group, HttpStatus.OK);
     }
 
     //GET GROUPS BY USERID
     @RequestMapping(value = "api/user/group/{id}", method = RequestMethod.GET)
     public ResponseEntity getGroupsByUserId(@PathVariable String id) {
         Set<ProjectGroup> groups = groupService.findProjectGroupsByUserId(id);
-        return new ResponseEntity<>(groups, HttpStatus.FOUND);
+        return new ResponseEntity<>(groups, HttpStatus.OK);
     }
 
     // POST A NEW GROUP AND RETURN THE ID OF THE GROUP WHICH CAN BE USED TO ADD USERS TO THE GROUP
     @RequestMapping(method = RequestMethod.POST, value = "api/group")
-    public ResponseEntity addGroup(@ModelAttribute ProjectGroup group) {
+    public ResponseEntity addGroup(@RequestBody ProjectGroup group) {
         groupService.addGroup(group);
         group.setStatus(false);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(group.getId(), HttpStatus.CREATED);
     }
 
     // ADD STUDENTS TO GROUP
-    @RequestMapping(method = RequestMethod.POST, value = "/api/group/{groupId}/student/{studentId}")
+    @RequestMapping(method = RequestMethod.POST, value = "api/group/{groupId}/student/{studentId}")
     public ResponseEntity addStudent(@PathVariable int groupId, @PathVariable int studentId) {
         ProjectGroup projectGroup = groupRepository.findOne(groupId);
         Student student = studentRepository.findOne(studentId);
@@ -69,13 +72,13 @@ public class GroupController {
             projectGroup.getStudents().add(student);
             studentRepository.save(student);
         }
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(groupId, HttpStatus.OK);
     }
 
     //UPDATE A GROUP
-    @RequestMapping(method = RequestMethod.PATCH, value = "api/group/{id}")
-    public ResponseEntity updateGroup(@ModelAttribute ProjectGroup group, @PathVariable int id) {
-        groupService.updateGroup(id, group);
+    @RequestMapping(method = RequestMethod.PATCH, value = "api/group/{groupid}")
+    public ResponseEntity updateGroup(@RequestBody ProjectGroup group, @PathVariable int groupid) {
+        groupService.updateGroup(groupid, group);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

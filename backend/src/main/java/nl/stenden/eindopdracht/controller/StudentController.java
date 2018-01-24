@@ -19,40 +19,41 @@ public class StudentController {
     @Autowired
     private StudentServiceImpl studentService;
 
+    //object logger
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     //retrieve all students
     @RequestMapping(value = "api/student", method = RequestMethod.GET)
     public ResponseEntity students() {
         List<Student> studentList = studentService.findAll();
-        return new ResponseEntity<>(studentList, HttpStatus.FOUND);
+        return new ResponseEntity<>(studentList, HttpStatus.OK);
     }
 
     //get student by id
     @RequestMapping(value = "api/student/{id}", method = RequestMethod.GET)
     public ResponseEntity student(@PathVariable int id) {
         Student student = studentService.findById(id);
-        return new ResponseEntity<>(student, HttpStatus.FOUND);
+        return new ResponseEntity<>(student, HttpStatus.OK);
     }
 
     //add new student
     @RequestMapping(value = "api/student", method = RequestMethod.POST)
-    public ResponseEntity addStudent(@ModelAttribute Student student) {
+    public ResponseEntity addStudent(@RequestBody Student student) {
         studentService.addStudent(student);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(student.getId(), HttpStatus.CREATED);
     }
 
     //update student
-    @RequestMapping(value = "api/student/{id}", method = RequestMethod.PATCH)
-    public ResponseEntity updateStudent(@ModelAttribute Student student, @PathVariable int id) {
+    @RequestMapping(value = "api/student/{studentid}", method = RequestMethod.PATCH)
+    public ResponseEntity updateStudent(@RequestBody Student student, @PathVariable int studentid) {
         logger.info(student.getEmail() + " " + student.getFirstName()+ " " + student.getLastName()+ " " + student.getStudentNumber());
-        studentService.updateStudent(id, student);
+        studentService.updateStudent(studentid, student);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     //remove student
     @RequestMapping(value = "api/student/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity removeStudent(@ModelAttribute Student student, @PathVariable int id) {
+    public ResponseEntity removeStudent(@PathVariable int id) {
         studentService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

@@ -9,7 +9,10 @@ app.factory('AuthInterceptor', function ($window, $q, $localStorage) {
         },
         response: function(response) {
             if (response.status === 401) {
-                // TODO: Redirect user to login page.
+         console.log('rip');
+            }
+            else if(response.status === 200) {
+                $window.location.href = '/index.html';
             }
             return response || $q.when(response);
         }

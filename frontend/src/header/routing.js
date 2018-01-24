@@ -13,6 +13,9 @@ app.controller('headerController', function($scope, $route) {
 
         return acronym
     };
+    $scope.logout = function() {
+        window.location = "http://localhost/java-eindopdracht/frontend/src/Login/login.html";
+    }
 });
 
 
@@ -26,16 +29,16 @@ app.config(function($routeProvider) {
             templateUrl: 'src/groups/groups.html',
             activeTab: 'groups'
         })
+        .when('/groups', {
+            templateUrl: 'src/groups/groups.html',
+            activeTab: 'groups'
+        })
         .when('/addGroup', {
             templateUrl: 'src/groups/group-detail/group-detail.html',
             activeTab: 'groups'
         })
-        .when('/grading', {
+        .when('/grading/:id', {
             templateUrl: 'src/groups/group-grading/group-grading.html',
-            activeTab: 'groups'
-        })
-        .when('/assessment', {
-            templateUrl: 'src/grading/grade.html',
             activeTab: 'groups'
         })
 });

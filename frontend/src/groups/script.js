@@ -1,18 +1,25 @@
-app.controller('groupsController', function($scope, $location, getGroups) {
+app.controller('groupsController', function($scope, $location, $http) {
 
-    $scope.go = function ( path ) {
-        $location.path( path );
+    $scope.groups = $http.get('http://127.0.0.1:8080/api/user/group/1').then(function(result) {
+        $scope.groups = result.data;
+
+        if($scope.groups.status) {
+            $scope.gradeStatus = "Afgerond";
+        }
+        else {
+            $scope.gradeStatus = "Open";
+        }
+    });
+    $scope.delete = function(group, index) {
+
+        $scope.groups.splice(index, 1);
+
+        var del = "/" + (group);
+        $http.delete("http://127.0.0.1:8080/api/group" + del).then(function(response) {
+
+        });
     };
-
-	$scope.groups = [
-		{name: "Team 1", subject: "Een taart bakken", status: "Compleet" },
-		{name: "Team 2", subject: "CEH (alweer)", status: "Open" },
-		{name: "Team 3", subject: "Java Minor", status: "Open" },
-		{name: "Team 420", subject: "JWZ", status: "Dank" },
-		{name: "Team 5", subject: "Java Minor", status: "Compleet" },
-		{name: "Team 6", subject: "Java Minor", status: "Compleet" },
-		{name: "Team 7", subject: "Java Minor", status: "Compleet" },
-	]
-
-	getGroups.get(id)
+    $scope.routeToGroup = function(routeID){
+        $location.path("grading/"+ routeID);
+    };
 });

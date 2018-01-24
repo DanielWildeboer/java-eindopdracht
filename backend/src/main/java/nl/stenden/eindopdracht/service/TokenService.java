@@ -4,7 +4,8 @@ import nl.stenden.eindopdracht.model.Token;
 
 public interface TokenService
 {
-    Token findTokenByIds(int id);
+    Token findTokenByIds(String groupId, String studentId);
+    Token findTokenById(int id);
     void addToken(Token token);
     void deleteToken(int id);
 }

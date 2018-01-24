@@ -8,8 +8,9 @@ import java.util.Set;
 @Entity
 @Table(name = "projectGroup")
 public class ProjectGroup {
-
+    //fields of projectGroup
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String userId;
     private String name;
@@ -20,6 +21,7 @@ public class ProjectGroup {
     @ManyToMany
     private Set<Student> students;
 
+    //constructor of projectGroup
     public ProjectGroup(int id, String userId, String name, String subject, float grade)
     {
         this.id = id;
@@ -30,6 +32,7 @@ public class ProjectGroup {
 
     public ProjectGroup() { }
 
+    //getters and setters
     @GeneratedValue(strategy = GenerationType.AUTO)
     public int getId(){
         return id;
