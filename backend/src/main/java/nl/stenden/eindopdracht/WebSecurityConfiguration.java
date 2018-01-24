@@ -1,7 +1,9 @@
 package nl.stenden.eindopdracht;
 
 import nl.stenden.eindopdracht.filter.CorsFilterRequest;
+import nl.stenden.eindopdracht.filter.CustomBasicAuthenticationFilter;
 import nl.stenden.eindopdracht.filter.JsonAuthenticationFilter;
+import nl.stenden.eindopdracht.filter.TokenAuthenticationFilter;
 import nl.stenden.eindopdracht.service.UserDetailsServiceImpl;
 import nl.stenden.eindopdracht.utility.RequestAwareAuthenticationFailureHandler;
 import nl.stenden.eindopdracht.utility.RequestAwareAuthenticationSuccesHandler;
@@ -10,19 +12,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
-@Order(2)
+@Order(1)
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -33,6 +39,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     RequestAwareAuthenticationSuccesHandler succesHandler;
+
+    @Autowired
+    AuthenticationManager authenticationManager;
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -57,9 +66,14 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
+                .addFilterBefore(jsonAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
+                //.addFilterBefore(tokenAuthenticationFilter(), BasicAuthenticationFilter.class)
+                .addFilterBefore(new CorsFilterRequest(), ChannelProcessingFilter.class)
+                //.addFilterBefore(customBasicAuthenticationFilter(), jsonAuthenticationFilter().getClass())
                 .exceptionHandling()
                 .authenticationEntryPoint(restAuthenticationEntryPoint)
                 .and()
+
 //                .authorizeRequests()
 //                .antMatchers("/api/login", "/api/register").permitAll()
 //                .anyRequest().authenticated()
@@ -83,12 +97,17 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     public JsonAuthenticationFilter jsonAuthenticationFilter() throws Exception{
         JsonAuthenticationFilter authFilter = new JsonAuthenticationFilter();
         authFilter.setAuthenticationManager(this.authenticationManager());
-        authFilter.setUsernameParameter("email");
-        authFilter.setPasswordParameter("password");
-        authFilter.setAuthenticationFailureHandler(new RequestAwareAuthenticationFailureHandler());
-        authFilter.setAuthenticationSuccessHandler(succesHandler);
         return authFilter;
+    }
 
+    @Bean
+    public CustomBasicAuthenticationFilter customBasicAuthenticationFilter(){
+        return new CustomBasicAuthenticationFilter(this.authenticationManager);
+    }
+
+    @Bean
+    public TokenAuthenticationFilter tokenAuthenticationFilter(){
+        return new TokenAuthenticationFilter();
     }
 
     @Bean

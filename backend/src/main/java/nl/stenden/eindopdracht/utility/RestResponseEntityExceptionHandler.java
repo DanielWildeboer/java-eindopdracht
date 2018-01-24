@@ -14,7 +14,8 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
     @ExceptionHandler(value = { NullPointerException.class })
     protected ResponseEntity<Object> handleNullPointer(RuntimeException e, WebRequest request){
         String response = "You done goofed mate";
-        return handleExceptionInternal(e, response, new HttpHeaders(), HttpStatus.UNPROCESSABLE_ENTITY, request);
+        e.printStackTrace();
+        return handleExceptionInternal(e, e.toString(), new HttpHeaders(), HttpStatus.UNPROCESSABLE_ENTITY, request);
     }
 
     @ExceptionHandler(value = { Exception.class })

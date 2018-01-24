@@ -1,9 +1,12 @@
 package nl.stenden.eindopdracht.controller;
 
+import nl.stenden.eindopdracht.model.AuthToken;
 import nl.stenden.eindopdracht.model.User;
+import nl.stenden.eindopdracht.service.AuthTokenService;
 import nl.stenden.eindopdracht.service.SecurityService;
 import nl.stenden.eindopdracht.service.UserService;
 import nl.stenden.eindopdracht.service.UserValidator;
+import nl.stenden.eindopdracht.utility.JwtTokenFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +33,9 @@ public class UserController {
 
     //object securityService
     @Autowired
+    private AuthTokenService authTokenService;
+
+    @Autowired
     private SecurityService securityService;
 
     //object userValidator
@@ -46,7 +52,6 @@ public class UserController {
     //register a user
     @RequestMapping(value = "api/register", method = RequestMethod.POST ,produces = "application/json")
     public ResponseEntity registration(@RequestBody User userForm, BindingResult bindingResult){
-
         HttpHeaders headers = new HttpHeaders();
             userValidator.validate(userForm, bindingResult);
             if(bindingResult.hasErrors()){
@@ -67,6 +72,7 @@ public class UserController {
         List<User> userList = userService.findAll();
         return new ResponseEntity<>(userList, HttpStatus.OK);
     }
+
 
     //get a single user from db
     @RequestMapping(value = "api/user/{id}", method = RequestMethod.GET)
@@ -90,4 +96,21 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @RequestMapping(value = "api/user/getToken/{userid}", method = RequestMethod.GET)
+    public ResponseEntity createTokenTest(@PathVariable Long userid) {
+        JwtTokenFactory factory = new JwtTokenFactory();
+        User user = userService.findById(userid);
+        user.setAuthToken(factory.createAccessJwtToken(user));
+        userService.updateUser(userid, user);
+        return new ResponseEntity<>(user.getAuthToken().getToken(), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "api/user/token/{userid}", method = RequestMethod.GET)
+    public ResponseEntity getTokenTest(@PathVariable Long userid) {
+        User currentUser = userService.findById(userid);
+        User user = userService.findByAuthToken(currentUser.getAuthToken().getToken());
+        return new ResponseEntity<>(user.getEmail(), HttpStatus.OK);
+    }
+
 }
+
