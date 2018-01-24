@@ -26,6 +26,14 @@ public class CorsFilterRequest implements Filter {
         logger.info("initialisingFilter");
     }
 
+    /**
+     * In this method we set the headers to allow cross domain requests and then tell the filterChain to continue normally after we do so.
+     * @param servletRequest the received request
+     * @param servletResponse the response we are sending back
+     * @param filterChain chain of filters to walk through
+     * @throws IOException
+     * @throws ServletException
+     */
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         // Cast request/response to the HTTP equivalent

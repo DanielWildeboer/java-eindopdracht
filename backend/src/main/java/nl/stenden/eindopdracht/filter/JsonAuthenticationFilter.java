@@ -39,6 +39,11 @@ public class JsonAuthenticationFilter extends UsernamePasswordAuthenticationFilt
         logger.info("Init Custom Auth Filter");
     }
 
+    /**
+     * override the default method to check if the json/application header is present
+     * @param request
+     * @return password
+     */
     @Override
     protected String obtainPassword(HttpServletRequest request){
         String password = null;
@@ -50,6 +55,11 @@ public class JsonAuthenticationFilter extends UsernamePasswordAuthenticationFilt
         return password;
     }
 
+    /**
+     * override the default method to check if the json/application header is present
+     * @param request
+     * @return email
+     */
     @Override
     protected String obtainUsername(HttpServletRequest request){
         String email = null;
@@ -61,6 +71,12 @@ public class JsonAuthenticationFilter extends UsernamePasswordAuthenticationFilt
         return email;
     }
 
+    /**
+     * This method reads the send JSON and converts it into readable strings for the normal Spring-security to use for authentication
+     * @param request the received request
+     * @param response the response we are gonna send
+     * @return
+     */
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response){
         logger.info("Attempting authentication");
@@ -90,6 +106,16 @@ public class JsonAuthenticationFilter extends UsernamePasswordAuthenticationFilt
         return super.attemptAuthentication(request, response);
     }
 
+    /**
+     * This method finds the user associated with the email and creates a token based on that user, it then places the
+     * token into the database and returns it in the AUTH-TOKEN header for later use.
+     * @param request the received request
+     * @param response the response we are gonna send
+     * @param filterChain the chain of filters
+     * @param authentication authentication object that we use to get the user name and stuff
+     * @throws IOException
+     * @throws ServletException
+     */
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain, Authentication authentication)
             throws IOException, ServletException {
