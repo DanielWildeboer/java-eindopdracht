@@ -56,7 +56,6 @@ public class TokenAuthenticationFilter extends GenericFilterBean
 
         //extract token from header
         final String accessToken = httpRequest.getHeader(AUTH_HEADER_NAME);
-        logger.info("Checking for accesToken");
         if (accessToken != null) {
             Date currentTime = new Date();
 
