@@ -20,9 +20,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 @Order(2)
 public class BeanConfig extends WebSecurityConfigurerAdapter {
-    @Bean
-    public UserDetailsService userDetailsService(){
-        return super.userDetailsService();
-    }
+
 
 }

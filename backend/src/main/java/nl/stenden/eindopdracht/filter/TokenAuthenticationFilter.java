@@ -66,6 +66,7 @@ public class TokenAuthenticationFilter extends GenericFilterBean
             }
 
             if(currentTime.before(user.getAuthToken().getDate())){
+
                 UserDetails userDetails = userDetailsService.loadUserByUsername(user.getEmail());
                 final UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
                         new UsernamePasswordAuthenticationToken(userDetails, user.getPassword(), userDetails.getAuthorities());
