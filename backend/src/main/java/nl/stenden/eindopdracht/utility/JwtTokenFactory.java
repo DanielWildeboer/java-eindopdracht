@@ -29,12 +29,21 @@ public class JwtTokenFactory {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
+
+    /**
+     *  This method creates a jwt acces token which is used to validate requests on resources
+     * @param user used to generate a token based on the user email
+     * @return
+     * @throws NullPointerException
+     */
     public AuthToken createAccessJwtToken(User user) throws NullPointerException {
         if (user.getEmail() == null)
             throw new IllegalArgumentException("Cannot create JWT Token without username");
 
+        //get the current time in a datetime object
         DateTime currentTime = new DateTime();
 
+        //Token creation, set the token expiration to 60 minutes from the currentTime
         String token = Jwts.builder()
                 .setIssuedAt(currentTime.toDate())
                 .setExpiration(currentTime.plusMinutes(60).toDate())

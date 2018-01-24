@@ -40,12 +40,20 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+
+    /** This method sets the authentication provider and the userDetailsService on the authenticationManager
+     *
+     * @param auth AuthenticationManagerBuilder
+     */
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authProvider());
         auth.userDetailsService(userDetailsService());
-
     }
 
+    /**Initialize the authentication provider and set the userDetailsService that it should use and the passwordEncoder
+     *
+     * @return returns the DaoProvider used in the authenticationManagerBuilder
+     */
     @Bean
     public DaoAuthenticationProvider authProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -54,6 +62,12 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         return authProvider;
     }
 
+    /** This method enable's certain actions from the outisde and add's the filters required for the login,
+     *  cors and json data posting.
+     *
+     * @param http the http parameter that we can configure
+     * @throws Exception
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -93,6 +107,12 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logoutUrl("/api/logout");
     }
 
+    /** Initializes the JsonAuthenticationFilter with the authenticationManager, which parameters the username and password the login will take and tells
+     * the filter which succes and failure handles to use.
+     *
+     * @return JsonAuthenticationFilter that enables json data to be posted to the api/login
+     * @throws Exception
+     */
     @Bean
     public JsonAuthenticationFilter jsonAuthenticationFilter() throws Exception{
         JsonAuthenticationFilter authFilter = new JsonAuthenticationFilter();
@@ -104,6 +124,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         authFilter.setAuthenticationFailureHandler(myFailureHandler());
         return authFilter;
     }
+
+    /*
+-------------------------------------SIMPLE BEANS------------------------------------------
+     */
 
     @Bean
     public TokenAuthenticationFilter tokenAuthenticationFilter(){

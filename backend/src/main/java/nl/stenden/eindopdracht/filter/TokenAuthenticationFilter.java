@@ -48,6 +48,14 @@ public class TokenAuthenticationFilter extends GenericFilterBean
         logger.info("Init TokenAuthenticationFilter");
     }
 
+    /**
+     * TODO write comment
+     * @param request
+     * @param response
+     * @param chain
+     * @throws IOException
+     * @throws ServletException
+     */
     @Override
     public void doFilter(final ServletRequest request, final ServletResponse response, final FilterChain chain)
             throws IOException, ServletException
