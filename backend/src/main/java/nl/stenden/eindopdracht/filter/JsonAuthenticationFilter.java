@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -29,6 +30,7 @@ public class JsonAuthenticationFilter extends UsernamePasswordAuthenticationFilt
     private String jsonPassword;
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private static String AUTH_HEADER_NAME = "AUTH-TOKEN";
 
     @Autowired
     private UserService userService;
@@ -90,19 +92,19 @@ public class JsonAuthenticationFilter extends UsernamePasswordAuthenticationFilt
                     sb.append(line);
                 }
 
+                //read the values written by the bufferedReader into a loginRequest object so we can call them later.
                 ObjectMapper mapper = new ObjectMapper();
                 LoginRequest loginRequest = mapper.readValue(sb.toString(), LoginRequest.class);
 
+                //fetch the data from the loginRequest through it's getters
                 this.jsonEmail = loginRequest.getEmail();
                 this.jsonPassword = loginRequest.getPassword();
-                logger.info("email: " + jsonEmail + " || password: " + jsonPassword );
-
 
             } catch(Exception e) {
                 logger.info(e.toString());
             }
         }
-
+        //if the content type isn't json then continue like normal
         return super.attemptAuthentication(request, response);
     }
 
@@ -131,6 +133,6 @@ public class JsonAuthenticationFilter extends UsernamePasswordAuthenticationFilt
         userService.updateUser(user.getId(), user);
 
         //send token in the response header as "auth-token"
-        response.setHeader("AUTH-TOKEN" , user.getAuthToken().getToken());
+        response.setHeader(AUTH_HEADER_NAME, user.getAuthToken().getToken());
     }
 }

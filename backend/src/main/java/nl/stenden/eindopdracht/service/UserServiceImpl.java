@@ -63,7 +63,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
             currentUser.setFirstName(user.getFirstName());
         }
         if(user.getPassword() != null){
-            currentUser.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+            currentUser.setPassword(user.getPassword());
         }
         if(user.getAuthToken() != null)
         {

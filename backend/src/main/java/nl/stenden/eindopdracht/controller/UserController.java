@@ -35,6 +35,9 @@ public class UserController {
     @Autowired
     private UserValidator userValidator;
 
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
     //object logger
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -73,6 +76,7 @@ public class UserController {
     //update an existing user in db
     @RequestMapping(method=RequestMethod.PATCH, value="api/user/{userid}")
     public ResponseEntity updateUser(@RequestBody User user, @PathVariable("userid") Long userid){
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userService.updateUser(userid, user);
         return new ResponseEntity<>(HttpStatus.OK);
     }

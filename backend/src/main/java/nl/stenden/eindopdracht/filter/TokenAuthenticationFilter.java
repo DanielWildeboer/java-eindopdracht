@@ -18,18 +18,21 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.GenericFilterBean;
+import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.constraints.Null;
 import java.io.IOException;
 import java.util.Date;
 
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
-public class TokenAuthenticationFilter extends GenericFilterBean
+public class TokenAuthenticationFilter extends OncePerRequestFilter
 {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -57,31 +60,37 @@ public class TokenAuthenticationFilter extends GenericFilterBean
      * @throws ServletException
      */
     @Override
-    public void doFilter(final ServletRequest request, final ServletResponse response, final FilterChain chain)
-            throws IOException, ServletException
-    {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
         final HttpServletRequest httpRequest = (HttpServletRequest)request;
 
         //extract token from header
         final String accessToken = httpRequest.getHeader(AUTH_HEADER_NAME);
         if (accessToken != null) {
             Date currentTime = new Date();
-
+            logger.info(accessToken);
             User user = userService.findByAuthToken(accessToken);
             if(user == null){
                 logger.info("could not find an user with the token");
+                response.sendError(response.SC_UNAUTHORIZED, "could not find an user with the token");
+                return;
             }
 
-            if(currentTime.before(user.getAuthToken().getDate())){
+            try {
 
-                UserDetails userDetails = userDetailsService.loadUserByUsername(user.getEmail());
-                final UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
-                        new UsernamePasswordAuthenticationToken(userDetails, user.getPassword(), userDetails.getAuthorities());
+                if (currentTime.before(user.getAuthToken().getDate())) {
 
-                authenticationManager.authenticate(usernamePasswordAuthenticationToken);
-                if(usernamePasswordAuthenticationToken.isAuthenticated()) {
-                    SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+                    UserDetails userDetails = userDetailsService.loadUserByUsername(user.getEmail());
+                    final UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
+                            new UsernamePasswordAuthenticationToken(userDetails, user.getPassword(), userDetails.getAuthorities());
+
+                    authenticationManager.authenticate(usernamePasswordAuthenticationToken);
+                    if (usernamePasswordAuthenticationToken.isAuthenticated()) {
+                        SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+                    }
                 }
+            } catch (NullPointerException e){
+                response.sendError(response.SC_UNAUTHORIZED, "Not authorized");
+
             }
         }
         chain.doFilter(request, response);

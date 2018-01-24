@@ -9,6 +9,7 @@ import nl.stenden.eindopdracht.utility.RequestAwareAuthenticationFailureHandler;
 import nl.stenden.eindopdracht.utility.RequestAwareAuthenticationSuccesHandler;
 import nl.stenden.eindopdracht.utility.RestAuthenticationEntryPoint;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -73,7 +74,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 //Disable csrf for now
                 .csrf().disable()
-                .addFilterAfter(tokenAuthenticationFilter(), JsonAuthenticationFilter.class)
+                .addFilterAfter(new TokenAuthenticationFilter(), JsonAuthenticationFilter.class)
                 .addFilterBefore(jsonAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(new CorsFilterRequest(), ChannelProcessingFilter.class)
 
@@ -117,7 +118,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     public JsonAuthenticationFilter jsonAuthenticationFilter() throws Exception{
         JsonAuthenticationFilter authFilter = new JsonAuthenticationFilter();
         authFilter.setAuthenticationManager(authenticationManager());
-
         authFilter.setPasswordParameter("password");
         authFilter.setUsernameParameter("email");
         authFilter.setAuthenticationSuccessHandler(mySuccessHandler());
@@ -129,10 +129,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 -------------------------------------SIMPLE BEANS------------------------------------------
      */
 
-    @Bean
-    public TokenAuthenticationFilter tokenAuthenticationFilter(){
-        return new TokenAuthenticationFilter();
-    }
+//    @Bean
+//    public TokenAuthenticationFilter tokenAuthenticationFilter(){
+//        return new TokenAuthenticationFilter();
+//    }
 
     @Bean
     public RequestAwareAuthenticationSuccesHandler mySuccessHandler(){
