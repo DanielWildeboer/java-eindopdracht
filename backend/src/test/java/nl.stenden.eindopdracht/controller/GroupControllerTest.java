@@ -22,6 +22,6 @@ public class GroupControllerTest {
 
     @Test
     public void testApplication() {
-        assertThat(App).isNotNull();
+       assertThat(App).isNotNull();
     }
 }
