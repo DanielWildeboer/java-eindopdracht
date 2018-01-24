@@ -29,7 +29,7 @@ app.service('LoginService', function ($http, $q) {
             }
 
         }).then(function successCallback() {
-            window.location = "http://localhost/java-eindopdracht/frontend/";
+            window.location = "http://localhost/JavaEindOpdracht/java-eindopdracht/frontend/#/";
 
 
         }, function errorCallback() {
