@@ -23,6 +23,18 @@ public class Student {
     @OneToMany
     private Set<Token> token;
 
+    //Constructor
+    public Student(String email, String firstName, String lastName, int studentNumber){
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.studentNumber = studentNumber;
+    }
+
+    //Empty constructor
+    public Student(){
+    }
+
     //getters and setters
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
